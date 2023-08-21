@@ -5,7 +5,7 @@
         public int IdCarro { get; set; }
         public string Nome { get; set; }
 
-        public Carro(int idCarro, string nome, string v)
+        public Carro(int idCarro, string nome)
         {
             IdCarro = idCarro;
             Nome = nome;

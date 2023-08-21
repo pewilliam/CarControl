@@ -26,24 +26,13 @@
 
         <DataGrid
             x:Name="dg"
-            ItemsSource="{Binding modeloList}"
+            ItemsSource="{Binding carroList}"
             Grid.Row="1"
             Grid.ColumnSpan="5"
             Style="{StaticResource CustomDataGridStyle}" HeadersVisibility="Column" SelectionUnit="Cell" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding IdModelo}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Modelo" Width="*" Binding="{Binding Nome}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Cor" Binding="{Binding Cor}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Q. Portas" Binding="{Binding QtdPortas}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Q. Passageiros" Binding="{Binding QtdPassageiros}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Combustivel" Binding="{Binding Combustivel}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Placa" Binding="{Binding Placa}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Ano" Binding="{Binding Ano}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Câmbio" Binding="{Binding TipoCambio}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Preço" Binding="{Binding Preco}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="IdCarro" Binding="{Binding IdCarro}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="IdFabricante" Binding="{Binding IdFabricante}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="IdCategoria" Binding="{Binding IdCategoria}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
+                <DataGridTextColumn Header="Id" Binding="{Binding IdCarro}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
+                <DataGridTextColumn Header="Carro" Width="*" Binding="{Binding Nome}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
