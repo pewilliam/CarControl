@@ -50,6 +50,36 @@
         </Style.Resources>
     </Style>
 
+    <!--DataGridRow-->
+    <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#1d88bc" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#1d88bc" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#1d88bc" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="White" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+        </Style.Resources>
+    </Style>
+
+    <!--DataGridCell-->
+    <Style TargetType="{x:Type DataGridCell}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!--PasswordBox-->
     <Style x:Key="Password" TargetType="{x:Type PasswordBox}">
         <Setter Property="Background" Value="Transparent"/>
@@ -80,87 +110,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <!--DataGrid-->
-    <Style x:Key="CustomDataGridStyle" TargetType="DataGrid">
-        <Setter Property="AutoGenerateColumns" Value="False" />
-        <Setter Property="RowDetailsVisibilityMode" Value="Visible" />
-        <Setter Property="CanUserAddRows" Value="False" />
-        <Setter Property="CanUserDeleteRows" Value="False" />
-        <Setter Property="IsReadOnly" Value="True" />
-        <Setter Property="Background" Value="#F0F0F0" />
-        <Setter Property="RowBackground" Value="White" />
-        <Setter Property="AlternatingRowBackground" Value="#F0F0F0" />
-        <Setter Property="BorderBrush" Value="#CCCCCC" />
-        <Setter Property="BorderThickness" Value="1" />
-        <!-- Adicione mais setters conforme necessário para personalização -->
-    </Style>
-
-    <Style x:Key="CustomDataGridHeaderStyle"            
-         TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Background" Value="Azure" />
-        <Setter Property="Background" Value="#032665" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="BorderThickness" Value="0, 1, 1, 1" />
-        <Setter Property="BorderBrush" Value="Black" />
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="FontFamily" Value="Montserrat"/>
-        <Setter Property="Padding" Value="2" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                    <Grid Name="HedearGrid" Background="#02183f" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter  Margin="6,3,6,3" VerticalAlignment="Center" Grid.Column="0" />
-                        <Path x:Name="SortArrow" Visibility="Collapsed" Data="M0,0 L1,0 0.5,1 z" Stretch="Fill"
-                            Grid.Column="1" Width="8" Height="6" Fill="White" Margin="0,0,8,0"
-                            VerticalAlignment="Center" RenderTransformOrigin="0.5,0.4" />
-                        <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Cursor="SizeWE"
-                                   Grid.Column="1"  >
-                            <Thumb.Style>
-                                <Style TargetType="{x:Type Thumb}">
-                                    <Setter Property="Width" Value="2" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Thumb}">
-                                                <Border Background="Transparent"/>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </Thumb.Style>
-                        </Thumb>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="SortDirection" Value="Ascending">
-                            <Setter TargetName="SortArrow" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="SortArrow" Property="RenderTransform">
-                                <Setter.Value>
-                                    <RotateTransform Angle="180" />
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <Trigger Property="SortDirection" Value="Descending">
-                            <Setter TargetName="SortArrow" Property="Visibility" Value="Visible" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Aqua"/>
-                <Setter Property="Background" Value="#02183f"/>
-                <Setter Property="Cursor" Value="Hand"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

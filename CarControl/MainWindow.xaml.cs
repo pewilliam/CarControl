@@ -80,7 +80,14 @@ namespace CarControl
         {
             DataGridRow row = sender as DataGridRow;
             Carro c = row.DataContext as Carro;
-            ModelosWindow modelosWindow = new ModelosWindow(c);
+            ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro);
+            modelosWindow.ShowDialog();
+        }
+
+        private void abrirCarroBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Carro c = dg.SelectedItem as Carro;
+            ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro);
             modelosWindow.ShowDialog();
         }
     }

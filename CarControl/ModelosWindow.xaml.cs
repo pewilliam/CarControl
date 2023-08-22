@@ -1,6 +1,7 @@
 ﻿using CarControl.Models;
 using Npgsql;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,11 +15,13 @@ namespace CarControl
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
+        static int IdCarro = -1;
 
-        public ModelosWindow(Carro carro)
+        public ModelosWindow(int idcarro)
         {
             InitializeComponent();
-            MostrarModelos(carro.IdCarro);
+            IdCarro = idcarro;
+            MostrarModelos(IdCarro);
         }
 
         private void MostrarModelos(int idcarro)
@@ -72,8 +75,8 @@ namespace CarControl
             {
                 while (reader.Read())
                 {
-                    idCarroLabel.Content = idCarroLabel.Content + reader.GetInt32(0).ToString();
-                    idModeloLabel.Content = idModeloLabel.Content + reader.GetInt32(1).ToString();
+                    idModeloLabel.Content = idModeloLabel.Content + reader.GetInt32(0).ToString();
+                    idCarroLabel.Content = idCarroLabel.Content + reader.GetInt32(1).ToString();
                     carroLabel.Content = carroLabel.Content + reader.GetString(2);
                     modeloLabel.Content = modeloLabel.Content + reader.GetString(3);
                     fabricanteLabel.Content = fabricanteLabel.Content + reader.GetString(4);
@@ -104,7 +107,7 @@ namespace CarControl
             portasLabel.Content = "Portas: ";
             passageirosLabel.Content = "Passageiros: ";
             combustivelLabel.Content = "Combustível: ";
-            placaLabel.Content = "Placas: ";
+            placaLabel.Content = "Placa: ";
             anoLabel.Content = "Ano: ";
             cambioLabel.Content = "Câmbio: ";
             precoLabel.Content = "Preço: ";
@@ -135,8 +138,25 @@ namespace CarControl
 
         private void NovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoModeloWindow novoModeloWindow = new NovoModeloWindow();
+            NovoModeloWindow novoModeloWindow = new NovoModeloWindow(IdCarro);
             novoModeloWindow.ShowDialog();
+            MostrarModelos(IdCarro);
+        }
+
+        private void SearchModeloTxb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var txb = sender as TextBox;
+            if (txb.Text == null)
+            {
+                MostrarModelos(IdCarro);
+            }
+            else
+            {
+                var filteredList = modeloList.Where(x => x.Nome.ToLower().Contains(txb.Text.ToLower()));
+                dg.ItemsSource = null;
+                MostrarModelos(IdCarro);
+                dg.ItemsSource = filteredList;
+            }
         }
     }
 }
