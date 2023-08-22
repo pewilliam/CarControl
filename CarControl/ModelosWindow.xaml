@@ -119,21 +119,21 @@
             ItemsSource="{Binding modeloList}"
             Grid.Row="1"
             Grid.ColumnSpan="5" HeadersVisibility="Column" SelectionUnit="Cell">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding IdModelo}"  />
-                    <DataGridTextColumn Header="Modelo" Width="2*" Binding="{Binding Nome}"  />
-                    <DataGridTextColumn Header="Cor" Binding="{Binding Cor}"  />
-                    <DataGridTextColumn Header="Q. Portas" Binding="{Binding QtdPortas}"  />
-                    <DataGridTextColumn Header="Q. Passageiros" Binding="{Binding QtdPassageiros}"  />
-                    <DataGridTextColumn Header="Combustivel" Binding="{Binding Combustivel}"  />
-                    <DataGridTextColumn Header="Placa" Binding="{Binding Placa}"  />
-                    <DataGridTextColumn Header="Ano" Binding="{Binding Ano}"  />
-                    <DataGridTextColumn Header="Câmbio" Binding="{Binding TipoCambio}"  />
-                    <DataGridTextColumn Header="Preço" Binding="{Binding Preco}"  />
-                    <DataGridTextColumn Header="IdCarro" Binding="{Binding IdCarro}"  />
-                    <DataGridTextColumn Header="IdFabricante" Binding="{Binding IdFabricante}"  />
-                    <DataGridTextColumn Header="IdCategoria" Binding="{Binding IdCategoria}"  />
-                </DataGrid.Columns>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding IdModelo}"  />
+                <DataGridTextColumn Header="Modelo" Width="2*" Binding="{Binding Nome}"  />
+                <DataGridTextColumn Header="Cor" Binding="{Binding Cor}"  />
+                <DataGridTextColumn Header="Q. Portas" Binding="{Binding QtdPortas}"  />
+                <DataGridTextColumn Header="Q. Passageiros" Binding="{Binding QtdPassageiros}"  />
+                <DataGridTextColumn Header="Combustivel" Binding="{Binding Combustivel}"  />
+                <DataGridTextColumn Header="Placa" Binding="{Binding Placa}"  />
+                <DataGridTextColumn Header="Ano" Binding="{Binding Ano}"  />
+                <DataGridTextColumn Header="Câmbio" Binding="{Binding TipoCambio}"  />
+                <DataGridTextColumn Header="Preço" Binding="{Binding Preco}"  />
+                <DataGridTextColumn Header="IdCarro" Binding="{Binding IdCarro}"  />
+                <DataGridTextColumn Header="IdFabricante" Binding="{Binding IdFabricante}"  />
+                <DataGridTextColumn Header="IdCategoria" Binding="{Binding IdCategoria}"  />
+            </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
                     <Style.Triggers>
