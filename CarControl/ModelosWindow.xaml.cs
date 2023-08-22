@@ -2,7 +2,7 @@
 using Npgsql;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.PortableExecutable;
+using MahApps.Metro.Controls;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,7 +11,7 @@ namespace CarControl
     /// <summary>
     /// Lógica interna para ModelosWindow.xaml
     /// </summary>
-    public partial class ModelosWindow : Window
+    public partial class ModelosWindow : MetroWindow
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
@@ -20,14 +20,16 @@ namespace CarControl
         public ModelosWindow(int idcarro)
         {
             InitializeComponent();
+            SearchModeloTxb.Focus();
             IdCarro = idcarro;
             MostrarModelos(IdCarro);
         }
 
         private void MostrarModelos(int idcarro)
         {
+            dg.ItemsSource = null;
             modeloList.Clear();
-            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
+            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro};");
 
@@ -64,7 +66,7 @@ namespace CarControl
         private void MostrarDetalhes(int idModelo)
         {
             LimpaLabels();
-            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
+            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.vw_carro_modelo WHERE idmodelo = {idModelo};");
 

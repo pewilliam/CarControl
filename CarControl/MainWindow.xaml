@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="900"
+        Title="CarControl" Height="550" Width="900"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>

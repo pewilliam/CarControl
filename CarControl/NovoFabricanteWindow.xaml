@@ -1,4 +1,4 @@
-﻿<Window x:Class="CarControl.NovoCarroWindow"
+﻿<Window x:Class="CarControl.NovoFabricanteWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="Novo Carro" Height="200" Width="300"
+        Title="Novo Fabricante" Height="200" Width="300"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -19,8 +19,8 @@
             <RowDefinition Height="90"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <TextBox x:Name="NomeCarroTxb"
+
+        <TextBox x:Name="NomeFabricanteTxb"
                  Controls:TextBoxHelper.Watermark="Nome"
                  FontFamily="montserrat"
                  VerticalContentAlignment="Center"
@@ -32,11 +32,11 @@
                  Height="60"
                  Margin="10"/>
 
-        <Button x:Name="SalvarCarroBtn"
+        <Button x:Name="SalvarFabricanteBtn"
                 Content="Salvar"
                 Grid.Row="2"
                 Margin="8" Click="SalvarCarroBtn_Click"/>
-        <Button x:Name="FecharSaLVARCarroBtn"
+        <Button x:Name="FecharSalvarFabricanteBtn"
                 Content="Fechar"
                 Grid.Row="2"
                 Grid.Column="1"

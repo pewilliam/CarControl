@@ -20,17 +20,20 @@ namespace CarControl
         public MainWindow()
         {
             InitializeComponent();
+            searchCarTxb.Focus();
             MostrarCarros();
         }
 
         private void MostrarCarros()
         {
-            carroList.Clear();
-            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
+            dg.ItemsSource = null;
+            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = "SELECT * FROM carcontrol.carro;";
 
             conn.Open();
+
+            carroList.Clear();
 
             NpgsqlCommand cmd = new(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -44,9 +47,10 @@ namespace CarControl
                     carroList.Add(carro);
                 }
                 reader.Close();
-                dg.ItemsSource = carroList;
+                conn.Close();
             }
-            conn.Close();
+            dg.ItemsSource = carroList;
+            dg.Items.Refresh();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -73,7 +77,8 @@ namespace CarControl
         private void novoCarroBtn_Click(object sender, RoutedEventArgs e)
         {
             NovoCarroWindow novoCarroWindow = new NovoCarroWindow();
-            novoCarroWindow.Show();
+            novoCarroWindow.ShowDialog();
+            MostrarCarros();
         }
 
         private void DataGridRow_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -87,8 +92,11 @@ namespace CarControl
         private void abrirCarroBtn_Click(object sender, RoutedEventArgs e)
         {
             Carro c = dg.SelectedItem as Carro;
-            ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro);
-            modelosWindow.ShowDialog();
+            if (c is not null)
+            {
+                ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro);
+                modelosWindow.ShowDialog();
+            }
         }
     }
 }

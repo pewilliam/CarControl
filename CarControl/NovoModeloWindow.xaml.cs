@@ -12,7 +12,7 @@ namespace CarControl
     /// </summary>
     public partial class NovoModeloWindow : MetroWindow
     {
-        string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
+        string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
         NpgsqlConnection conn = new NpgsqlConnection();
         List<Fabricante> listFabricante = new List<Fabricante>();
         List<Categoria> listCategoria = new List<Categoria>();
@@ -31,14 +31,14 @@ namespace CarControl
 
         private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
-            string nomeModelo = ModeloTxb.Text;
-            string corModelo = CorTxb.Text;
+            string nomeModelo = ModeloTxb.Text.ToUpper();
+            string corModelo = CorTxb.Text.ToUpper();
             int qtdPortas = int.Parse(PortasTxb.Text);
             int qtdPassageiros = int.Parse(PassageirosTxb.Text);
-            string combustivel = CombustívelTxb.Text;
-            string placa = PlacaTxb.Text;
+            string combustivel = CombustívelTxb.Text.ToUpper();
+            string placa = PlacaTxb.Text.ToUpper();
             string ano = AnoTxb.Text;
-            string cambio = CambioTxb.Text;
+            string cambio = CambioTxb.Text.ToUpper();
             double preco = double.Parse(PrecoTxb.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
 
             conn.ConnectionString = connection;
@@ -120,6 +120,18 @@ namespace CarControl
         {
             double amount;
             PrecoTxb.Text = (double.TryParse(PrecoTxb.Text, out amount)) ? amount.ToString("C") : string.Empty;
+        }
+
+        private void NovoFabricanteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NovoFabricanteWindow novoFabricanteWindow = new NovoFabricanteWindow();
+            novoFabricanteWindow.ShowDialog();
+            novoFabricanteWindow.Owner = this;
+        }
+
+        private void NovaCategoriaBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
