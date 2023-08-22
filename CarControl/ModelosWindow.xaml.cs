@@ -2,6 +2,7 @@
 using Npgsql;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace CarControl
 {
@@ -13,16 +14,18 @@ namespace CarControl
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
 
-        public ModelosWindow()
+        public ModelosWindow(Carro carro)
         {
             InitializeComponent();
+            MostrarModelos(carro.IdCarro);
         }
 
         private void MostrarModelos(int idcarro)
         {
+            modeloList.Clear();
             string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
-            string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro};)");
+            string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro};");
 
             conn.Open();
 
@@ -49,7 +52,18 @@ namespace CarControl
                     modeloList.Add(modelo);
                 }
                 reader.Close();
+                conn.Close();
                 dg.ItemsSource = modeloList;
+            }
+        }
+
+        private void DataGridRow_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is DataGridRow row && row.Item is Modelo selectedItem)
+            {
+                ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(selectedItem);
+                modeloDetailsWindow.ShowDialog();
+                modeloDetailsWindow.Owner = this;
             }
         }
     }

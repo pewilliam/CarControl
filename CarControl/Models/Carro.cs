@@ -1,6 +1,6 @@
 ﻿namespace CarControl.Models
 {
-    internal class Carro
+    public class Carro
     {
         public int IdCarro { get; set; }
         public string Nome { get; set; }

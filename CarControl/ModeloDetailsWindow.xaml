@@ -1,0 +1,186 @@
+﻿<Window x:Class="CarControl.ModeloDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarControl"
+        mc:Ignorable="d"
+        Title="ModeloDetailsWindow" Height="450" Width="800">
+    <Border BorderBrush="Black"
+            BorderThickness="1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="idModeloLabel"
+           HorizontalAlignment="Center"
+           Content="IdModelo: "
+           Grid.Column="0"/>
+            <Label x:Name="idCarroLabel"
+           HorizontalAlignment="Center"
+           Content="IdCarro: "
+           Grid.Column="1"/>
+
+            <Label Content="Carro"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+           Grid.Row="1"
+           Grid.Column="0"/>
+            <Label x:Name="carroNomeLabel"
+           Content="Nome do carro"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Top"
+           Grid.Row="2"
+           Grid.Column="0"/>
+
+            <Label Content="Modelo"
+        HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+        Grid.Row="1"
+        Grid.Column="1"/>
+            <Label x:Name="modeloNomeLabel"
+        Content="Nome do modelo"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="2"
+        Grid.Column="1"/>
+
+            <Label Content="Fabricante"
+        HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+        Grid.Row="1"
+        Grid.Column="2"/>
+            <Label x:Name="fabricanteNomeLabel"
+        Content="Nome do fabricante"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="2"
+        Grid.Column="2"/>
+
+            <Label Content="Categoria"
+        HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+        Grid.Row="3"
+        Grid.Column="0"/>
+            <Label x:Name="categoriaNomeLabel"
+        Content="Categoria"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="4"
+        Grid.Column="0"/>
+
+            <Label Content="Cor"
+        HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+        Grid.Row="3"
+        Grid.Column="1"/>
+            <Label x:Name="corLabel"
+        Content="Cor"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="4"
+        Grid.Column="1"/>
+
+            <Label Content="Portas"
+        HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+        Grid.Row="3"
+        Grid.Column="2"/>
+            <Label x:Name="portasLabel"
+        Content="Portas"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="4"
+        Grid.Column="2"/>
+
+            <Label Content="Passageiros"
+        HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+        Grid.Row="5"
+        Grid.Column="0"/>
+            <Label x:Name="passageirosLabel"
+        Content="Passageiros"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="6"
+        Grid.Column="0"/>
+
+            <Label Content="Combustível"
+        HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+        Grid.Row="5"
+        Grid.Column="1"/>
+            <Label x:Name="combustivelLabel"
+        Content="Combustível"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="6"
+        Grid.Column="1"/>
+
+            <Label Content="Placa"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Bottom"
+        Grid.Row="5"
+        Grid.Column="2"/>
+            <Label x:Name="placaLabel"
+        Content="Placa"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="6"
+        Grid.Column="2"/>
+
+            <Label Content="Ano"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Bottom"
+        Grid.Row="7"
+        Grid.Column="0"/>
+            <Label x:Name="anoLabel"
+        Content="Ano"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="8"
+        Grid.Column="0"/>
+
+            <Label Content="Câmbio"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Bottom"
+        Grid.Row="7"
+        Grid.Column="1"/>
+            <Label x:Name="cambioLabel"
+        Content="Câmbio"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="8"
+        Grid.Column="1"/>
+
+            <Label Content="Preço"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Bottom"
+        Grid.Row="7"
+        Grid.Column="2"/>
+            <Label x:Name="precoLabel"
+        Content="Preço"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Grid.Row="8"
+        Grid.Column="2"/>
+        </Grid>
+    </Border>
+    
+</Window>

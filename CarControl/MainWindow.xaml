@@ -5,35 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="900">
+        Title="MainWindow" Height="550" Width="900"
+        WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <ResourceDictionary Source="/Dictionaries/ResourceDictionary.xaml"/>
     </Window.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
             <RowDefinition/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
         <DataGrid
             x:Name="dg"
             ItemsSource="{Binding carroList}"
-            Grid.Row="1"
+            Grid.Row="0"
             Grid.ColumnSpan="5"
-            Style="{StaticResource CustomDataGridStyle}" HeadersVisibility="Column" SelectionUnit="Cell" SelectionMode="Single">
+            Style="{StaticResource CustomDataGridStyle}" HeadersVisibility="Column" SelectionUnit="Cell" SelectionMode="Single" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding IdCarro}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
                 <DataGridTextColumn Header="Carro" Width="*" Binding="{Binding Nome}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick"  Handler="DataGridRow_MouseDoubleClick" />
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
+
+        <TextBox x:Name="searchCarTxb"
+                 Grid.Row="1"
+                 Grid.Column="0"
+                 Margin="8"
+                 Style="{StaticResource TextBox}" TextChanged="TextBox_TextChanged"/>
+
+        <Button x:Name="abrirCarroBtn"
+                Content="Abrir"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8"
+                Style="{StaticResource Buttons}"/>
+
+        <Button x:Name="novoCarroBtn"
+                Content="Novo"
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="8"
+                Style="{StaticResource Buttons}"/>
+
+        <Button x:Name="fecharBtn"
+                Content="Fechar"
+                Grid.Row="1"
+                Grid.Column="3"
+                Margin="8"
+                Style="{StaticResource Buttons}" Click="fecharBtn_Click"
+                />
     </Grid>
 </Window>

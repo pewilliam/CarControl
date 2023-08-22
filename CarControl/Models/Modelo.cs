@@ -1,6 +1,6 @@
 ﻿namespace CarControl.Models
 {
-    internal class Modelo
+    public class Modelo
     {
         public int IdModelo { get; set; }
         public string Nome { get; set; }
@@ -8,7 +8,7 @@
         public int QtdPortas { get; set; }
         public int QtdPassageiros { get; set; }
         public string Combustivel { get; set; }
-        public string Placa{ get; set; }
+        public string Placa { get; set; }
         public string Ano { get; set; }
         public string TipoCambio { get; set; }
         public double Preco { get; set; }

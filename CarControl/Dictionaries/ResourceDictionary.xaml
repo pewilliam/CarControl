@@ -1,6 +1,55 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.AeroLite">
 
+    <!--Buttons-->
+    <Style x:Key="Buttons" TargetType="Button">
+        <Setter Property="Background" Value="#032665"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                        <ContentPresenter x:Name="PART_Content"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Aqua"/>
+                <Setter Property="Background" Value="#032665"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--TextBox-->
+    <Style x:Key="TextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#032665"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CaretBrush" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="3" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <!--DataGrid-->
     <Style x:Key="CustomDataGridStyle" TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="RowDetailsVisibilityMode" Value="Collapsed" />

@@ -45,6 +45,11 @@
                 <DataGridTextColumn Header="IdFabricante" Binding="{Binding IdFabricante}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
                 <DataGridTextColumn Header="IdCategoria" Binding="{Binding IdCategoria}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick"  Handler="DataGridRow_MouseDoubleClick" />
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
     </Grid>
 </Window>
