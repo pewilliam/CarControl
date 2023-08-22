@@ -152,7 +152,10 @@
                  Grid.Row="2"
                  Grid.Column="0"
                  Grid.ColumnSpan="3"
-                 Margin="5"/>
+                 Margin="5"
+                 FontFamily="Montserrat"
+                 FontSize="20"
+                 HorizontalContentAlignment="Center"/>
 
         <Button x:Name="NovoModeloBtn"
                 Content="Novo"

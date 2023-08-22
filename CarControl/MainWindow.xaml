@@ -49,9 +49,15 @@
         </DataGrid>
 
         <TextBox x:Name="searchCarTxb"
+                 Controls:TextBoxHelper.Watermark="Pesquisar"
                  Grid.Row="1"
                  Grid.Column="0"
-                 Margin="8" TextChanged="TextBox_TextChanged"/>
+                 Margin="8" 
+                 FontFamily="Montserrat"
+                 FontSize="20"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 TextChanged="TextBox_TextChanged"/>
 
         <Button x:Name="abrirCarroBtn"
                 Content="Abrir"
