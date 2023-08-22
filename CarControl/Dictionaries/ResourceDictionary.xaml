@@ -40,7 +40,8 @@
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="CaretBrush" Value="White"/>
+        <Setter Property="CaretBrush" Value="#032665"/>
+        <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="FontSize" Value="20"/>
         <Style.Resources>
             <Style TargetType="{x:Type Border}">
@@ -49,10 +50,42 @@
         </Style.Resources>
     </Style>
 
+    <!--PasswordBox-->
+    <Style x:Key="Password" TargetType="{x:Type PasswordBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CaretBrush" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3">
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#6c9ed2" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#569de5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--DataGrid-->
     <Style x:Key="CustomDataGridStyle" TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns" Value="False" />
-        <Setter Property="RowDetailsVisibilityMode" Value="Collapsed" />
+        <Setter Property="RowDetailsVisibilityMode" Value="Visible" />
         <Setter Property="CanUserAddRows" Value="False" />
         <Setter Property="CanUserDeleteRows" Value="False" />
         <Setter Property="IsReadOnly" Value="True" />
@@ -67,25 +100,33 @@
     <Style x:Key="CustomDataGridHeaderStyle"            
          TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Background" Value="Azure" />
+        <Setter Property="Background" Value="#032665" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderThickness" Value="0, 1, 1, 1" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="Padding" Value="2" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                    <Grid Name="HedearGrid" Background="AliceBlue" >
+                    <Grid Name="HedearGrid" Background="#02183f" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <ContentPresenter  Margin="6,3,6,3" VerticalAlignment="Center" Grid.Column="0" />
                         <Path x:Name="SortArrow" Visibility="Collapsed" Data="M0,0 L1,0 0.5,1 z" Stretch="Fill"
-                            Grid.Column="1" Width="8" Height="6" Fill="Blue" Margin="0,0,8,0"
+                            Grid.Column="1" Width="8" Height="6" Fill="White" Margin="0,0,8,0"
                             VerticalAlignment="Center" RenderTransformOrigin="0.5,0.4" />
                         <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Cursor="SizeWE"
                                    Grid.Column="1"  >
                             <Thumb.Style>
                                 <Style TargetType="{x:Type Thumb}">
                                     <Setter Property="Width" Value="2" />
-
-
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type Thumb}">
@@ -113,6 +154,13 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Aqua"/>
+                <Setter Property="Background" Value="#02183f"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

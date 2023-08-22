@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="ModeloDetailsWindow" Height="450" Width="800">
+        Title="ModeloDetailsWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Border BorderBrush="Black"
             BorderThickness="1">
         <Grid>

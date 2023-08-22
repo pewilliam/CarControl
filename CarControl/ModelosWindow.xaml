@@ -5,10 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="ModelosWindow" Height="450" Width="900">
-    <Window.Resources>
-        <ResourceDictionary Source="/Dictionaries/ResourceDictionary.xaml"/>
-    </Window.Resources>
+        Title="ModelosWindow" Height="450" Width="1280"
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,36 +18,151 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
+        <Grid x:Name="detailsGrid"
+              Grid.ColumnSpan="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="idCarroLabel"
+                   Content="Id carro: "
+                   Grid.Row="0"
+                   Grid.Column="0"/>
+
+            <Label x:Name="idModeloLabel"
+                   Content="Id modelo: "
+                   Grid.Row="0"
+                   Grid.Column="1"/>
+    
+            <Label x:Name="carroLabel"
+                   Content="Carro: "
+                   Grid.Row="0"
+                   Grid.Column="2"/>
+
+            <Label x:Name="modeloLabel"
+                   Content="Modelo: "
+                   Grid.Row="0"
+                   Grid.Column="3"/>
+            
+            <Label x:Name="fabricanteLabel"
+                   Content="Fabricante: "
+                   Grid.Row="0"
+                   Grid.Column="4"/>
+    
+            <Label x:Name="categoriaLabel"
+                   Content="Fabricante: "
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+
+            <Label x:Name="corLabel"
+                   Content="Cor: "
+                   Grid.Row="1"
+                   Grid.Column="1"/>
+
+            <Label x:Name="portasLabel"
+                   Content="Portas: "
+                   Grid.Row="1"
+                   Grid.Column="2"/>
+
+            <Label x:Name="passageirosLabel"
+                   Content="Portas: "
+                   Grid.Row="1"
+                   Grid.Column="3"/>
+
+            <Label x:Name="combustivelLabel"
+                   Content="Combustível: "
+                   Grid.Row="1"
+                   Grid.Column="4"/>
+
+            <Label x:Name="placaLabel"
+                   Content="Placa: "
+                   Grid.Row="2"
+                   Grid.Column="0"/>
+
+            <Label x:Name="anoLabel"
+                   Content="Ano: "
+                   Grid.Row="2"
+                   Grid.Column="1"/>
+
+            <Label x:Name="cambioLabel"
+                   Content="Câmbio: "
+                   Grid.Row="2"
+                   Grid.Column="2"/>
+
+            <Label x:Name="precoLabel"
+                   Content="Preço: "
+                   Grid.Row="2"
+                   Grid.Column="3"/>
+        </Grid>
+
         <DataGrid
-        x:Name="dg"
-        ItemsSource="{Binding modeloList}"
-        Grid.Row="1"
-        Grid.ColumnSpan="5"
-        Style="{StaticResource CustomDataGridStyle}" HeadersVisibility="Column" SelectionUnit="Cell" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding IdModelo}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Modelo" Width="*" Binding="{Binding Nome}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Cor" Binding="{Binding Cor}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Q. Portas" Binding="{Binding QtdPortas}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Q. Passageiros" Binding="{Binding QtdPassageiros}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Combustivel" Binding="{Binding Combustivel}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Placa" Binding="{Binding Placa}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Ano" Binding="{Binding Ano}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Câmbio" Binding="{Binding TipoCambio}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="Preço" Binding="{Binding Preco}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="IdCarro" Binding="{Binding IdCarro}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="IdFabricante" Binding="{Binding IdFabricante}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-                <DataGridTextColumn Header="IdCategoria" Binding="{Binding IdCategoria}" HeaderStyle="{StaticResource CustomDataGridHeaderStyle}" />
-            </DataGrid.Columns>
-            <DataGrid.Resources>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick"  Handler="DataGridRow_MouseDoubleClick" />
+            x:Name="dg"
+            IsReadOnly="True"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            ItemsSource="{Binding modeloList}"
+            Grid.Row="1"
+            Grid.ColumnSpan="5" HeadersVisibility="Column" SelectionUnit="Cell">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding IdModelo}"  />
+                    <DataGridTextColumn Header="Modelo" Width="2*" Binding="{Binding Nome}"  />
+                    <DataGridTextColumn Header="Cor" Binding="{Binding Cor}"  />
+                    <DataGridTextColumn Header="Q. Portas" Binding="{Binding QtdPortas}"  />
+                    <DataGridTextColumn Header="Q. Passageiros" Binding="{Binding QtdPassageiros}"  />
+                    <DataGridTextColumn Header="Combustivel" Binding="{Binding Combustivel}"  />
+                    <DataGridTextColumn Header="Placa" Binding="{Binding Placa}"  />
+                    <DataGridTextColumn Header="Ano" Binding="{Binding Ano}"  />
+                    <DataGridTextColumn Header="Câmbio" Binding="{Binding TipoCambio}"  />
+                    <DataGridTextColumn Header="Preço" Binding="{Binding Preco}"  />
+                    <DataGridTextColumn Header="IdCarro" Binding="{Binding IdCarro}"  />
+                    <DataGridTextColumn Header="IdFabricante" Binding="{Binding IdFabricante}"  />
+                    <DataGridTextColumn Header="IdCategoria" Binding="{Binding IdCategoria}"  />
+                </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#1d88bc" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                    <EventSetter Event="GotFocus" Handler="DataGridRow_GotFocus"/>
                 </Style>
-            </DataGrid.Resources>
+            </DataGrid.RowStyle>
         </DataGrid>
+
+        <TextBox x:Name="SearchModeloTxb"
+                 Grid.Row="2"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Margin="5"/>
+
+        <Button x:Name="NovoModeloBtn"
+                Content="Novo"
+                Grid.Row="2"
+                Grid.Column="3"
+                Margin="8" Click="NovoModeloBtn_Click"/>
+        <Button x:Name="FecharModeloWindowBtn"
+                Content="Fechar"
+                Grid.Row="2"
+                Grid.Column="4"
+                Margin="8" Click="FecharModeloWindowBtn_Click"/>
     </Grid>
 </Window>

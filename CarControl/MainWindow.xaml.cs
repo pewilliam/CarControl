@@ -1,6 +1,8 @@
 ﻿using CarControl.Models;
+using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +12,7 @@ namespace CarControl
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Carro> carroList = new List<Carro>();
@@ -24,7 +26,7 @@ namespace CarControl
         private void MostrarCarros()
         {
             carroList.Clear();
-            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = "SELECT * FROM carcontrol.carro;";
 
@@ -47,16 +49,6 @@ namespace CarControl
             conn.Close();
         }
 
-        private void DataGridRow_MouseDoubleClick(object sender, RoutedEventArgs e)
-        {
-            if (sender is DataGridRow row && row.Item is Carro selectedItem)
-            {
-                ModelosWindow modeloWindow = new ModelosWindow(selectedItem);
-                modeloWindow.ShowDialog();
-                modeloWindow.Owner = this;
-            }
-        }
-
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var txb = sender as TextBox;
@@ -76,6 +68,20 @@ namespace CarControl
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void novoCarroBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NovoCarroWindow novoCarroWindow = new NovoCarroWindow();
+            novoCarroWindow.Show();
+        }
+
+        private void DataGridRow_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+            Carro c = row.DataContext as Carro;
+            ModelosWindow modelosWindow = new ModelosWindow(c);
+            modelosWindow.ShowDialog();
         }
     }
 }

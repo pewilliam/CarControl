@@ -1,6 +1,7 @@
 ﻿using CarControl.Models;
 using Npgsql;
 using System.Collections.Generic;
+using System.Reflection.PortableExecutable;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,7 +24,7 @@ namespace CarControl
         private void MostrarModelos(int idcarro)
         {
             modeloList.Clear();
-            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro};");
 
@@ -57,6 +58,58 @@ namespace CarControl
             }
         }
 
+        private void MostrarDetalhes(int idModelo)
+        {
+            LimpaLabels();
+            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
+            conn.ConnectionString = connection;
+            string sql = ($"SELECT * FROM carcontrol.vw_carro_modelo WHERE idmodelo = {idModelo};");
+
+            conn.Open();
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            using (NpgsqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    idCarroLabel.Content = idCarroLabel.Content + reader.GetInt32(0).ToString();
+                    idModeloLabel.Content = idModeloLabel.Content + reader.GetInt32(1).ToString();
+                    carroLabel.Content = carroLabel.Content + reader.GetString(2);
+                    modeloLabel.Content = modeloLabel.Content + reader.GetString(3);
+                    fabricanteLabel.Content = fabricanteLabel.Content + reader.GetString(4);
+                    categoriaLabel.Content = categoriaLabel.Content + reader.GetString(5);
+                    corLabel.Content = corLabel.Content + reader.GetString(6);
+                    portasLabel.Content = portasLabel.Content + reader.GetInt32(7).ToString();
+                    passageirosLabel.Content = passageirosLabel.Content + reader.GetInt32(8).ToString();
+                    combustivelLabel.Content = combustivelLabel.Content + reader.GetString(9);
+                    placaLabel.Content = placaLabel.Content + reader.GetString(10);
+                    anoLabel.Content = anoLabel.Content + reader.GetString(11);
+                    cambioLabel.Content = cambioLabel.Content + reader.GetString(12);
+                    precoLabel.Content = precoLabel.Content + "R$ " + reader.GetDecimal(13).ToString();
+                }
+                reader.Close();
+                conn.Close();
+            }
+        }
+
+        private void LimpaLabels()
+        {
+            idCarroLabel.Content = "Id carro: ";
+            idModeloLabel.Content = "Id modelo: ";
+            carroLabel.Content = "Carro: ";
+            modeloLabel.Content = "Modelo: ";
+            fabricanteLabel.Content = "Fabricante: ";
+            categoriaLabel.Content = "Categoria: ";
+            corLabel.Content = "Cor: ";
+            portasLabel.Content = "Portas: ";
+            passageirosLabel.Content = "Passageiros: ";
+            combustivelLabel.Content = "Combustível: ";
+            placaLabel.Content = "Placas: ";
+            anoLabel.Content = "Ano: ";
+            cambioLabel.Content = "Câmbio: ";
+            precoLabel.Content = "Preço: ";
+        }
+
         private void DataGridRow_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is Modelo selectedItem)
@@ -65,6 +118,25 @@ namespace CarControl
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
             }
+        }
+
+        private void DataGridRow_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is DataGridRow row && row.Item is Modelo selectedItem)
+            {
+                MostrarDetalhes(selectedItem.IdModelo);
+            }
+        }
+
+        private void FecharModeloWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void NovoModeloBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NovoModeloWindow novoModeloWindow = new NovoModeloWindow();
+            novoModeloWindow.ShowDialog();
         }
     }
 }
