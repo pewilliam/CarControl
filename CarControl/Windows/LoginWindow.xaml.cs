@@ -22,7 +22,7 @@ namespace CarControl.Windows
 
         private void ConnectionDB(string login, string password)
         {
-            string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CarControl.ini");
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CarControl.ini");
             if (!File.Exists(path))
             {
                 ini.Write("ip", "");

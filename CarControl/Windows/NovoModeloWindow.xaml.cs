@@ -31,25 +31,49 @@ namespace CarControl
 
         private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
-            string nomeModelo = ModeloTxb.Text.ToUpper();
-            string corModelo = CorTxb.Text.ToUpper();
-            int qtdPortas = int.Parse(PortasTxb.Text);
-            int qtdPassageiros = int.Parse(PassageirosTxb.Text);
-            string combustivel = CombustívelTxb.Text.ToUpper();
-            string placa = PlacaTxb.Text.ToUpper();
-            string ano = AnoTxb.Text;
-            string cambio = CambioTxb.Text.ToUpper();
-            double preco = double.Parse(PrecoTxb.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
-            int fabricante = (int)FabricanteCB.SelectedValue;
-            int categoria = (int)CategoriaCB.SelectedValue;
+            if (ValidarCampos())
+            {
+                string nomeModelo = ModeloTxb.Text.ToUpper();
+                string corModelo = CorTxb.Text.ToUpper();
+                int qtdPortas = int.Parse(PortasTxb.Text);
+                int qtdPassageiros = int.Parse(PassageirosTxb.Text);
+                string combustivel = CombustívelTxb.Text.ToUpper();
+                string placa = PlacaTxb.Text.ToUpper();
+                string ano = AnoTxb.Text;
+                string cambio = CambioTxb.Text.ToUpper();
+                double preco = double.Parse(PrecoTxb.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
+                int fabricante = (int)FabricanteCB.SelectedValue;
+                int categoria = (int)CategoriaCB.SelectedValue;
 
-            string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, preco, idcarro, idfabricante, idcategoria) " +
-                $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, {fabricante}, {categoria});");
+                string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, preco, idcarro, idfabricante, idcategoria) " +
+                    $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, {fabricante}, {categoria});");
 
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Modelo inserido com sucesso!");
-            Close();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Modelo inserido com sucesso!");
+                Close();
+            }
+        }
+
+        private bool ValidarCampos()
+        {
+            if(string.IsNullOrEmpty(ModeloTxb.Text) ||
+                string.IsNullOrEmpty(CorTxb.Text) ||
+                string.IsNullOrEmpty(PortasTxb.Text) ||
+                string.IsNullOrEmpty(PassageirosTxb.Text) ||
+                string.IsNullOrEmpty(CombustívelTxb.Text) ||
+                string.IsNullOrEmpty(PlacaTxb.Text) ||
+                string.IsNullOrEmpty(AnoTxb.Text) ||
+                string.IsNullOrEmpty(CambioTxb.Text) ||
+                string.IsNullOrEmpty(PrecoTxb.Text) ||
+                FabricanteCB.SelectedValue == null ||
+                CategoriaCB.SelectedValue == null
+                )
+            {
+                MessageBox.Show("Preencha todos os campos!", "Preenchimento");
+                return false;
+            }
+            return true;
         }
 
         private void PopulateFabricanteCB(object sender, System.EventArgs e)
