@@ -48,7 +48,7 @@
                  Grid.Row="0"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"/>
+                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewCharInput"/>
         <TextBox x:Name="CorTxb"
                  Controls:TextBoxHelper.Watermark="Cor"
                  Grid.ColumnSpan="4"
@@ -57,7 +57,7 @@
                  Grid.Row="1"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"/>
+                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewCharInput"/>
         <TextBox x:Name="PortasTxb"
                  Controls:TextBoxHelper.Watermark="Portas"
                  Grid.ColumnSpan="4"
@@ -66,7 +66,7 @@
                  Grid.Row="2"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
+                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="1"
                  />
         <TextBox x:Name="PassageirosTxb"
                  Controls:TextBoxHelper.Watermark="Passageiros"
@@ -76,7 +76,7 @@
                  Grid.Row="3"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
+                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="1"
                  />
         <TextBox x:Name="CombustívelTxb"
                  Controls:TextBoxHelper.Watermark="Combustível"
@@ -87,6 +87,7 @@
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
+                 PreviewTextInput="PreviewCharInput"
                  />
         <TextBox x:Name="PlacaTxb"
                  Controls:TextBoxHelper.Watermark="Placa"
@@ -106,7 +107,7 @@
                  Grid.Row="6"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
+                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="4"
                  />
         <TextBox x:Name="CambioTxb"
                  Controls:TextBoxHelper.Watermark="Câmbio"
@@ -117,6 +118,7 @@
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
+                 PreviewTextInput="PreviewCharInput"
                  />
         <TextBox x:Name="PrecoTxb"
                  Controls:TextBoxHelper.Watermark="Preço"
@@ -126,7 +128,10 @@
                  Grid.Row="8"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" LostFocus="PrecoTxb_LostFocus" GotFocus="PrecoTxb_GotFocus"
+                 HorizontalContentAlignment="Center" 
+                 LostFocus="PrecoTxb_LostFocus" 
+                 GotFocus="PrecoTxb_GotFocus"
+                 PreviewTextInput="PreviewNumberInput"
                  />
 
         <ComboBox x:Name="FabricanteCB"

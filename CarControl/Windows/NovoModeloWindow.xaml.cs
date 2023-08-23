@@ -3,7 +3,9 @@ using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CarControl
 {
@@ -57,6 +59,18 @@ namespace CarControl
                 MessageBox.Show("Modelo inserido com sucesso!");
                 Close();
             }
+        }
+
+        private void PreviewCharInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private bool ValidarCampos()
