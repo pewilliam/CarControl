@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
-    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.3.0" />
     <PackageReference Include="Npgsql" Version="7.0.4" />
   </ItemGroup>
 
