@@ -49,7 +49,7 @@ namespace CarControl.Windows
             }
             catch (Exception ex)
             {
-                if (ex.ToString().Contains("authentication"))
+                if (ex.ToString().Contains("authentication") || ex.ToString().Contains("No password has been provided"))
                     MessageBox.Show("Usuário e/ou senha inválido(s)!");
                 else
                 {
