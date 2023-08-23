@@ -48,7 +48,7 @@
                  Grid.Row="0"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewCharInput"/>
+                 HorizontalContentAlignment="Center"/>
         <TextBox x:Name="CorTxb"
                  Controls:TextBoxHelper.Watermark="Cor"
                  Grid.ColumnSpan="4"

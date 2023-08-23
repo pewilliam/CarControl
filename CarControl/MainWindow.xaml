@@ -14,7 +14,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionaries/ResourceDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Dictionaries/ResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -40,9 +40,12 @@
             CanUserDeleteRows="False"
             ItemsSource="{Binding carroList}"
             Grid.Row="0"
-            Grid.ColumnSpan="5" HeadersVisibility="Column" SelectionUnit="FullRow" SelectionMode="Extended" >
+            Grid.ColumnSpan="5" 
+            HeadersVisibility="Column" 
+            SelectionUnit="FullRow" 
+            SelectionMode="Extended">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding IdCarro}"  />
+                <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdCarro}" />
                 <DataGridTextColumn Header="Carro" Width="*" Binding="{Binding Nome}" />
             </DataGrid.Columns>
             <DataGrid.RowStyle>

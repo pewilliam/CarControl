@@ -33,23 +33,6 @@
         </Style.Triggers>
     </Style>
 
-    <!--TextBox-->
-    <Style x:Key="TextBox" TargetType="{x:Type TextBox}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#032665"/>
-        <Setter Property="FontFamily" Value="Montserrat"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="CaretBrush" Value="#032665"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Style.Resources>
-            <Style TargetType="{x:Type Border}">
-                <Setter Property="CornerRadius" Value="3" />
-            </Style>
-        </Style.Resources>
-    </Style>
-
     <!--DataGridRow-->
     <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
         <Setter Property="BorderThickness" Value="0, 0, 0, 1"/>

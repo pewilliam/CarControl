@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="car.png" />
     <None Remove="Resources\car.png" />
   </ItemGroup>
 
@@ -18,11 +17,11 @@
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.3.0" />
     <PackageReference Include="Npgsql" Version="7.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="car.png" />
     <Resource Include="Resources\car.png" />
   </ItemGroup>
 

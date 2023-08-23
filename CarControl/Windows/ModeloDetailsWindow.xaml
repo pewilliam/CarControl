@@ -46,8 +46,7 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"
-                     PreviewTextInput="PreviewCharInput"/>
+                     Margin="10"/>
 
             <TextBox x:Name="CorTxb"
                      Controls:TextBoxHelper.Watermark="Cor"

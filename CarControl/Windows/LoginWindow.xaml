@@ -4,6 +4,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:local="clr-namespace:CarControl.Windows"
                     mc:Ignorable="d"
                     Title="Login" Height="220" Width="250"
@@ -40,18 +41,22 @@
                  HorizontalContentAlignment="Center"
                  FontFamily="Montserrat"
                  FontSize="20"
-                 CharacterCasing="Lower" MaxLength="15"/>
+                 CharacterCasing="Lower"
+                 MaxLength="15"
+                 materialDesign:HintAssist.Hint="Login"/>
 
         <PasswordBox x:Name="txbPassword"
-                     Controls:TextBoxHelper.Watermark="Senha"
-                     Margin="10" 
-                     Grid.Row="1"
-                     Grid.Column="0"
-                     Grid.ColumnSpan="2"
-                     VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Center"
-                     FontFamily="Montserrat"
-                     FontSize="20"/>
+                    Controls:TextBoxHelper.Watermark="Senha"
+                    Margin="10" 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontSize="20"
+                    FontFamily="Montserrat"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    materialDesign:HintAssist.Hint="Senha"
+                    materialDesign:TextFieldAssist.HasClearButton="False" />
 
         <Button x:Name="btnSalvar"
                 Content="Login"
