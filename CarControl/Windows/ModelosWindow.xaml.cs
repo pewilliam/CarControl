@@ -31,7 +31,7 @@ namespace CarControl
             dg.ItemsSource = null;
             modeloList.Clear();
             
-            string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro};");
+            string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro} ORDER BY idmodelo;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -114,6 +114,7 @@ namespace CarControl
                 ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(selectedItem, conn);
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
+                MostrarModelos(IdCarro);
             }
         }
 

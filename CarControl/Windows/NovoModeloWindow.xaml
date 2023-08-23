@@ -130,7 +130,7 @@
                  />
 
         <ComboBox x:Name="FabricanteCB"
-                  Controls:TextBoxHelper.Watermark="Fabricantes"
+                  Controls:TextBoxHelper.Watermark="Fabricante"
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center"
                   DisplayMemberPath="Nome"

@@ -6,22 +6,29 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="Detalhes do Modelo" Height="450" Width="800"
+        Title="Detalhes do Modelo" Height="450" Width="500"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Dictionaries/ResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Border BorderBrush="Black"
             BorderThickness="1">
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition/>
-                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -31,158 +38,165 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label x:Name="idModeloLabel"
-           HorizontalAlignment="Center"
-           Content="IdModelo: "
-           Grid.Column="0"/>
-            <Label x:Name="idCarroLabel"
-           HorizontalAlignment="Center"
-           Content="IdCarro: "
-           Grid.Column="1"/>
+            <TextBox x:Name="NomeModeloTxb"
+                     Controls:TextBoxHelper.Watermark="Nome"
+                     Grid.Row="0"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Carro"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-           Grid.Row="1"
-           Grid.Column="0"/>
-            <Label x:Name="carroNomeLabel"
-           Content="Nome do carro"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Top"
-           Grid.Row="2"
-           Grid.Column="0"/>
+            <TextBox x:Name="CorTxb"
+                     Controls:TextBoxHelper.Watermark="Cor"
+                     Grid.Row="0"
+                     Grid.Column="2"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Modelo"
-        HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-        Grid.Row="1"
-        Grid.Column="1"/>
-            <Label x:Name="modeloNomeLabel"
-        Content="Nome do modelo"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="2"
-        Grid.Column="1"/>
+            <TextBox x:Name="PortasTxb"
+                     Controls:TextBoxHelper.Watermark="Portas"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Fabricante"
-        HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-        Grid.Row="1"
-        Grid.Column="2"/>
-            <Label x:Name="fabricanteNomeLabel"
-        Content="Nome do fabricante"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="2"
-        Grid.Column="2"/>
+            <TextBox x:Name="PassageirosTxb"
+                     Controls:TextBoxHelper.Watermark="Portas"
+                     Grid.Row="1"
+                     Grid.Column="2"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Categoria"
-        HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-        Grid.Row="3"
-        Grid.Column="0"/>
-            <Label x:Name="categoriaNomeLabel"
-        Content="Categoria"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="4"
-        Grid.Column="0"/>
+            <TextBox x:Name="CombustívelTxb"
+                     Controls:TextBoxHelper.Watermark="Combustível"
+                     Grid.Row="2"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Cor"
-        HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-        Grid.Row="3"
-        Grid.Column="1"/>
-            <Label x:Name="corLabel"
-        Content="Cor"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="4"
-        Grid.Column="1"/>
+            <TextBox x:Name="PlacaTxb"
+                     Controls:TextBoxHelper.Watermark="Placa"
+                     Grid.Row="2"
+                     Grid.Column="2"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Portas"
-        HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-        Grid.Row="3"
-        Grid.Column="2"/>
-            <Label x:Name="portasLabel"
-        Content="Portas"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="4"
-        Grid.Column="2"/>
+            <TextBox x:Name="AnoTxb"
+                     Controls:TextBoxHelper.Watermark="Ano"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Passageiros"
-        HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-        Grid.Row="5"
-        Grid.Column="0"/>
-            <Label x:Name="passageirosLabel"
-        Content="Passageiros"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="6"
-        Grid.Column="0"/>
+            <TextBox x:Name="CambioTxb"
+                     Controls:TextBoxHelper.Watermark="Cambio"
+                     Grid.Row="3"
+                     Grid.Column="2"
+                     Grid.ColumnSpan="2"
+                     FontSize="20"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"/>
 
-            <Label Content="Combustível"
-        HorizontalAlignment="Center"
-           VerticalAlignment="Bottom"
-        Grid.Row="5"
-        Grid.Column="1"/>
-            <Label x:Name="combustivelLabel"
-        Content="Combustível"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="6"
-        Grid.Column="1"/>
+            <TextBox x:Name="PrecoTxb"
+                     Controls:TextBoxHelper.Watermark="Preço"
+                     Grid.Row="4"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="4"
+                     FontSize="20"
+                     HorizontalAlignment="Center"
+                     Width="250"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Margin="10"
+                     LostFocus="PrecoTxb_LostFocus" GotFocus="PrecoTxb_GotFocus"/>
 
-            <Label Content="Placa"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Bottom"
-        Grid.Row="5"
-        Grid.Column="2"/>
-            <Label x:Name="placaLabel"
-        Content="Placa"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="6"
-        Grid.Column="2"/>
+            <ComboBox x:Name="FabricanteCB"
+                      Controls:TextBoxHelper.Watermark="Fabricante"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      DisplayMemberPath="Nome"
+                      SelectedValuePath="IdFabricante"
+                      FontSize="20"
+                      Grid.Row="5"
+                      Grid.Column="0"
+                      Margin="8"
+                      ItemsSource="{Binding listFabricante}" DropDownOpened="PopulateFabricanteCB"/>
+            <ComboBox x:Name="CategoriaCB"
+                      Controls:TextBoxHelper.Watermark="Categoria"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      DisplayMemberPath="Nome"
+                      SelectedValuePath="IdCategoria"
+                      FontSize="20"
+                      Grid.Row="5"
+                      Grid.Column="2"
+                      Margin="8"
+                      ItemsSource="{Binding listCategoria}" DropDownOpened="PopulateCategoriaCB"/>
 
-            <Label Content="Ano"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Bottom"
-        Grid.Row="7"
-        Grid.Column="0"/>
-            <Label x:Name="anoLabel"
-        Content="Ano"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="8"
-        Grid.Column="0"/>
+            <Button x:Name="NovoFabricanteBtn"
+                    Content="+"
+                    FontSize="15"
+                    Margin="8"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" Click="NovoFabricanteBtn_Click">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <TextBlock Text="Adicionar fabricante" />
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button x:Name="NovaCategoriaBtn"
+                    Content="+"
+                    FontSize="15"
+                    Margin="8"
+                    Grid.Row="5"
+                    Grid.Column="3"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" Click="NovaCategoriaBtn_Click">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <TextBlock Text="Adicionar categoria" />
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
 
-            <Label Content="Câmbio"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Bottom"
-        Grid.Row="7"
-        Grid.Column="1"/>
-            <Label x:Name="cambioLabel"
-        Content="Câmbio"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="8"
-        Grid.Column="1"/>
-
-            <Label Content="Preço"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Bottom"
-        Grid.Row="7"
-        Grid.Column="2"/>
-            <Label x:Name="precoLabel"
-        Content="Preço"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Grid.Row="8"
-        Grid.Column="2"/>
+            <Button x:Name="SalvarNovoModeloBtn"
+                    Content="Salvar"
+                    FontSize="20"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="11"
+                    Margin="8" Click="SalvarNovoModeloBtn_Click"/>
+            <Button x:Name="FecharNovoModeloWindowBtn"
+                    Content="Fechar"
+                    FontSize="20"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="11"
+                    Margin="8" Click="FecharNovoModeloWindowBtn_Click"/>
         </Grid>
     </Border>
     
