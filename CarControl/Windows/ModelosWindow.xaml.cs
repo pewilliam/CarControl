@@ -38,6 +38,7 @@ namespace CarControl
             {
                 while (reader.Read())
                 {
+                    #region lendo modelos
                     Modelo modelo = new(
                         reader.GetInt32(0), //id
                         reader.GetString(1), //nome
@@ -53,6 +54,7 @@ namespace CarControl
                         reader.GetInt32(11), //idfabricante
                         reader.GetInt32(12) //idfabricante
                         );
+                    #endregion
                     modeloList.Add(modelo);
                 }
                 reader.Close();
@@ -91,6 +93,7 @@ namespace CarControl
 
         private void LimpaLabels()
         {
+            #region limpar labels
             idCarroLabel.Content = "Id carro: ";
             idModeloLabel.Content = "Id modelo: ";
             carroLabel.Content = "Carro: ";
@@ -105,6 +108,7 @@ namespace CarControl
             anoLabel.Content = "Ano: ";
             cambioLabel.Content = "Câmbio: ";
             precoLabel.Content = "Preço: ";
+            #endregion
         }
 
         private void DataGridRow_MouseDoubleClick(object sender, RoutedEventArgs e)
