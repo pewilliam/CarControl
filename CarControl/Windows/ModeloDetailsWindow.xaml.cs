@@ -3,8 +3,11 @@ using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection.PortableExecutable;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace CarControl
 {
@@ -23,38 +26,30 @@ namespace CarControl
             idModelo = modelo.IdModelo;
             conn = connection;
             InitializeComponent();
-            MostrarDetalhes();
+            MostrarDetalhes(modelo);
         }
 
-        private void MostrarDetalhes()
+        private void MostrarDetalhes(Modelo modelo)
         {
-            double amount;
-            string sql = $"SELECT nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, preco, idfabricante, idcategoria " +
-                $"FROM carcontrol.modelo " +
-                $"WHERE idmodelo = {idModelo};";
+            PopulateFabricanteCB();
+            PopulateCategoriaCB();
 
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            using (NpgsqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    NomeModeloTxb.Text = reader.GetString(0);
-                    CorTxb.Text = reader.GetString(1);
-                    PortasTxb.Text = reader.GetInt32(2).ToString();
-                    PassageirosTxb.Text = reader.GetInt32(3).ToString();
-                    CombustívelTxb.Text = reader.GetString(4);
-                    PlacaTxb.Text = reader.GetString(5);
-                    AnoTxb.Text = reader.GetString(6);
-                    CambioTxb.Text = reader.GetString(7);
-                    PrecoTxb.Text = (double.TryParse(reader.GetDecimal(8).ToString(), out amount)) ? amount.ToString("C") : string.Empty; reader.GetDecimal(8).ToString();
-                    FabricanteCB.SelectedValue = reader.GetInt32(9);
-                    CategoriaCB.SelectedValue = reader.GetInt32(10);
-                }
-                reader.Close();
-            }
+            double amount;
+
+            NomeModeloTxb.Text = modelo.Nome;
+            CorTxb.Text = modelo.Cor;
+            PortasTxb.Text = modelo.QtdPortas.ToString();
+            PassageirosTxb.Text = modelo.QtdPassageiros.ToString();
+            CombustívelTxb.Text = modelo.Combustivel;
+            PlacaTxb.Text = modelo.Placa;
+            AnoTxb.Text = modelo.Ano;
+            CambioTxb.Text = modelo.TipoCambio;
+            PrecoTxb.Text = (double.TryParse(modelo.Preco.ToString(), out amount)) ? amount.ToString("C") : string.Empty; modelo.Preco.ToString();
+            FabricanteCB.SelectedValue = modelo.IdFabricante;
+            CategoriaCB.SelectedValue = modelo.IdCategoria;
         }
 
-        private void PopulateFabricanteCB(object sender, System.EventArgs e)
+        private void PopulateFabricanteCB()
         {
             listFabricante.Clear();
             string sql = "SELECT * FROM carcontrol.fabricante ORDER BY idfabricante;";
@@ -76,7 +71,7 @@ namespace CarControl
             }
         }
 
-        private void PopulateCategoriaCB(object sender, System.EventArgs e)
+        private void PopulateCategoriaCB()
         {
             listCategoria.Clear();
             string sql = $"SELECT * FROM carcontrol.categoria ORDER BY idcategoria;";
@@ -148,6 +143,18 @@ namespace CarControl
             cmd.ExecuteNonQuery();
             MessageBox.Show("Modelo atualizado com sucesso!", "Concluído");
             Close();
+        }
+
+        private void PreviewCharInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void PrecoTxb_GotFocus(object sender, RoutedEventArgs e)

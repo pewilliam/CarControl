@@ -40,7 +40,7 @@
                  HorizontalContentAlignment="Center"
                  FontFamily="Montserrat"
                  FontSize="20"
-                 CharacterCasing="Lower"/>
+                 CharacterCasing="Lower" MaxLength="15"/>
 
         <PasswordBox x:Name="txbPassword"
                      Controls:TextBoxHelper.Watermark="Senha"
