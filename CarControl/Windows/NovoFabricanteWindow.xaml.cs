@@ -19,11 +19,24 @@ namespace CarControl
 
         private void SalvarCarroBtn_Click(object sender, RoutedEventArgs e)
         {
-            string sql = ($"INSERT INTO carcontrol.fabricante(nome) VALUES ('{NomeFabricanteTxb.Text.ToUpper()}')");
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Fabricante inserido com sucesso!");
-            Close();
+            if (ValidarCampo())
+            {
+                string sql = ($"INSERT INTO carcontrol.fabricante(nome) VALUES ('{NomeFabricanteTxb.Text.ToUpper()}')");
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Fabricante inserido com sucesso!");
+                Close();
+            }
+        }
+
+        private bool ValidarCampo()
+        {
+            if (string.IsNullOrEmpty(NomeFabricanteTxb.Text))
+            {
+                MessageBox.Show("Preencha o nome do fabricante!", "Preenchimento");
+                return false;
+            }
+            return true;
         }
 
         private void FecharSaLVARCarroBtn_Click(object sender, RoutedEventArgs e)

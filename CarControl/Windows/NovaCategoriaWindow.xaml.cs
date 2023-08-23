@@ -26,6 +26,16 @@ namespace CarControl
             Close();
         }
 
+        private bool ValidarCampo()
+        {
+            if (string.IsNullOrEmpty(NomeCategoriaTxb.Text))
+            {
+                MessageBox.Show("Preencha o nome da categoria!", "Preenchimento");
+                return false;
+            }
+            return true;
+        }
+
         private void FecharSalvarCategoriaBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();

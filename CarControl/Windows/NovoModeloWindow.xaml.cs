@@ -33,6 +33,7 @@ namespace CarControl
         {
             if (ValidarCampos())
             {
+                #region obtendo campos
                 string nomeModelo = ModeloTxb.Text.ToUpper();
                 string corModelo = CorTxb.Text.ToUpper();
                 int qtdPortas = int.Parse(PortasTxb.Text);
@@ -44,6 +45,7 @@ namespace CarControl
                 double preco = double.Parse(PrecoTxb.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
                 int fabricante = (int)FabricanteCB.SelectedValue;
                 int categoria = (int)CategoriaCB.SelectedValue;
+                #endregion
 
                 string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, preco, idcarro, idfabricante, idcategoria) " +
                     $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, {fabricante}, {categoria});");
@@ -57,7 +59,8 @@ namespace CarControl
 
         private bool ValidarCampos()
         {
-            if(string.IsNullOrEmpty(ModeloTxb.Text) ||
+            #region validação
+            if (string.IsNullOrEmpty(ModeloTxb.Text) ||
                 string.IsNullOrEmpty(CorTxb.Text) ||
                 string.IsNullOrEmpty(PortasTxb.Text) ||
                 string.IsNullOrEmpty(PassageirosTxb.Text) ||
@@ -69,6 +72,7 @@ namespace CarControl
                 FabricanteCB.SelectedValue == null ||
                 CategoriaCB.SelectedValue == null
                 )
+            #endregion
             {
                 MessageBox.Show("Preencha todos os campos!", "Preenchimento");
                 return false;
