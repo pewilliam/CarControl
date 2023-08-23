@@ -1,14 +1,15 @@
 ﻿<Controls:MetroWindow x:Class="CarControl.Windows.LoginWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:CarControl.Windows"
-        mc:Ignorable="d"
-        Title="LoginWindow" Height="220" Width="250"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:local="clr-namespace:CarControl.Windows"
+                    mc:Ignorable="d"
+                    Title="LoginWindow" Height="220" Width="250"
+                    WindowStartupLocation="CenterScreen"
+                    ResizeMode="CanMinimize"
+                    KeyDown="Window_KeyDown">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
