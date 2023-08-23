@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="CarControl" Height="550" Width="900"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        ResizeMode="CanMinimize">
 
     <Window.Resources>
         <ResourceDictionary>

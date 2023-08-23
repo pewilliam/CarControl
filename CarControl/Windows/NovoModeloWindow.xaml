@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
         Title="Novo Modelo" Height="650" Width="450"
+        ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -159,7 +160,13 @@
                 Grid.Column="1"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" Click="NovoFabricanteBtn_Click"
-                />
+                >
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Adicionar fabricante" />
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
         <Button x:Name="NovaCategoriaBtn"
                 Content="+"
                 FontSize="15"
@@ -168,7 +175,13 @@
                 Grid.Column="3"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" Click="NovaCategoriaBtn_Click"
-        />
+        >
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Adicionar categoria" />
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
 
         <Button x:Name="SalvarNovoModeloBtn"
                 Content="Salvar"

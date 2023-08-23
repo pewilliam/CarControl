@@ -1,13 +1,14 @@
-﻿<Window x:Class="CarControl.NovoFabricanteWindow"
+﻿<Controls:MetroWindow x:Class="CarControl.NovoFabricanteWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
         Title="Novo Fabricante" Height="170" Width="300"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -50,4 +51,4 @@
                 Grid.Column="1"
                 Margin="8" Click="FecharSaLVARCarroBtn_Click"/>
     </Grid>
-</Window>
+</Controls:MetroWindow>

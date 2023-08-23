@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="IniConfigWindow" Height="350" Width="250"
+        Title="Configurar ini" Height="350" Width="250"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
     

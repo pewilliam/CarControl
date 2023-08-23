@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
         Title="Detalhes do Modelo" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
     <Border BorderBrush="Black"
             BorderThickness="1">
         <Grid>

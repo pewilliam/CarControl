@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using MahApps.Metro.Controls;
+using Npgsql;
 using System.Windows;
 
 namespace CarControl
@@ -6,7 +7,7 @@ namespace CarControl
     /// <summary>
     /// Lógica interna para NovaCategoriaWindow.xaml
     /// </summary>
-    public partial class NovaCategoriaWindow : Window
+    public partial class NovaCategoriaWindow : MetroWindow
     {
         NpgsqlConnection conn = new NpgsqlConnection();
 
@@ -19,11 +20,14 @@ namespace CarControl
 
         private void SalvarCategoriaBtn_Click(object sender, RoutedEventArgs e)
         {
-            string sql = ($"INSERT INTO carcontrol.categoria (nome) VALUES ('{NomeCategoriaTxb.Text.ToUpper()}');");
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Categoria inserido com sucesso!");
-            Close();
+            if (ValidarCampo())
+            {
+                string sql = ($"INSERT INTO carcontrol.categoria (nome) VALUES ('{NomeCategoriaTxb.Text.ToUpper()}');");
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Categoria inserido com sucesso!");
+                Close();
+            }
         }
 
         private bool ValidarCampo()
