@@ -15,13 +15,12 @@ namespace CarControl
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
-        //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
-        string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
         static int IdCarro = -1;
 
-        public ModelosWindow(int idcarro)
+        public ModelosWindow(int idcarro, NpgsqlConnection connection)
         {
             InitializeComponent();
+            conn = connection;
             SearchModeloTxb.Focus();
             IdCarro = idcarro;
             MostrarModelos(IdCarro);
@@ -32,10 +31,7 @@ namespace CarControl
             dg.ItemsSource = null;
             modeloList.Clear();
             
-            conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro};");
-
-            conn.Open();
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -60,7 +56,6 @@ namespace CarControl
                     modeloList.Add(modelo);
                 }
                 reader.Close();
-                conn.Close();
                 dg.ItemsSource = modeloList;
             }
         }
@@ -68,10 +63,7 @@ namespace CarControl
         private void MostrarDetalhes(int idModelo)
         {
             LimpaLabels();
-            conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.vw_carro_modelo WHERE idmodelo = {idModelo};");
-
-            conn.Open();
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -94,7 +86,6 @@ namespace CarControl
                     precoLabel.Content = precoLabel.Content + "R$ " + reader.GetDecimal(13).ToString();
                 }
                 reader.Close();
-                conn.Close();
             }
         }
 
@@ -120,7 +111,7 @@ namespace CarControl
         {
             if (sender is DataGridRow row && row.Item is Modelo selectedItem)
             {
-                ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(selectedItem);
+                ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(selectedItem, conn);
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
             }
@@ -141,7 +132,7 @@ namespace CarControl
 
         private void NovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoModeloWindow novoModeloWindow = new NovoModeloWindow(IdCarro);
+            NovoModeloWindow novoModeloWindow = new NovoModeloWindow(IdCarro, conn);
             novoModeloWindow.ShowDialog();
             MostrarModelos(IdCarro);
         }
@@ -167,7 +158,7 @@ namespace CarControl
             Modelo m = dg.SelectedItem as Modelo;
             if (m is not null)
             {
-                ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(m);
+                ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(m, conn);
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
             }

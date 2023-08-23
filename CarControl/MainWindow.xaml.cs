@@ -1,4 +1,5 @@
 ﻿using CarControl.Models;
+using CarControl.Windows;
 using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
@@ -14,25 +15,30 @@ namespace CarControl
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        LoginWindow loginwindow = new LoginWindow();
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Carro> carroList = new List<Carro>();
 
         public MainWindow()
         {
-            InitializeComponent();
-            searchCarTxb.Focus();
-            MostrarCarros();
+            loginwindow.ShowDialog();
+            conn = loginwindow.conn;
+            if (conn.State == ConnectionState.Open)
+            {
+                InitializeComponent();
+                searchCarTxb.Focus();
+                MostrarCarros();
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void MostrarCarros()
         {
             dg.ItemsSource = null;
-            //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
-            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
-            conn.ConnectionString = connection;
             string sql = "SELECT * FROM carcontrol.carro;";
-
-            conn.Open();
 
             carroList.Clear();
 
@@ -48,7 +54,6 @@ namespace CarControl
                     carroList.Add(carro);
                 }
                 reader.Close();
-                conn.Close();
             }
             dg.ItemsSource = carroList;
             dg.Items.Refresh();
@@ -77,7 +82,7 @@ namespace CarControl
 
         private void novoCarroBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoCarroWindow novoCarroWindow = new NovoCarroWindow();
+            NovoCarroWindow novoCarroWindow = new NovoCarroWindow(conn);
             novoCarroWindow.ShowDialog();
             MostrarCarros();
         }
@@ -86,7 +91,7 @@ namespace CarControl
         {
             DataGridRow row = sender as DataGridRow;
             Carro c = row.DataContext as Carro;
-            ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro);
+            ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro, conn);
             modelosWindow.ShowDialog();
         }
 
@@ -95,7 +100,7 @@ namespace CarControl
             Carro c = dg.SelectedItem as Carro;
             if (c is not null)
             {
-                ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro);
+                ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro, conn);
                 modelosWindow.ShowDialog();
             }
         }

@@ -1,0 +1,67 @@
+﻿<Controls:MetroWindow x:Class="CarControl.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:CarControl.Windows"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="220" Width="250"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Dictionaries/ResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBox x:Name="txbUser" 
+                 Controls:TextBoxHelper.Watermark="Login"
+                 Margin="10" 
+                 Grid.Row="0"
+                 Grid.Column="0" 
+                 Grid.ColumnSpan="2"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 FontFamily="Montserrat"
+                 FontSize="20"
+                 CharacterCasing="Lower"/>
+
+        <PasswordBox x:Name="txbPassword"
+                     Controls:TextBoxHelper.Watermark="Senha"
+                     Margin="10" 
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     FontFamily="Montserrat"
+                     FontSize="20"/>
+
+        <Button x:Name="btnSalvar"
+                Content="Login"
+                Margin="6" 
+                Grid.Row="7" 
+                Grid.Column="0" Click="btnSalvar_Click"/>
+
+        <Button x:Name="btnFechar"
+                Content="Fechar" 
+                Margin="6" 
+                Grid.Row="7" 
+                Grid.Column="1" Click="btnFechar_Click" />
+    </Grid>
+</Controls:MetroWindow>

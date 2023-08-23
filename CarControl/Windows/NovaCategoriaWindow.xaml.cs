@@ -8,12 +8,11 @@ namespace CarControl
     /// </summary>
     public partial class NovaCategoriaWindow : Window
     {
-        //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
-        string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
         NpgsqlConnection conn = new NpgsqlConnection();
 
-        public NovaCategoriaWindow()
+        public NovaCategoriaWindow(NpgsqlConnection connection)
         {
+            conn = connection;
             InitializeComponent();
             NomeCategoriaTxb.Focus();
         }
@@ -21,8 +20,6 @@ namespace CarControl
         private void SalvarCategoriaBtn_Click(object sender, RoutedEventArgs e)
         {
             string sql = ($"INSERT INTO carcontrol.categoria (nome) VALUES ('{NomeCategoriaTxb.Text.ToUpper()}');");
-            conn.ConnectionString = connection;
-            conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
             MessageBox.Show("Categoria inserido com sucesso!");

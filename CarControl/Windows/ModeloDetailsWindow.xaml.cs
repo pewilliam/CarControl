@@ -11,20 +11,16 @@ namespace CarControl
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
 
-        public ModeloDetailsWindow(Modelo modelo)
+        public ModeloDetailsWindow(Modelo modelo, NpgsqlConnection connection)
         {
+            conn = connection;
             InitializeComponent();
             MostrarDetalhes(modelo.IdModelo);
         }
 
         private void MostrarDetalhes(int idModelo)
         {
-            //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
-            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
-            conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.vw_carro_modelo WHERE idmodelo = {idModelo};");
-
-            conn.Open();
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -47,7 +43,6 @@ namespace CarControl
                     precoLabel.Content = reader.GetDecimal(13);
                 }
                 reader.Close();
-                conn.Close();
             }
         }
     }

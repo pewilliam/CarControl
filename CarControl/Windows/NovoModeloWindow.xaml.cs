@@ -12,15 +12,14 @@ namespace CarControl
     /// </summary>
     public partial class NovoModeloWindow : MetroWindow
     {
-        //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
-        string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
         NpgsqlConnection conn = new NpgsqlConnection();
         List<Fabricante> listFabricante = new List<Fabricante>();
         List<Categoria> listCategoria = new List<Categoria>();
         static int IdCarro = -1;
 
-        public NovoModeloWindow(int idcarro)
+        public NovoModeloWindow(int idcarro, NpgsqlConnection connection)
         {
+            conn = connection;
             InitializeComponent();
             IdCarro = idcarro;
         }
@@ -44,26 +43,19 @@ namespace CarControl
             int fabricante = (int)FabricanteCB.SelectedValue;
             int categoria = (int)CategoriaCB.SelectedValue;
 
-            conn.ConnectionString = connection;
             string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, preco, idcarro, idfabricante, idcategoria) " +
                 $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, {fabricante}, {categoria});");
-
-            conn.Open();
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
             MessageBox.Show("Modelo inserido com sucesso!");
-            conn.Close();
             Close();
         }
 
         private void PopulateFabricanteCB(object sender, System.EventArgs e)
         {
             listFabricante.Clear();
-            conn.ConnectionString = connection;
             string sql = "SELECT * FROM carcontrol.fabricante;";
-
-            conn.Open();
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -77,7 +69,6 @@ namespace CarControl
                     listFabricante.Add(Fabricante);
                 }
                 reader.Close();
-                conn.Close();
                 FabricanteCB.ItemsSource = listFabricante;
                 FabricanteCB.Items.Refresh();
             }
@@ -86,10 +77,7 @@ namespace CarControl
         private void PopulateCategoriaCB(object sender, System.EventArgs e)
         {
             listCategoria.Clear();
-            conn.ConnectionString = connection;
             string sql = $"SELECT * FROM carcontrol.categoria;";
-
-            conn.Open();
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -103,7 +91,6 @@ namespace CarControl
                     listCategoria.Add(categoria);
                 }
                 reader.Close();
-                conn.Close();
                 CategoriaCB.ItemsSource = listCategoria;
                 CategoriaCB.Items.Refresh();
             }
@@ -127,14 +114,14 @@ namespace CarControl
 
         private void NovoFabricanteBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoFabricanteWindow novoFabricanteWindow = new NovoFabricanteWindow();
+            NovoFabricanteWindow novoFabricanteWindow = new NovoFabricanteWindow(conn);
             novoFabricanteWindow.ShowDialog();
             novoFabricanteWindow.Owner = this;
         }
 
         private void NovaCategoriaBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovaCategoriaWindow novaCategoriaWindow = new NovaCategoriaWindow();
+            NovaCategoriaWindow novaCategoriaWindow = new NovaCategoriaWindow(conn);
             novaCategoriaWindow.ShowDialog();
             novaCategoriaWindow.Owner = this;
         }
