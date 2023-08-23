@@ -6,7 +6,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="Novo Carro" Height="170" Width="300"
+        Title="Novo Carro" Height="180" Width="300"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
 

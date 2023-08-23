@@ -63,8 +63,10 @@ namespace CarControl
 
         private void PreviewCharInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^a-zA-Z]");
-            e.Handled = regex.IsMatch(e.Text);
+            if (!char.IsLetter(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
 
         private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
