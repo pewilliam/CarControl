@@ -4,8 +4,10 @@ using Npgsql;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection.PortableExecutable;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace CarControl
 {
@@ -141,6 +143,18 @@ namespace CarControl
             cmd.ExecuteNonQuery();
             MessageBox.Show("Modelo atualizado com sucesso!", "Concluído");
             Close();
+        }
+
+        private void PreviewCharInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void PrecoTxb_GotFocus(object sender, RoutedEventArgs e)

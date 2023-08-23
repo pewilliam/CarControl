@@ -46,7 +46,8 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"/>
+                     Margin="10"
+                     PreviewTextInput="PreviewCharInput"/>
 
             <TextBox x:Name="CorTxb"
                      Controls:TextBoxHelper.Watermark="Cor"
@@ -56,7 +57,9 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"/>
+                     Margin="10"
+                     PreviewTextInput="PreviewCharInput"
+                     />
 
             <TextBox x:Name="PortasTxb"
                      Controls:TextBoxHelper.Watermark="Portas"
@@ -66,7 +69,8 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"/>
+                     Margin="10"
+                     PreviewTextInput="PreviewNumberInput" MaxLength="1"/>
 
             <TextBox x:Name="PassageirosTxb"
                      Controls:TextBoxHelper.Watermark="Portas"
@@ -76,7 +80,8 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"/>
+                     Margin="10"
+                     PreviewTextInput="PreviewNumberInput" MaxLength="1"/>
 
             <TextBox x:Name="CombustívelTxb"
                      Controls:TextBoxHelper.Watermark="Combustível"
@@ -86,7 +91,8 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"/>
+                     Margin="10"
+                     PreviewTextInput="PreviewCharInput"/>
 
             <TextBox x:Name="PlacaTxb"
                      Controls:TextBoxHelper.Watermark="Placa"
@@ -106,7 +112,8 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"/>
+                     Margin="10"
+                     PreviewTextInput="PreviewNumberInput" MaxLength="4"/>
 
             <TextBox x:Name="CambioTxb"
                      Controls:TextBoxHelper.Watermark="Cambio"
@@ -116,7 +123,8 @@
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
-                     Margin="10"/>
+                     Margin="10"
+                     PreviewTextInput="PreviewCharInput"/>
 
             <TextBox x:Name="PrecoTxb"
                      Controls:TextBoxHelper.Watermark="Preço"
@@ -129,7 +137,8 @@
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"
                      Margin="10"
-                     LostFocus="PrecoTxb_LostFocus" GotFocus="PrecoTxb_GotFocus"/>
+                     LostFocus="PrecoTxb_LostFocus" GotFocus="PrecoTxb_GotFocus"
+                     PreviewTextInput="PreviewNumberInput"/>
 
             <ComboBox x:Name="FabricanteCB"
                       Controls:TextBoxHelper.Watermark="Fabricante"
