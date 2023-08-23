@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using MahApps.Metro.Controls;
 using System.Windows;
 
 namespace CarControl
@@ -6,7 +7,7 @@ namespace CarControl
     /// <summary>
     /// Lógica interna para NovoCarroWindow.xaml
     /// </summary>
-    public partial class NovoCarroWindow : Window
+    public partial class NovoCarroWindow : MetroWindow
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
 

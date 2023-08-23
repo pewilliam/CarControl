@@ -30,8 +30,8 @@ namespace CarControl
             {
                 while (reader.Read())
                 {
-                    idCarroLabel.Content = idCarroLabel.Content + reader.GetInt32(0).ToString();
-                    idModeloLabel.Content = idModeloLabel.Content + reader.GetInt32(1).ToString();
+                    idModeloLabel.Content = idModeloLabel.Content + reader.GetInt32(0).ToString();
+                    idCarroLabel.Content = idCarroLabel.Content + reader.GetInt32(1).ToString();
                     carroNomeLabel.Content = reader.GetString(2);
                     modeloNomeLabel.Content = reader.GetString(3);
                     fabricanteNomeLabel.Content = reader.GetString(4);

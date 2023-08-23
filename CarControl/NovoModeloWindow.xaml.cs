@@ -40,10 +40,12 @@ namespace CarControl
             string ano = AnoTxb.Text;
             string cambio = CambioTxb.Text.ToUpper();
             double preco = double.Parse(PrecoTxb.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
+            int fabricante = (int)FabricanteCB.SelectedValue;
+            int categoria = (int)CategoriaCB.SelectedValue;
 
             conn.ConnectionString = connection;
             string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, preco, idcarro, idfabricante, idcategoria) " +
-                $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, 2, 1);");
+                $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, {fabricante}, {categoria});");
 
             conn.Open();
 

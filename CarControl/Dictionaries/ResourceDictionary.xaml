@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.AeroLite">
 
     <!--Buttons-->
-    <Style x:Key="Buttons" TargetType="Button">
-        <Setter Property="Background" Value="#032665"/>
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="#49b4e8"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -27,8 +27,8 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Aqua"/>
-                <Setter Property="Background" Value="#032665"/>
+                <Setter Property="Foreground" Value="LightGray"/>
+                <Setter Property="Background" Value="#388cb4"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -52,6 +52,8 @@
 
     <!--DataGridRow-->
     <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
+        <Setter Property="BorderThickness" Value="0, 0, 0, 1"/>
+        <Setter Property="BorderBrush" Value="Black"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="#1d88bc" />
