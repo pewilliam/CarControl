@@ -141,7 +141,7 @@
                       Grid.Row="5"
                       Grid.Column="0"
                       Margin="8"
-                      ItemsSource="{Binding listFabricante}" DropDownOpened="PopulateFabricanteCB"/>
+                      ItemsSource="{Binding listFabricante}"/>
             <ComboBox x:Name="CategoriaCB"
                       Controls:TextBoxHelper.Watermark="Categoria"
                       HorizontalContentAlignment="Center"
@@ -152,7 +152,7 @@
                       Grid.Row="5"
                       Grid.Column="2"
                       Margin="8"
-                      ItemsSource="{Binding listCategoria}" DropDownOpened="PopulateCategoriaCB"/>
+                      ItemsSource="{Binding listCategoria}"/>
 
             <Button x:Name="NovoFabricanteBtn"
                     Content="+"

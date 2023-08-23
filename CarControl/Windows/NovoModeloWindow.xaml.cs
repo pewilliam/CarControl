@@ -22,6 +22,8 @@ namespace CarControl
             conn = connection;
             InitializeComponent();
             IdCarro = idcarro;
+            PopulateFabricanteCB();
+            PopulateCategoriaCB();
         }
 
         private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -80,7 +82,7 @@ namespace CarControl
             return true;
         }
 
-        private void PopulateFabricanteCB(object sender, System.EventArgs e)
+        private void PopulateFabricanteCB()
         {
             listFabricante.Clear();
             string sql = "SELECT * FROM carcontrol.fabricante;";
@@ -102,7 +104,7 @@ namespace CarControl
             }
         }
 
-        private void PopulateCategoriaCB(object sender, System.EventArgs e)
+        private void PopulateCategoriaCB()
         {
             listCategoria.Clear();
             string sql = $"SELECT * FROM carcontrol.categoria;";
