@@ -24,7 +24,8 @@ namespace CarControl
 
         private void SalvarCarroBtn_Click(object sender, RoutedEventArgs e)
         {
-            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = ($"INSERT INTO carcontrol.carro(nome) VALUES('{NomeCarroTxb.Text.ToUpper()}');");
 

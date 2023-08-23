@@ -12,7 +12,8 @@ namespace CarControl
     /// </summary>
     public partial class NovoModeloWindow : MetroWindow
     {
-        string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+        //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+        string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
         NpgsqlConnection conn = new NpgsqlConnection();
         List<Fabricante> listFabricante = new List<Fabricante>();
         List<Categoria> listCategoria = new List<Categoria>();
@@ -133,7 +134,9 @@ namespace CarControl
 
         private void NovaCategoriaBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NovaCategoriaWindow novaCategoriaWindow = new NovaCategoriaWindow();
+            novaCategoriaWindow.ShowDialog();
+            novaCategoriaWindow.Owner = this;
         }
     }
 }

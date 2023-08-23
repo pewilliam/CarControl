@@ -15,6 +15,8 @@ namespace CarControl
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
+        //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+        string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
         static int IdCarro = -1;
 
         public ModelosWindow(int idcarro)
@@ -29,7 +31,7 @@ namespace CarControl
         {
             dg.ItemsSource = null;
             modeloList.Clear();
-            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            
             conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro};");
 
@@ -66,7 +68,6 @@ namespace CarControl
         private void MostrarDetalhes(int idModelo)
         {
             LimpaLabels();
-            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.vw_carro_modelo WHERE idmodelo = {idModelo};");
 
@@ -158,6 +159,17 @@ namespace CarControl
                 dg.ItemsSource = null;
                 MostrarModelos(IdCarro);
                 dg.ItemsSource = filteredList;
+            }
+        }
+
+        private void AbrirModeloBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Modelo m = dg.SelectedItem as Modelo;
+            if (m is not null)
+            {
+                ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(m);
+                modeloDetailsWindow.ShowDialog();
+                modeloDetailsWindow.Owner = this;
             }
         }
     }

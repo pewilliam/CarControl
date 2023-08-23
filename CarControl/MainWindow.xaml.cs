@@ -27,7 +27,8 @@ namespace CarControl
         private void MostrarCarros()
         {
             dg.ItemsSource = null;
-            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = "SELECT * FROM carcontrol.carro;";
 

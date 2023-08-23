@@ -1,13 +1,13 @@
 ﻿using CarControl.Models;
+using MahApps.Metro.Controls;
 using Npgsql;
-using System.Windows;
 
 namespace CarControl
 {
     /// <summary>
     /// Lógica interna para ModeloDetailsWindow.xaml
     /// </summary>
-    public partial class ModeloDetailsWindow : Window
+    public partial class ModeloDetailsWindow : MetroWindow
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
 
@@ -19,7 +19,8 @@ namespace CarControl
 
         private void MostrarDetalhes(int idModelo)
         {
-            string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+            string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
             conn.ConnectionString = connection;
             string sql = ($"SELECT * FROM carcontrol.vw_carro_modelo WHERE idmodelo = {idModelo};");
 

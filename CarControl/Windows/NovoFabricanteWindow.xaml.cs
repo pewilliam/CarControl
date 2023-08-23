@@ -8,7 +8,8 @@ namespace CarControl
     /// </summary>
     public partial class NovoFabricanteWindow : Window
     {
-        string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+        //string connection = "Server=localhost;Port=5432;Database=base_carros;User id=postgres;Password=pedrow2001";
+        string connection = "Server=localhost;Port=5433;Database=base_carros;User id=postgres;Password=pedrow2001";
         static NpgsqlConnection conn = new NpgsqlConnection();
 
         public NovoFabricanteWindow()

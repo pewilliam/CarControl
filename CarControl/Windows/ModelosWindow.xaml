@@ -12,7 +12,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionaries/ResourceDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Dictionaries/ResourceDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -152,15 +152,21 @@
         </DataGrid>
 
         <TextBox x:Name="SearchModeloTxb"
+                 Controls:TextBoxHelper.Watermark="Pesquisar"
                  Grid.Row="2"
                  Grid.Column="0"
-                 Grid.ColumnSpan="3"
+                 Grid.ColumnSpan="2"
                  VerticalContentAlignment="Center"
                  Margin="5"
                  FontFamily="Montserrat"
                  FontSize="20"
                  HorizontalContentAlignment="Center" TextChanged="SearchModeloTxb_TextChanged"/>
 
+        <Button x:Name="AbrirModeloBtn"
+                Content="Abrir"
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="8" Click="AbrirModeloBtn_Click"/>
         <Button x:Name="NovoModeloBtn"
                 Content="Novo"
                 Grid.Row="2"
