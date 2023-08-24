@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:CarControl"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:CarControl" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      mc:Ignorable="d"
         Title="Modelos" Height="600" Width="1280"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
@@ -21,7 +21,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -35,7 +36,7 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="detailsGrid"
-              Grid.ColumnSpan="5">
+              Grid.ColumnSpan="6">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -129,7 +130,7 @@
             CanUserDeleteRows="False"
             ItemsSource="{Binding modeloList}"
             Grid.Row="1"
-            Grid.ColumnSpan="5" HeadersVisibility="Column" SelectionUnit="FullRow" SelectionMode="Extended">
+            Grid.ColumnSpan="6" HeadersVisibility="Column" SelectionUnit="FullRow" SelectionMode="Extended">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdModelo}"  />
                 <DataGridTextColumn Header="Modelo" Width="*" Binding="{Binding Nome}"  />
@@ -153,11 +154,28 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
+        <ComboBox x:Name="CarrosCB"
+                  Controls:TextBoxHelper.Watermark="Carro"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  DisplayMemberPath="Nome"
+                  SelectedValuePath="IdCarro"
+                  FontSize="20"
+                  Grid.Row="10"
+                  Grid.Column="0"
+                  Margin="8"
+                  ItemsSource="{Binding listCarros}" SelectionChanged="CarrosCB_SelectionChanged"/>
+        <Button x:Name="ClearCarrosCBBtn"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="10" Click="ClearCarrosCBBtn_Click">
+            <iconPacks:PackIconMaterial Kind="CloseCircle" Width="15" Height="15"/>
+        </Button>
+
         <TextBox x:Name="SearchModeloTxb"
                  Controls:TextBoxHelper.Watermark="Pesquisar"
                  Grid.Row="2"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="2"
+                 Grid.Column="2"
                  VerticalContentAlignment="Center"
                  Margin="5"
                  FontFamily="Montserrat"
@@ -167,17 +185,17 @@
         <Button x:Name="AbrirModeloBtn"
                 Content="Abrir"
                 Grid.Row="2"
-                Grid.Column="2"
+                Grid.Column="3"
                 Margin="8" Click="AbrirModeloBtn_Click"/>
         <Button x:Name="NovoModeloBtn"
                 Content="Novo"
                 Grid.Row="2"
-                Grid.Column="3"
+                Grid.Column="4"
                 Margin="8" Click="NovoModeloBtn_Click"/>
         <Button x:Name="FecharModeloWindowBtn"
                 Content="Fechar"
                 Grid.Row="2"
-                Grid.Column="4"
+                Grid.Column="5"
                 Margin="8" Click="FecharModeloWindowBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>

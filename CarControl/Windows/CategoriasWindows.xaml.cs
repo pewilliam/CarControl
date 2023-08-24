@@ -7,41 +7,41 @@ using System.Windows;
 namespace CarControl.Windows
 {
     /// <summary>
-    /// Lógica interna para FabricantesWindow.xaml
+    /// Lógica interna para CategoriasWindows.xaml
     /// </summary>
-    public partial class FabricantesWindow : MetroWindow
+    public partial class CategoriasWindows : MetroWindow
     {
-        List<Fabricante> fabricantesList = new List<Fabricante>();
+        List<Categoria> categoriaList = new List<Categoria>();
         NpgsqlConnection conn = new NpgsqlConnection();
 
-        public FabricantesWindow(NpgsqlConnection connection)
+        public CategoriasWindows(NpgsqlConnection connection)
         {
             InitializeComponent();
             conn = connection;
-            MostrarFabricantes();
+            MostrarCategorias();
         }
 
-        private void MostrarFabricantes()
+        private void MostrarCategorias()
         {
             dg.ItemsSource = null;
-            string sql = "SELECT * FROM carcontrol.fabricante ORDER BY idfabricante;";
+            string sql = "SELECT * FROM carcontrol.categoria ORDER BY idcategoria;";
 
-            fabricantesList.Clear();
+            categoriaList.Clear();
 
             NpgsqlCommand cmd = new(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    Fabricante fabricante = new(
+                    Categoria categoria = new(
                         reader.GetInt32(0), //idfabricante
                         reader.GetString(1) //nome
                         );
-                    fabricantesList.Add(fabricante);
+                    categoriaList.Add(categoria);
                 }
                 reader.Close();
             }
-            dg.ItemsSource = fabricantesList;
+            dg.ItemsSource = categoriaList;
             dg.Items.Refresh();
         }
 
@@ -50,12 +50,12 @@ namespace CarControl.Windows
             Close();
         }
 
-        private void NovoFabricanteBtn_Click(object sender, RoutedEventArgs e)
+        private void NovaCategoriaBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoFabricanteWindow novoFabricanteWindow = new NovoFabricanteWindow(conn);
-            novoFabricanteWindow.ShowDialog();
-            novoFabricanteWindow.Owner = this;
-            MostrarFabricantes();
+            NovaCategoriaWindow novaCategoriaWindow = new NovaCategoriaWindow(conn);
+            novaCategoriaWindow.ShowDialog();
+            novaCategoriaWindow.Owner = this;
+            MostrarCategorias();
         }
     }
 }

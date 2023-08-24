@@ -3,7 +3,7 @@
 
     <!--Buttons-->
     <Style TargetType="Button">
-        <Setter Property="Background" Value="#22a5f1"/>
+        <Setter Property="Background" Value="#3393df"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -36,10 +36,10 @@
     <!--DataGridRow-->
     <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
         <Setter Property="BorderThickness" Value="0, 0, 0, 1"/>
-        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderBrush" Value="#bdbdbd"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#1d88bc" />
+                <Setter Property="Background" Value="#3393df" />
                 <Setter Property="Foreground" Value="White" />
             </Trigger>
             <Trigger Property="IsFocused" Value="False">
@@ -48,8 +48,8 @@
             </Trigger>
         </Style.Triggers>
         <Style.Resources>
-            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#22a5f1" />
-            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#22a5f1" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#3393df" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#f0f0f0" />
         </Style.Resources>
     </Style>
 

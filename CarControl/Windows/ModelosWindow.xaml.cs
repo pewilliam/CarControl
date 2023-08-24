@@ -1,8 +1,8 @@
 ﻿using CarControl.Models;
+using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
 using System.Linq;
-using MahApps.Metro.Controls;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,16 +15,14 @@ namespace CarControl
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
-        static int IdCarro;
-        static string sql = "";
+        List<Carro> carroList = new List<Carro>();
 
         public ModelosWindow(int idcarro, NpgsqlConnection connection)
         {
             InitializeComponent();
             conn = connection;
+            PopulateCarrosCB();
             SearchModeloTxb.Focus();
-            IdCarro = idcarro;
-            sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro} ORDER BY idmodelo;");
             MostrarModelos();
         }
 
@@ -32,9 +30,8 @@ namespace CarControl
         {
             InitializeComponent();
             conn = connection;
-            IdCarro = 0;
+            PopulateCarrosCB();
             SearchModeloTxb.Focus();
-            sql = ($"SELECT * FROM carcontrol.modelo ORDER BY idmodelo;");
             MostrarModelos();
         }
 
@@ -42,6 +39,42 @@ namespace CarControl
         {
             dg.ItemsSource = null;
             modeloList.Clear();
+            string sql = ($"SELECT * FROM carcontrol.modelo ORDER BY idmodelo;");
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            using (NpgsqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    #region lendo modelos
+                    Modelo modelo = new(
+                        reader.GetInt32(0), //id
+                        reader.GetString(1), //nome
+                        reader.GetString(2), //cor
+                        reader.GetInt32(3), //qtdportas
+                        reader.GetInt32(4), //qtdpassageiros
+                        reader.GetString(5), //combustivel
+                        reader.GetString(6), //placa
+                        reader.GetString(7), //ano
+                        reader.GetString(8), //tipocambio
+                        reader.GetDouble(9), //preco
+                        reader.GetInt32(10), //idcarro
+                        reader.GetInt32(11), //idfabricante
+                        reader.GetInt32(12) //idfabricante
+                        );
+                    #endregion
+                    modeloList.Add(modelo);
+                }
+                reader.Close();
+                dg.ItemsSource = modeloList;
+            }
+        }
+
+        private void MostrarModelos(int idcarro)
+        {
+            dg.ItemsSource = null;
+            modeloList.Clear();
+            string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro} ORDER BY idmodelo;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -101,6 +134,28 @@ namespace CarControl
             }
         }
 
+        private void PopulateCarrosCB()
+        {
+            carroList.Clear();
+            string sql = "SELECT * FROM carcontrol.carro;";
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            using (NpgsqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Carro carro = new(
+                        reader.GetInt32(0),
+                        reader.GetString(1)
+                        );
+                    carroList.Add(carro);
+                }
+                reader.Close();
+                CarrosCB.ItemsSource = carroList;
+                CarrosCB.Items.Refresh();
+            }
+        }
+
         private void LimpaLabels()
         {
             #region limpar labels
@@ -147,8 +202,19 @@ namespace CarControl
 
         private void NovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoModeloWindow novoModeloWindow = new NovoModeloWindow(IdCarro, conn);
-            novoModeloWindow.ShowDialog();
+            if(CarrosCB.SelectedValue != null)
+            {
+                int idCarro = (int)CarrosCB.SelectedValue;
+                NovoModeloWindow novoModeloWindow = new NovoModeloWindow(idCarro, conn);
+                novoModeloWindow.ShowDialog();
+                novoModeloWindow.Owner = this;
+            }
+            else
+            {
+                NovoModeloWindow novoModeloWindow = new NovoModeloWindow(0, conn);
+                novoModeloWindow.ShowDialog();
+                novoModeloWindow.Owner = this;
+            }
             MostrarModelos();
         }
 
@@ -177,6 +243,23 @@ namespace CarControl
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
             }
+        }
+
+        private void CarrosCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(CarrosCB.SelectedValue == null)
+            {
+                MostrarModelos();
+            }
+            else
+            {
+                MostrarModelos((int)CarrosCB.SelectedValue);
+            }
+        }
+
+        private void ClearCarrosCBBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CarrosCB.SelectedValue = null;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                      mc:Ignorable="d"
+        mc:Ignorable="d"
         Title="CarControl" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
@@ -34,6 +34,13 @@
             <RowDefinition  Height="200"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <Image x:Name="CarroImg"
+               Source="\Resources\3.jpg"
+               VerticalAlignment="Bottom" 
+               Grid.Row="1" 
+               Grid.ColumnSpan="7" 
+               Stretch="Uniform"/>
 
         <Label Content="Carros"
                VerticalAlignment="Bottom"
@@ -86,7 +93,7 @@
         <Button x:Name="FabricantesCarroWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="2">
+                Grid.Column="2" Click="FabricantesCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Modelos" />
@@ -106,7 +113,7 @@
         <Button x:Name="CategoriasCarroWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="3">
+                Grid.Column="3" Click="CategoriasCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Modelos" />

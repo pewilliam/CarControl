@@ -3,10 +3,8 @@ using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection.PortableExecutable;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace CarControl

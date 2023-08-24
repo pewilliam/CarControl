@@ -1,5 +1,5 @@
-﻿using Npgsql;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
+using Npgsql;
 using System.Windows;
 
 namespace CarControl

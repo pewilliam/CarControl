@@ -174,7 +174,7 @@ namespace CarControl
 
         private void IdCarroTxb_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(IdCarroTxb.Text != string.Empty)
+            if (IdCarroTxb.Text != string.Empty)
             {
                 IdCarro = int.Parse(IdCarroTxb.Text);
                 string sql = $"SELECT nome FROM carcontrol.carro WHERE idcarro = {IdCarroTxb.Text}";
@@ -184,7 +184,15 @@ namespace CarControl
                 {
                     while (reader.Read())
                     {
-                        NomeCarroTxb.Text = reader.GetString(0);
+                        if (reader.GetString(0) == null)
+                        {
+                            MessageBox.Show("Carro não existe! Cadastre um novo ou escolha algum existente.", "Carro não encontrado");
+                            IdCarroTxb.Focus();
+                        }
+                        else
+                        {
+                            NomeCarroTxb.Text = reader.GetString(0);
+                        }
                     }
                     reader.Close();
                 }
