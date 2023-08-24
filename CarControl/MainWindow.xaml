@@ -35,18 +35,84 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Label Content="Carros"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               Grid.Column="0"
+               FontSize="20"
+               FontFamily="montserrat"
+               Margin="0,0,0,30"/>
         <Button x:Name="MostrarCarroWindowBtn"
-                Margin="30"
+                Margin="30, 30, 30, 60"
                 Grid.Row="0"
                 Grid.Column="0" Click="MostrarCarroWindowBtn_Click">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Carros" />
+                </ToolTip>
+            </Button.ToolTip>
             <iconPacks:PackIconMaterial Kind="Car" Width="40" Height="40"/>
         </Button>
 
+        <Label Content="Modelos"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               Grid.Column="1"
+               FontSize="20"
+               FontFamily="montserrat"
+               Margin="0,0,0,30"/>
         <Button x:Name="ModelosCarroWindowBtn"
-                Margin="30"
+                Margin="30, 30, 30, 60"
                 Grid.Row="0"
                 Grid.Column="1" Click="ModelosCarroWindowBtn_Click">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Modelos" />
+                </ToolTip>
+            </Button.ToolTip>
             <iconPacks:PackIconMaterial Kind="CarCog" Width="40" Height="40"/>
+        </Button>
+
+        <Label Content="Fabricantes"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               Grid.Column="2"
+               FontSize="20"
+               FontFamily="montserrat"
+               Margin="0,0,0,30"/>
+        <Button x:Name="FabricantesCarroWindowBtn"
+                Margin="30, 30, 30, 60"
+                Grid.Row="0"
+                Grid.Column="2">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Modelos" />
+                </ToolTip>
+            </Button.ToolTip>
+            <iconPacks:PackIconMaterial Kind="Earth" Width="40" Height="40"/>
+        </Button>
+
+        <Label Content="Categorias"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="3"
+                   FontSize="20"
+                   FontFamily="montserrat"
+                   Margin="0,0,0,30"/>
+        <Button x:Name="CategoriasCarroWindowBtn"
+                Margin="30, 30, 30, 60"
+                Grid.Row="0"
+                Grid.Column="3">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Modelos" />
+                </ToolTip>
+            </Button.ToolTip>
+        <iconPacks:PackIconMaterial Kind="Folder" Width="40" Height="40"/>
         </Button>
     </Grid>
 </Controls:MetroWindow>

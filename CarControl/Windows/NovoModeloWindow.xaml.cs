@@ -188,7 +188,6 @@ namespace CarControl
                     }
                     reader.Close();
                 }
-                IdCarro = 0;
             }
         }
 
