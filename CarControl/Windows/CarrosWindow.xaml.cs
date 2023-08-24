@@ -74,7 +74,8 @@ namespace CarControl.Windows
         {
             DataGridRow row = sender as DataGridRow;
             Carro c = row.DataContext as Carro;
-            ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro, conn);
+            ModelosWindow modelosWindow = new ModelosWindow(conn);
+            modelosWindow.CarrosCB.SelectedValue = c.IdCarro;
             modelosWindow.ShowDialog();
         }
 
@@ -83,7 +84,8 @@ namespace CarControl.Windows
             Carro c = dg.SelectedItem as Carro;
             if (c is not null)
             {
-                ModelosWindow modelosWindow = new ModelosWindow(c.IdCarro, conn);
+                ModelosWindow modelosWindow = new ModelosWindow(conn);
+                modelosWindow.CarrosCB.SelectedValue = c.IdCarro;
                 modelosWindow.ShowDialog();
             }
         }

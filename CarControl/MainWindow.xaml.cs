@@ -32,15 +32,6 @@ namespace CarControl
             }
         }
 
-        private BitmapImage MostrarRandomImage()
-        {
-            int randomNumber = random.Next(1, 4);
-            Uri newImageUri = new Uri($"/Resources/{randomNumber}.jpg", UriKind.RelativeOrAbsolute);
-            BitmapImage newImageSource = new BitmapImage(newImageUri);
-
-            return newImageSource;
-        }
-
         private void MostrarCarroWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             CarrosWindow carrosWindow = new CarrosWindow(conn);

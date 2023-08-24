@@ -17,15 +17,6 @@ namespace CarControl
         static List<Modelo> modeloList = new List<Modelo>();
         List<Carro> carroList = new List<Carro>();
 
-        public ModelosWindow(int idcarro, NpgsqlConnection connection)
-        {
-            InitializeComponent();
-            conn = connection;
-            PopulateCarrosCB();
-            SearchModeloTxb.Focus();
-            MostrarModelos();
-        }
-
         public ModelosWindow(NpgsqlConnection connection)
         {
             InitializeComponent();
@@ -183,7 +174,7 @@ namespace CarControl
                 ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(selectedItem, conn);
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
-                MostrarModelos();
+                MostrarModelos(selectedItem.IdCarro);
             }
         }
 
@@ -223,13 +214,12 @@ namespace CarControl
             var txb = sender as TextBox;
             if (txb.Text == null)
             {
-                MostrarModelos();
+                MostrarModelos((int)CarrosCB.SelectedValue);
             }
             else
             {
                 var filteredList = modeloList.Where(x => x.Nome.ToLower().Contains(txb.Text.ToLower()));
                 dg.ItemsSource = null;
-                MostrarModelos();
                 dg.ItemsSource = filteredList;
             }
         }
@@ -254,12 +244,14 @@ namespace CarControl
             else
             {
                 MostrarModelos((int)CarrosCB.SelectedValue);
+                SearchModeloTxb.Text = "";
             }
         }
 
         private void ClearCarrosCBBtn_Click(object sender, RoutedEventArgs e)
         {
             CarrosCB.SelectedValue = null;
+            SearchModeloTxb.Text = "";
         }
     }
 }
