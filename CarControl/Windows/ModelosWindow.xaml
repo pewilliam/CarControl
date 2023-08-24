@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="Modelos" Height="450" Width="1280"
+        Title="Modelos" Height="600" Width="1280"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
         ResizeMode="CanMinimize">

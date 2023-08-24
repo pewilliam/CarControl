@@ -1,4 +1,5 @@
-﻿[*.{cs,vb}]
+﻿[*.cs]
 
-# IDE0044: Adicionar modificador somente leitura
-dotnet_diagnostic.IDE0044.severity = none
+# CS8600: Conversão de literal nula ou possível valor nulo em tipo não anulável.
+dotnet_diagnostic.CS8600.severity = none
+dotnet_diagnostic.CS8602.severity = none

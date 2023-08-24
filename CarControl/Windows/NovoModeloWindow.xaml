@@ -6,7 +6,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:CarControl"
         mc:Ignorable="d"
-        Title="Novo Modelo" Height="650" Width="450"
+        Title="Novo Modelo" Height="700" Width="450"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
 
@@ -20,10 +20,12 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="4*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="4*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -38,39 +40,50 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="ModeloTxb"
-                 Controls:TextBoxHelper.Watermark="Nome"
-                 Grid.ColumnSpan="4"
+        <TextBox x:Name="IdCarroTxb"
+                 Controls:TextBoxHelper.Watermark="Id"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="0"
+                 Grid.Column="0"
+                 Margin="8"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center" LostFocus="IdCarroTxb_LostFocus" Loaded="IdCarroTxb_Loaded"/>
+        <TextBox x:Name="NomeCarroTxb"
+                 Controls:TextBoxHelper.Watermark="Carro"
+                 FontFamily="Montserrat"
+                 FontSize="20"
+                 Grid.Row="0"
+                 IsReadOnly="True"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="5"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="CorTxb"
-                 Controls:TextBoxHelper.Watermark="Cor"
-                 Grid.ColumnSpan="4"
+        <TextBox x:Name="ModeloTxb"
+                 Controls:TextBoxHelper.Watermark="Modelo"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="1"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewCharInput"/>
-        <TextBox x:Name="PortasTxb"
-                 Controls:TextBoxHelper.Watermark="Portas"
-                 Grid.ColumnSpan="4"
+                 HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="CorTxb"
+                 Controls:TextBoxHelper.Watermark="Cor"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="2"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="1"
-                 />
-        <TextBox x:Name="PassageirosTxb"
-                 Controls:TextBoxHelper.Watermark="Passageiros"
-                 Grid.ColumnSpan="4"
+                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewCharInput"/>
+        <TextBox x:Name="PortasTxb"
+                 Controls:TextBoxHelper.Watermark="Portas"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="3"
@@ -78,12 +91,22 @@
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="1"
                  />
-        <TextBox x:Name="CombustívelTxb"
-                 Controls:TextBoxHelper.Watermark="Combustível"
-                 Grid.ColumnSpan="4"
+        <TextBox x:Name="PassageirosTxb"
+                 Controls:TextBoxHelper.Watermark="Passageiros"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="4"
+                 Margin="8"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="1"
+                 />
+        <TextBox x:Name="CombustívelTxb"
+                 Controls:TextBoxHelper.Watermark="Combustível"
+                 Grid.ColumnSpan="6"
+                 FontFamily="Montserrat"
+                 FontSize="20"
+                 Grid.Row="5"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
@@ -91,30 +114,30 @@
                  />
         <TextBox x:Name="PlacaTxb"
                  Controls:TextBoxHelper.Watermark="Placa"
-                 Grid.ColumnSpan="4"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
-                 Grid.Row="5"
+                 Grid.Row="6"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
                  />
         <TextBox x:Name="AnoTxb"
                  Controls:TextBoxHelper.Watermark="Ano"
-                 Grid.ColumnSpan="4"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
-                 Grid.Row="6"
+                 Grid.Row="7"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="4"
                  />
         <TextBox x:Name="CambioTxb"
                  Controls:TextBoxHelper.Watermark="Câmbio"
-                 Grid.ColumnSpan="4"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
-                 Grid.Row="7"
+                 Grid.Row="8"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
@@ -122,10 +145,10 @@
                  />
         <TextBox x:Name="PrecoTxb"
                  Controls:TextBoxHelper.Watermark="Preço"
-                 Grid.ColumnSpan="4"
+                 Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
-                 Grid.Row="8"
+                 Grid.Row="9"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center" 
@@ -141,8 +164,9 @@
                   DisplayMemberPath="Nome"
                   SelectedValuePath="IdFabricante"
                   FontSize="20"
-                  Grid.Row="9"
+                  Grid.Row="10"
                   Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   Margin="8"
                   ItemsSource="{Binding listFabricante}"/>
         <ComboBox x:Name="CategoriaCB"
@@ -152,8 +176,9 @@
                   DisplayMemberPath="Nome"
                   SelectedValuePath="IdCategoria"
                   FontSize="20"
-                  Grid.Row="9"
-                  Grid.Column="2"
+                  Grid.Row="10"
+                  Grid.Column="3"
+                  Grid.ColumnSpan="2"
                   Margin="8"
                   ItemsSource="{Binding listCategoria}"/>
 
@@ -161,8 +186,8 @@
                 Content="+"
                 FontSize="15"
                 Margin="8"
-                Grid.Row="9"
-                Grid.Column="1"
+                Grid.Row="10"
+                Grid.Column="2"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" Click="NovoFabricanteBtn_Click"
                 >
@@ -176,8 +201,8 @@
                 Content="+"
                 FontSize="15"
                 Margin="8"
-                Grid.Row="9"
-                Grid.Column="3"
+                Grid.Row="10"
+                Grid.Column="5"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" Click="NovaCategoriaBtn_Click"
         >
@@ -192,14 +217,14 @@
                 Content="Salvar"
                 FontSize="20"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 Grid.Row="11"
                 Margin="8" Click="SalvarNovoModeloBtn_Click"/>
         <Button x:Name="FecharNovoModeloWindowBtn"
                 Content="Fechar"
                 FontSize="20"
-                Grid.Column="2"
-                Grid.ColumnSpan="2"
+                Grid.Column="3"
+                Grid.ColumnSpan="3"
                 Grid.Row="11"
                 Margin="8" Click="FecharNovoModeloWindowBtn_Click"/>
     </Grid>

@@ -17,7 +17,7 @@ namespace CarControl
         NpgsqlConnection conn = new NpgsqlConnection();
         List<Fabricante> listFabricante = new List<Fabricante>();
         List<Categoria> listCategoria = new List<Categoria>();
-        static int IdCarro = -1;
+        static int IdCarro = 0;
 
         public NovoModeloWindow(int idcarro, NpgsqlConnection connection)
         {
@@ -170,6 +170,45 @@ namespace CarControl
             NovaCategoriaWindow novaCategoriaWindow = new NovaCategoriaWindow(conn);
             novaCategoriaWindow.ShowDialog();
             novaCategoriaWindow.Owner = this;
+        }
+
+        private void IdCarroTxb_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(IdCarroTxb.Text != string.Empty)
+            {
+                IdCarro = int.Parse(IdCarroTxb.Text);
+                string sql = $"SELECT nome FROM carcontrol.carro WHERE idcarro = {IdCarroTxb.Text}";
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        NomeCarroTxb.Text = reader.GetString(0);
+                    }
+                    reader.Close();
+                }
+                IdCarro = 0;
+            }
+        }
+
+        private void IdCarroTxb_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (IdCarro != 0)
+            {
+                IdCarroTxb.Text = IdCarro.ToString();
+                string sql = $"SELECT nome FROM carcontrol.carro WHERE idcarro = {IdCarro}";
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        NomeCarroTxb.Text = reader.GetString(0);
+                    }
+                    reader.Close();
+                }
+            }
         }
     }
 }

@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CarControl"
-        mc:Ignorable="d"
-        Title="CarControl" Height="550" Width="900"
+        xmlns:local="clr-namespace:CarControl" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      mc:Ignorable="d"
+        Title="CarControl" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         ResizeMode="CanMinimize">
@@ -21,67 +21,32 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition  Height="200"/>
             <RowDefinition/>
-            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
-        <DataGrid
-            x:Name="dg"
-            IsReadOnly="True"
-            AutoGenerateColumns="False"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            ItemsSource="{Binding carroList}"
-            Grid.Row="0"
-            Grid.ColumnSpan="5" 
-            HeadersVisibility="Column" 
-            SelectionUnit="FullRow" 
-            SelectionMode="Extended">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdCarro}" />
-                <DataGridTextColumn Header="Carro" Width="*" Binding="{Binding Nome}" />
-            </DataGrid.Columns>
-            <DataGrid.RowStyle>
-                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
-                </Style>
-            </DataGrid.RowStyle>
-        </DataGrid>
+        <Button x:Name="MostrarCarroWindowBtn"
+                Margin="30"
+                Grid.Row="0"
+                Grid.Column="0" Click="MostrarCarroWindowBtn_Click">
+            <iconPacks:PackIconMaterial Kind="Car" Width="40" Height="40"/>
+        </Button>
 
-        <TextBox x:Name="searchCarTxb"
-                 Controls:TextBoxHelper.Watermark="Pesquisar"
-                 Grid.Row="1"
-                 Grid.Column="0"
-                 Margin="8" 
-                 FontFamily="Montserrat"
-                 FontSize="20"
-                 VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
-                 TextChanged="TextBox_TextChanged"/>
-
-        <Button x:Name="abrirCarroBtn"
-                Content="Abrir"
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="8" Click="abrirCarroBtn_Click"/>
-
-        <Button x:Name="novoCarroBtn"
-                Content="Novo"
-                Grid.Row="1"
-                Grid.Column="2"
-                Margin="8" Click="novoCarroBtn_Click"/>
-
-        <Button x:Name="fecharBtn"
-                Content="Fechar"
-                Grid.Row="1"
-                Grid.Column="3"
-                Margin="8" Click="fecharBtn_Click"/>
+        <Button x:Name="ModelosCarroWindowBtn"
+                Margin="30"
+                Grid.Row="0"
+                Grid.Column="1" Click="ModelosCarroWindowBtn_Click">
+            <iconPacks:PackIconMaterial Kind="CarCog" Width="40" Height="40"/>
+        </Button>
     </Grid>
 </Controls:MetroWindow>

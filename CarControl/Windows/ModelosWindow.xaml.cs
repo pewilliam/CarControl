@@ -15,7 +15,8 @@ namespace CarControl
     {
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
-        static int IdCarro = -1;
+        static int IdCarro;
+        static string sql = "";
 
         public ModelosWindow(int idcarro, NpgsqlConnection connection)
         {
@@ -23,15 +24,24 @@ namespace CarControl
             conn = connection;
             SearchModeloTxb.Focus();
             IdCarro = idcarro;
-            MostrarModelos(IdCarro);
+            sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro} ORDER BY idmodelo;");
+            MostrarModelos();
         }
 
-        private void MostrarModelos(int idcarro)
+        public ModelosWindow(NpgsqlConnection connection)
+        {
+            InitializeComponent();
+            conn = connection;
+            IdCarro = 0;
+            SearchModeloTxb.Focus();
+            sql = ($"SELECT * FROM carcontrol.modelo ORDER BY idmodelo;");
+            MostrarModelos();
+        }
+
+        private void MostrarModelos()
         {
             dg.ItemsSource = null;
             modeloList.Clear();
-            
-            string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro} ORDER BY idmodelo;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -118,7 +128,7 @@ namespace CarControl
                 ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(selectedItem, conn);
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
-                MostrarModelos(IdCarro);
+                MostrarModelos();
             }
         }
 
@@ -139,7 +149,7 @@ namespace CarControl
         {
             NovoModeloWindow novoModeloWindow = new NovoModeloWindow(IdCarro, conn);
             novoModeloWindow.ShowDialog();
-            MostrarModelos(IdCarro);
+            MostrarModelos();
         }
 
         private void SearchModeloTxb_TextChanged(object sender, TextChangedEventArgs e)
@@ -147,13 +157,13 @@ namespace CarControl
             var txb = sender as TextBox;
             if (txb.Text == null)
             {
-                MostrarModelos(IdCarro);
+                MostrarModelos();
             }
             else
             {
                 var filteredList = modeloList.Where(x => x.Nome.ToLower().Contains(txb.Text.ToLower()));
                 dg.ItemsSource = null;
-                MostrarModelos(IdCarro);
+                MostrarModelos();
                 dg.ItemsSource = filteredList;
             }
         }
