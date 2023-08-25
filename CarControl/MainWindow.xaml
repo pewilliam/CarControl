@@ -248,7 +248,24 @@
         <iconPacks:PackIconMaterial Kind="Folder" Width="40" Height="40"/>
         </Button>
 
-        
-        
+        <Label Content="Formas de Pagamento"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Grid.Row="0"
+                Grid.Column="6"
+                FontSize="20"
+                FontFamily="montserrat"
+                Margin="0,0,0,30"/>
+        <Button x:Name="FormasPagtoWindowBtn"
+                Margin="30, 30, 30, 60"
+                Grid.Row="0"
+                Grid.Column="6" Click="FormasPagtoWindowBtn_Click">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Mostrar categorias" />
+                </ToolTip>
+            </Button.ToolTip>
+            <iconPacks:PackIconMaterial Kind="Cash" Width="40" Height="40"/>
+        </Button>
     </Grid>
 </Controls:MetroWindow>

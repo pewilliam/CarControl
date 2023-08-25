@@ -62,6 +62,13 @@ namespace CarControl
             categoriasWindows.Owner = this;
         }
 
+        private void FormasPagtoWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FormasPagtoWindow formasPagtoWindow = new FormasPagtoWindow(conn);
+            formasPagtoWindow.ShowDialog();
+            formasPagtoWindow.Owner = this;
+        }
+
         private void IniciaRelogio()
         {
             DispatcherTimer timer = new DispatcherTimer();
