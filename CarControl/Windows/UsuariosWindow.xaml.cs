@@ -35,7 +35,7 @@ namespace CarControl.Windows
                 {
                     Usuario usuario = new(
                         reader.GetInt32(0), //idcarro
-                        reader.GetString(1) //nome
+                        reader.GetString(1).ToUpper() //nome
                         );
                     userList.Add(usuario);
                 }
