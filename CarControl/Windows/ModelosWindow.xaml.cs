@@ -1,10 +1,18 @@
 ﻿using CarControl.Models;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using MahApps.Metro.Controls;
 using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
+using Document = iTextSharp.text.Document;
+using Path = System.IO.Path;
 
 namespace CarControl
 {
@@ -16,6 +24,7 @@ namespace CarControl
         static NpgsqlConnection conn = new NpgsqlConnection();
         static List<Modelo> modeloList = new List<Modelo>();
         List<Carro> carroList = new List<Carro>();
+        static BaseFont fontbase = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
 
         public ModelosWindow(NpgsqlConnection connection)
         {
@@ -265,6 +274,12 @@ namespace CarControl
             {
                 MostrarModelos((int)CarrosCB.SelectedValue);
             }
+        }
+
+        private void GerarRelatorioBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GerarPDF gerarPdf = new GerarPDF();
+            gerarPdf.GerarRelatorio(modeloList, modeloList.Count);
         }
     }
 }
