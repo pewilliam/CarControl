@@ -154,18 +154,6 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
-        <Button x:Name="GerarRelatorioBtn"
-                Grid.Row="0"
-                Grid.Column="6"
-                Height="50"
-                Width="50"
-                Margin="10"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Click="GerarRelatorioBtn_Click">
-            <iconPacks:PackIconMaterial Kind="File" Width="25" Height="25"/>
-        </Button>
-
         <ComboBox x:Name="CarrosCB"
                   Controls:TextBoxHelper.Watermark="Carro"
                   HorizontalContentAlignment="Center"
