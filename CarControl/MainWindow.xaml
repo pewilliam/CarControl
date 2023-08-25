@@ -196,7 +196,7 @@
         <Button x:Name="UsuariosWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="6" Click="CategoriasCarroWindowBtn_Click">
+                Grid.Column="6" Click="UsuariosWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Modelos" />

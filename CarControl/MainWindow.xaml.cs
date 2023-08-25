@@ -74,5 +74,12 @@ namespace CarControl
         {
             ClockLabel.Text = DateTime.Now.ToString();
         }
+
+        private void UsuariosWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            UsuariosWindow usuariosWindow = new(conn);
+            usuariosWindow.ShowDialog();
+            usuariosWindow.Owner = this;
+        }
     }
 }
