@@ -174,7 +174,7 @@ namespace CarControl
                 ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(selectedItem, conn);
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
-                MostrarModelos(selectedItem.IdCarro);
+                AtualizaDataGrid();
             }
         }
 
@@ -206,7 +206,7 @@ namespace CarControl
                 novoModeloWindow.ShowDialog();
                 novoModeloWindow.Owner = this;
             }
-            MostrarModelos();
+            AtualizaDataGrid();
         }
 
         private void SearchModeloTxb_TextChanged(object sender, TextChangedEventArgs e)
@@ -232,6 +232,7 @@ namespace CarControl
                 ModeloDetailsWindow modeloDetailsWindow = new ModeloDetailsWindow(m, conn);
                 modeloDetailsWindow.ShowDialog();
                 modeloDetailsWindow.Owner = this;
+                AtualizaDataGrid();
             }
         }
 
@@ -252,6 +253,18 @@ namespace CarControl
         {
             CarrosCB.SelectedValue = null;
             SearchModeloTxb.Text = "";
+        }
+
+        private void AtualizaDataGrid()
+        {
+            if (CarrosCB.SelectedValue == null)
+            {
+                MostrarModelos();
+            }
+            else
+            {
+                MostrarModelos((int)CarrosCB.SelectedValue);
+            }
         }
     }
 }

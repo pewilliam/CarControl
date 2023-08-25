@@ -23,7 +23,6 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -63,22 +62,16 @@
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"/>
 
-        <Button x:Name="AbrirFabricanteBtn"
-                Content="Abrir"
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="8"/>
-
         <Button x:Name="NovoFabricanteBtn"
                 Content="Novo"
                 Grid.Row="1"
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="8" Click="NovoFabricanteBtn_Click"/>
 
         <Button x:Name="FecharBtn"
                 Content="Fechar"
                 Grid.Row="1"
-                Grid.Column="3"
+                Grid.Column="2"
                 Margin="8" Click="fecharBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>

@@ -6,6 +6,7 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace CarControl
 {
@@ -24,6 +25,7 @@ namespace CarControl
             conn = loginwindow.conn;
             if (conn.State == ConnectionState.Open)
             {
+                IniciaRelogio();
                 InitializeComponent();
             }
             else
@@ -58,6 +60,19 @@ namespace CarControl
             CategoriasWindows categoriasWindows = new CategoriasWindows(conn);
             categoriasWindows.ShowDialog();
             categoriasWindows.Owner = this;
+        }
+
+        private void IniciaRelogio()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Tickevent;
+            timer.Start();
+        }
+
+        private void Tickevent(object sender, EventArgs e)
+        {
+            ClockLabel.Text = DateTime.Now.ToString();
         }
     }
 }

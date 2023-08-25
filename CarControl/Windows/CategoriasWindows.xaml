@@ -6,7 +6,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="Categorias" Height="550" Width="800"
+        Title="Categorias" Height="550" Width="700"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
 
@@ -21,7 +21,6 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -63,22 +62,16 @@
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"/>
 
-        <Button x:Name="AbrirCategoriaBtn"
-                Content="Abrir"
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="8"/>
-
         <Button x:Name="NovaCategoriaBtn"
                 Content="Novo"
                 Grid.Row="1"
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="8" Click="NovaCategoriaBtn_Click"/>
 
         <Button x:Name="FecharBtn"
                 Content="Fechar"
                 Grid.Row="1"
-                Grid.Column="3"
+                Grid.Column="2"
                 Margin="8" Click="fecharBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>

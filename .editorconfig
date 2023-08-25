@@ -73,6 +73,9 @@ csharp_style_prefer_readonly_struct_member = true:suggestion
 csharp_style_allow_embedded_statements_on_same_line_experimental = true:silent
 csharp_style_allow_blank_lines_between_consecutive_braces_experimental = true:silent
 
+# CS8622: A nulidade de tipos de referência no tipo de parâmetro não corresponde ao delegado de destino (possivelmente devido a atributos de nulidade).
+dotnet_diagnostic.CS8622.severity = none
+
 [*.vb]
 #### Estilos de nomenclatura ####
 
