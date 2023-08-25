@@ -56,14 +56,77 @@
                      Background="Transparent"
                      BorderThickness="0"
                      FontFamily="montserrat"/>
+
+            <TextBox x:Name="CurrentUserTxb"
+                     Text="Usuário: "
+                     Grid.Column="0"
+                     HorizontalAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     FontFamily="montserrat"/>
         </Grid>
 
-        <Image x:Name="CarroImg"
-            Source="\Resources\mainmenuimage.jpg"
-            VerticalAlignment="Bottom" 
-            Grid.Row="1" 
-            Grid.ColumnSpan="7" 
-            Stretch="Uniform"/>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="\Resources\mainmenuimage.jpg"
+                            Stretch="Uniform"/>
+            </Grid.Background>
+
+            <Button x:Name="TrocarUsuarioBtn"
+                    Margin="30"
+                    Grid.Row="5"
+                    Grid.Column="13" Click="TrocarUsuarioBtn_Click">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <TextBlock Text="Trocar usuário" />
+                    </ToolTip>
+                </Button.ToolTip>
+                <iconPacks:PackIconMaterial Kind="AccountConvert" Width="40" Height="40"/>
+            </Button>
+
+            <Button x:Name="UsuariosWindowBtn"
+                Margin="30"
+                Grid.Row="4"
+                Grid.Column="13" Click="UsuariosWindowBtn_Click">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <TextBlock Text="Mostrar usuários" />
+                    </ToolTip>
+                </Button.ToolTip>
+                <iconPacks:PackIconMaterial Kind="Account" Width="40" Height="40"/>
+            </Button>
+        </Grid>
 
         <Label Content="Carros"
                VerticalAlignment="Bottom"
@@ -79,7 +142,7 @@
                 Grid.Column="0" Click="MostrarCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
-                    <TextBlock Text="Carros" />
+                    <TextBlock Text="Mostrar carros" />
                 </ToolTip>
             </Button.ToolTip>
             <iconPacks:PackIconMaterial Kind="Car" Width="40" Height="40"/>
@@ -99,7 +162,7 @@
                 Grid.Column="1" Click="ModelosCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
-                    <TextBlock Text="Modelos" />
+                    <TextBlock Text="Mostrar modelos" />
                 </ToolTip>
             </Button.ToolTip>
             <iconPacks:PackIconMaterial Kind="CarCog" Width="40" Height="40"/>
@@ -119,10 +182,10 @@
                 Grid.Column="2" Click="FabricantesCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
-                    <TextBlock Text="Modelos" />
+                    <TextBlock Text="Mostrar clientes" />
                 </ToolTip>
             </Button.ToolTip>
-            <iconPacks:PackIconMaterial Kind="AccountBox" Width="40" Height="40"/>
+            <iconPacks:PackIconMaterial Kind="CardAccountDetails" Width="40" Height="40"/>
         </Button>
 
         <Label Content="Aluguel"
@@ -139,7 +202,7 @@
                 Grid.Column="3" Click="FabricantesCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
-                    <TextBlock Text="Modelos" />
+                    <TextBlock Text="Mostrar aluguéis" />
                 </ToolTip>
             </Button.ToolTip>
             <iconPacks:PackIconMaterial Kind="ClockTimeFour" Width="40" Height="40"/>
@@ -159,7 +222,7 @@
                 Grid.Column="4" Click="FabricantesCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
-                    <TextBlock Text="Modelos" />
+                    <TextBlock Text="Mostrar fabricantes" />
                 </ToolTip>
             </Button.ToolTip>
             <iconPacks:PackIconMaterial Kind="Earth" Width="40" Height="40"/>
@@ -179,30 +242,13 @@
                 Grid.Column="5" Click="CategoriasCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
-                    <TextBlock Text="Modelos" />
+                    <TextBlock Text="Mostrar categorias" />
                 </ToolTip>
             </Button.ToolTip>
         <iconPacks:PackIconMaterial Kind="Folder" Width="40" Height="40"/>
         </Button>
 
-        <Label Content="Usuários"
-                   VerticalAlignment="Bottom"
-                   HorizontalAlignment="Center"
-                   Grid.Row="0"
-                   Grid.Column="6"
-                   FontSize="20"
-                   FontFamily="montserrat"
-                   Margin="0,0,0,30"/>
-        <Button x:Name="UsuariosWindowBtn"
-                Margin="30, 30, 30, 60"
-                Grid.Row="0"
-                Grid.Column="6" Click="UsuariosWindowBtn_Click">
-            <Button.ToolTip>
-                <ToolTip>
-                    <TextBlock Text="Modelos" />
-                </ToolTip>
-            </Button.ToolTip>
-            <iconPacks:PackIconMaterial Kind="Account" Width="40" Height="40"/>
-        </Button>
+        
+        
     </Grid>
 </Controls:MetroWindow>

@@ -17,7 +17,6 @@ namespace CarControl
     {
         LoginWindow loginwindow = new LoginWindow();
         NpgsqlConnection conn = new NpgsqlConnection();
-        Random random = new();
 
         public MainWindow()
         {
@@ -27,6 +26,7 @@ namespace CarControl
             {
                 IniciaRelogio();
                 InitializeComponent();
+                CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
             }
             else
             {
@@ -80,6 +80,23 @@ namespace CarControl
             UsuariosWindow usuariosWindow = new(conn);
             usuariosWindow.ShowDialog();
             usuariosWindow.Owner = this;
+        }
+
+        private void TrocarUsuarioBtn_Click(object sender, RoutedEventArgs e)
+        {
+            conn.Close();
+            LoginWindow loginwindow = new LoginWindow();
+            loginwindow.ShowDialog();
+            
+            if(loginwindow.conn.UserName != null)
+            {
+                conn = loginwindow.conn;
+                CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
         }
     }
 }

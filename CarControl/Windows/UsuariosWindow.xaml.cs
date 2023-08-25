@@ -49,5 +49,13 @@ namespace CarControl.Windows
         {
             Close();
         }
+
+        private void novoCarroBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NovoUsuarioWindow novoUsuarioWindow = new NovoUsuarioWindow(conn);
+            novoUsuarioWindow.ShowDialog();
+            novoUsuarioWindow.Owner = this;
+            MostrarUsuarios();
+        }
     }
 }

@@ -177,7 +177,7 @@
                  Grid.Row="2"
                  Grid.Column="2"
                  VerticalContentAlignment="Center"
-                 Margin="5"
+                 Margin="8"
                  FontFamily="Montserrat"
                  FontSize="20"
                  HorizontalContentAlignment="Center" TextChanged="SearchModeloTxb_TextChanged"/>
