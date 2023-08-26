@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="NovoClienteWindow" Height="350" Width="400"
+        Title="Novo Cliente" Height="350" Width="400"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         KeyDown="Window_KeyDown">
@@ -75,7 +75,8 @@
                  Grid.Row="3"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"/>
+                 HorizontalContentAlignment="Center"
+                 KeyUp="DataNascimentoTxb_KeyUp"/>
 
         <Button x:Name="SalvarNovoModeloBtn"
                 Content="Salvar"

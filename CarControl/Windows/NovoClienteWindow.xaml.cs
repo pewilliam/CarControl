@@ -1,7 +1,10 @@
 ﻿using MahApps.Metro.Controls;
 using Npgsql;
+using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace CarControl.Windows
 {
@@ -29,7 +32,7 @@ namespace CarControl.Windows
 
         private void CpfTxb_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(CpfTxb.Text != string.Empty)
+            if (CpfTxb.Text != string.Empty)
             {
                 if (long.TryParse(CpfTxb.Text, out long CPF) && CpfTxb.Text.Length == 11)
                 {
@@ -62,6 +65,18 @@ namespace CarControl.Windows
             if (e.Key == System.Windows.Input.Key.Escape)
             {
                 Close();
+            }
+        }
+
+        private void DataNascimentoTxb_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            DatePicker dt = (DatePicker)sender;
+            string justNumbers = new String(dt.Text.Where(Char.IsDigit).ToArray());
+            if (justNumbers.Length == 8)
+            {
+                string newDate = justNumbers.Insert(2, "/").Insert(5, "/");
+
+                dt.SelectedDate = DateTime.Parse(newDate);
             }
         }
     }
