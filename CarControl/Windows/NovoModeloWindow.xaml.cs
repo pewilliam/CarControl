@@ -24,6 +24,7 @@ namespace CarControl
             conn = connection;
             InitializeComponent();
             IdCarro = idcarro;
+            IdCarroTxb.Focus();
             PopulateFabricanteCB();
             PopulateCategoriaCB();
         }

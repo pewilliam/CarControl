@@ -104,7 +104,10 @@
             </Grid.Background>
 
             <Button x:Name="TrocarUsuarioBtn"
-                    Margin="30"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Height="50"
+                    Width="50"
                     Grid.Row="5"
                     Grid.Column="13" Click="TrocarUsuarioBtn_Click">
                 <Button.ToolTip>
@@ -112,11 +115,14 @@
                         <TextBlock Text="Trocar usuário" />
                     </ToolTip>
                 </Button.ToolTip>
-                <iconPacks:PackIconMaterial Kind="AccountConvert" Width="40" Height="40"/>
+                <iconPacks:PackIconMaterial Kind="AccountConvert" Width="25" Height="25"/>
             </Button>
 
             <Button x:Name="UsuariosWindowBtn"
-                Margin="30"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Height="50"
+                    Width="50"
                 Grid.Row="4"
                 Grid.Column="13" Click="UsuariosWindowBtn_Click">
                 <Button.ToolTip>
@@ -124,7 +130,7 @@
                         <TextBlock Text="Mostrar usuários" />
                     </ToolTip>
                 </Button.ToolTip>
-                <iconPacks:PackIconMaterial Kind="Account" Width="40" Height="40"/>
+                <iconPacks:PackIconMaterial Kind="Account" Width="25" Height="25"/>
             </Button>
         </Grid>
 

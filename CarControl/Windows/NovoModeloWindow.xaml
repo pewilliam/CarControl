@@ -58,6 +58,7 @@
                  FontSize="20"
                  Grid.Row="0"
                  IsReadOnly="True"
+                 Focusable="False"
                  Grid.Column="1"
                  Grid.ColumnSpan="5"
                  Margin="8"

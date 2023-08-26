@@ -45,6 +45,14 @@ namespace CarControl.Windows
             dg.Items.Refresh();
         }
 
+        private void novaFormaPagtoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NovaFormaPagtoWindow novaFormaPagtoWindow = new NovaFormaPagtoWindow(conn);
+            novaFormaPagtoWindow.ShowDialog();
+            novaFormaPagtoWindow.Owner = this;
+            MostrarFormasPagto();
+        }
+
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();

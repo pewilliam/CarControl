@@ -14,6 +14,7 @@ namespace CarControl.Windows
         public NovoUsuarioWindow(NpgsqlConnection connection)
         {
             InitializeComponent();
+            txbUser.Focus();
             conn = connection;
         }
 
