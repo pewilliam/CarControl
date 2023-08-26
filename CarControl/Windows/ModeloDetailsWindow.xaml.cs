@@ -1,6 +1,7 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
 using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -131,16 +132,23 @@ namespace CarControl
                 $"placa = '{placa}', " +
                 $"ano = '{ano}', " +
                 $"tipocambio = '{cambio}', " +
-                $"preco = {preco}, " +
+                $"precodia = {preco}, " +
                 $"idfabricante = {fabricante}, " +
                 $"idcategoria = {categoria} " +
                 $"WHERE idmodelo = {idModelo};";
             #endregion
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Modelo atualizado com sucesso!", "Concluído");
-            Close();
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Modelo atualizado com sucesso!", "Concluído");
+                Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro");
+            }
         }
 
         private void PreviewCharInput(object sender, TextCompositionEventArgs e)

@@ -52,7 +52,7 @@ namespace CarControl
                 int categoria = (int)CategoriaCB.SelectedValue;
                 #endregion
 
-                string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, preco, idcarro, idfabricante, idcategoria) " +
+                string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, precodia, idcarro, idfabricante, idcategoria) " +
                     $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, {fabricante}, {categoria});");
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
