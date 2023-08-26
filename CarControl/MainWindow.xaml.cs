@@ -49,6 +49,13 @@ namespace CarControl
             modelosWindow.Owner = this;
         }
 
+        private void ClientesWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ClientesWindow clientesWindow = new ClientesWindow(conn);
+            clientesWindow.ShowDialog();
+            clientesWindow.Owner = this;
+        }
+
         private void FabricantesCarroWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             FabricantesWindow fabricantesWindow = new FabricantesWindow(conn);

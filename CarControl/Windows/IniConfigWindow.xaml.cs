@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using CarControl.Tools;
+using MahApps.Metro.Controls;
 using System.Windows;
 
 namespace CarControl.Windows

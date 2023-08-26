@@ -186,7 +186,7 @@
         <Button x:Name="ClientesWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="2" Click="FabricantesCarroWindowBtn_Click">
+                Grid.Column="2" Click="ClientesWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Mostrar clientes" />
