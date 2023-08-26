@@ -38,7 +38,7 @@ namespace CarControl.Windows
                 {
                     Cliente cliente = new(
                         reader.GetInt32(0), //idcarro
-                        reader.GetString(1),
+                        reader.GetString(1).ToUpper(),
                         Convert.ToUInt64(reader.GetString(2)).ToString(@"000\.000\.000\-00"),
                         reader.GetString(3),
                         reader.GetDateTime(4)
@@ -86,6 +86,14 @@ namespace CarControl.Windows
         private void fecharBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void novoClienteBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NovoClienteWindow novoClienteWindow = new NovoClienteWindow(conn);
+            novoClienteWindow.ShowDialog();
+            novoClienteWindow.Owner = this;
+            MostrarClientes();
         }
     }
 }
