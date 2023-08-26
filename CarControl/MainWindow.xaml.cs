@@ -56,6 +56,13 @@ namespace CarControl
             clientesWindow.Owner = this;
         }
 
+        private void AluguelWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AluguelWindow aluguelWindow = new AluguelWindow(conn);
+            aluguelWindow.ShowDialog();
+            aluguelWindow.Owner = this;
+        }
+
         private void FabricantesCarroWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             FabricantesWindow fabricantesWindow = new FabricantesWindow(conn);

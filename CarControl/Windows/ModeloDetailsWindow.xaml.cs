@@ -42,7 +42,7 @@ namespace CarControl
             PlacaTxb.Text = modelo.Placa;
             AnoTxb.Text = modelo.Ano;
             CambioTxb.Text = modelo.TipoCambio;
-            PrecoTxb.Text = (double.TryParse(modelo.Preco.ToString(), out amount)) ? amount.ToString("C") : string.Empty; modelo.Preco.ToString();
+            PrecoTxb.Text = (double.TryParse(modelo.PrecoDia.ToString(), out amount)) ? amount.ToString("C") : string.Empty; modelo.PrecoDia.ToString();
             FabricanteCB.SelectedValue = modelo.IdFabricante;
             CategoriaCB.SelectedValue = modelo.IdCategoria;
         }

@@ -11,12 +11,13 @@
         public string Placa { get; set; }
         public string Ano { get; set; }
         public string TipoCambio { get; set; }
-        public double Preco { get; set; }
+        public double PrecoDia { get; set; }
         public int IdCarro { get; set; }
         public int IdFabricante { get; set; }
         public int IdCategoria { get; set; }
+        public bool Disponivel { get; set; }
 
-        public Modelo(int idModelo, string nome, string cor, int qtdPortas, int qtdPassageiros, string combustivel, string placa, string ano, string tipoCambio, double preco, int idCarro, int idFabricante, int idCategoria)
+        public Modelo(int idModelo, string nome, string cor, int qtdPortas, int qtdPassageiros, string combustivel, string placa, string ano, string tipoCambio, double precoDia, int idCarro, int idFabricante, int idCategoria, bool disponivel)
         {
             IdModelo = idModelo;
             Nome = nome;
@@ -27,10 +28,11 @@
             Placa = placa;
             Ano = ano;
             TipoCambio = tipoCambio;
-            Preco = preco;
+            PrecoDia = precoDia;
             IdCarro = idCarro;
             IdFabricante = idFabricante;
             IdCategoria = idCategoria;
+            Disponivel = disponivel;
         }
     }
 }

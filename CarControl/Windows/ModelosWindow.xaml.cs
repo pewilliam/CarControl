@@ -52,7 +52,8 @@ namespace CarControl
                         reader.GetDouble(9), //preco
                         reader.GetInt32(10), //idcarro
                         reader.GetInt32(11), //idfabricante
-                        reader.GetInt32(12) //idfabricante
+                        reader.GetInt32(12), //idfabricante
+                        reader.GetBoolean(13) //idfabricante
                         );
                     #endregion
                     modeloList.Add(modelo);
@@ -87,7 +88,8 @@ namespace CarControl
                         reader.GetDouble(9), //preco
                         reader.GetInt32(10), //idcarro
                         reader.GetInt32(11), //idfabricante
-                        reader.GetInt32(12) //idfabricante
+                        reader.GetInt32(12),
+                        reader.GetBoolean(13)//idfabricante
                         );
                     #endregion
                     modeloList.Add(modelo);
@@ -120,7 +122,11 @@ namespace CarControl
                     placaLabel.Content = placaLabel.Content + reader.GetString(10);
                     anoLabel.Content = anoLabel.Content + reader.GetString(11);
                     cambioLabel.Content = cambioLabel.Content + reader.GetString(12);
-                    precoLabel.Content = precoLabel.Content + "R$ " + reader.GetDecimal(13).ToString();
+                    precoLabel.Content = precoLabel.Content + "R$ " + reader.GetDecimal(13).ToString("C");
+                    if(reader.GetBoolean(14) == true)
+                        disponivelLabel.Content = disponivelLabel.Content + "Sim";
+                    else
+                        disponivelLabel.Content = disponivelLabel.Content + "Não";
                 }
                 reader.Close();
             }
@@ -165,6 +171,7 @@ namespace CarControl
             anoLabel.Content = "Ano: ";
             cambioLabel.Content = "Câmbio: ";
             precoLabel.Content = "Preço: ";
+            disponivelLabel.Content = "Disponível: ";
             #endregion
         }
 

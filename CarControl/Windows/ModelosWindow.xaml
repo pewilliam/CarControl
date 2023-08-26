@@ -118,9 +118,14 @@
                    Grid.Column="2"/>
 
             <Label x:Name="precoLabel"
-                   Content="Preço: "
+                   Content="Preço por dia: "
                    Grid.Row="2"
                    Grid.Column="3"/>
+
+            <Label x:Name="disponivelLabel"
+               Content="Disponível: "
+               Grid.Row="2"
+               Grid.Column="4"/>
         </Grid>
 
         <DataGrid
@@ -147,7 +152,7 @@
                 <DataGridTextColumn Header="Placa" Width="*" Binding="{Binding Placa}"  />
                 <DataGridTextColumn Header="Ano" Width="*" Binding="{Binding Ano}"  />
                 <DataGridTextColumn Header="Câmbio" Width="*" Binding="{Binding TipoCambio}"  />
-                <DataGridTextColumn Header="Preço" Width="*" Binding="{Binding Preco, StringFormat=c}"  />
+                <DataGridTextColumn Header="Preço" Width="*" Binding="{Binding PrecoDia, StringFormat=c}"  />
                 <DataGridTextColumn Header="IdCarro" Width="*" Binding="{Binding IdCarro}"  />
                 <DataGridTextColumn Header="IdFabricante" Width="*" Binding="{Binding IdFabricante}"  />
                 <DataGridTextColumn Header="IdCategoria" Width="*" Binding="{Binding IdCategoria}"  />
