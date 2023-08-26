@@ -71,15 +71,6 @@ namespace CarControl.Windows
             MostrarCarros();
         }
 
-        private void DataGridRow_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            DataGridRow row = sender as DataGridRow;
-            Carro c = row.DataContext as Carro;
-            ModelosWindow modelosWindow = new ModelosWindow(conn);
-            modelosWindow.CarrosCB.SelectedValue = c.IdCarro;
-            modelosWindow.ShowDialog();
-        }
-
         private void abrirCarroBtn_Click(object sender, RoutedEventArgs e)
         {
             Carro c = dg.SelectedItem as Carro;

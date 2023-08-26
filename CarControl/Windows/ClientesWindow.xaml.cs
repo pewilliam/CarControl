@@ -95,5 +95,26 @@ namespace CarControl.Windows
             novoClienteWindow.Owner = this;
             MostrarClientes();
         }
+
+        private void abrirClienteBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Cliente c = dg.SelectedItem as Cliente;
+            if (c is not null)
+            {
+                ClienteDetailsWindow clienteDetailsWindow = new ClienteDetailsWindow(conn, c);
+                clienteDetailsWindow.ShowDialog();
+                clienteDetailsWindow.Owner = this;
+            }
+        }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is DataGridRow row && row.Item is Cliente selectedItem)
+            {
+                ClienteDetailsWindow clienteDetailsWindow = new ClienteDetailsWindow(conn, selectedItem);
+                clienteDetailsWindow.ShowDialog();
+                clienteDetailsWindow.Owner = this;
+            }
+        }
     }
 }

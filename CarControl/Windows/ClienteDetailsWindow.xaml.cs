@@ -1,21 +1,31 @@
-﻿using MahApps.Metro.Controls;
+﻿using CarControl.Models;
 using Npgsql;
+using MahApps.Metro.Controls;
 using System.Linq;
 using System.Windows;
 
 namespace CarControl.Windows
 {
     /// <summary>
-    /// Lógica interna para NovoClienteWindow.xaml
+    /// Lógica interna para ClienteDetailsWindow.xaml
     /// </summary>
-    public partial class NovoClienteWindow : MetroWindow
+    public partial class ClienteDetailsWindow : MetroWindow
     {
         NpgsqlConnection conn = new NpgsqlConnection();
 
-        public NovoClienteWindow(NpgsqlConnection connection)
+        public ClienteDetailsWindow(NpgsqlConnection connection, Cliente cliente)
         {
             conn = connection;
             InitializeComponent();
+            MostrarDetalhes(cliente);
+        }
+
+        private void MostrarDetalhes(Cliente cliente)
+        {
+            NomeClienteTxb.Text = cliente.Nome;
+            CpfTxb.Text = cliente.Cpf;
+            EmailTxb.Text = cliente.Email;
+            DataNascimentoTxb.Text = cliente.DtNascimento.ToString();
         }
 
         private void CpfTxb_GotFocus(object sender, RoutedEventArgs e)
@@ -29,7 +39,7 @@ namespace CarControl.Windows
 
         private void CpfTxb_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(CpfTxb.Text != string.Empty)
+            if (!string.IsNullOrEmpty(CpfTxb.Text))
             {
                 if (long.TryParse(CpfTxb.Text, out long CPF) && CpfTxb.Text.Length == 11)
                 {
@@ -43,26 +53,17 @@ namespace CarControl.Windows
             }
         }
 
-        private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
-        {
-            string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{NomeClienteTxb.Text}'), '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', '{EmailTxb.Text}', '{DataNascimentoTxb.Text}')";
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Cliente inserido com sucesso!", "Sucesso!");
-            Close();
-        }
-
-        private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
             {
                 Close();
             }
+        }
+
+        private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
