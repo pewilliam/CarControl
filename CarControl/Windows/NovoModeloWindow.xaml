@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Novo Modelo" Height="700" Width="450"
         ResizeMode="CanMinimize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary>

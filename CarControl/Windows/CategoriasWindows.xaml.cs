@@ -3,6 +3,7 @@ using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -43,6 +44,18 @@ namespace CarControl.Windows
             }
             dg.ItemsSource = categoriaList;
             dg.Items.Refresh();
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
+            if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                NovaCategoriaBtn_Click(sender, e);
+            }
         }
 
         private void fecharBtn_Click(object sender, RoutedEventArgs e)

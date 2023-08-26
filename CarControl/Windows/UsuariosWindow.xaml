@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Usuarios" Height="550" Width="800"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -55,7 +56,7 @@
                 Content="Novo"
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="8" Click="novoCarroBtn_Click"/>
+                Margin="8" Click="novoUsuarioBtn_Click"/>
 
         <Button x:Name="fecharBtn"
                 Content="Fechar"

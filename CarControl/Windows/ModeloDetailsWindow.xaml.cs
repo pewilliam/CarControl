@@ -167,6 +167,18 @@ namespace CarControl
             }
         }
 
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                SalvarNovoModeloBtn_Click(sender, e);
+            }
+        }
+
         private void PrecoTxb_LostFocus(object sender, RoutedEventArgs e)
         {
             double amount;

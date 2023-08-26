@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CarControl
 {
@@ -209,6 +210,18 @@ namespace CarControl
             AtualizaDataGrid();
         }
 
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
+            if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                NovoModeloBtn_Click(sender, e);
+            }
+        }
+
         private void SearchModeloTxb_TextChanged(object sender, TextChangedEventArgs e)
         {
             var txb = sender as TextBox;
@@ -264,6 +277,14 @@ namespace CarControl
             else
             {
                 MostrarModelos((int)CarrosCB.SelectedValue);
+            }
+        }
+
+        private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AbrirModeloBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
             }
         }
     }

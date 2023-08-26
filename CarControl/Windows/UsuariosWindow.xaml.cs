@@ -3,6 +3,7 @@ using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -45,12 +46,24 @@ namespace CarControl.Windows
             dg.Items.Refresh();
         }
 
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.N))
+            {
+                novoUsuarioBtn_Click(sender, e);
+            }
+        }
+
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void novoCarroBtn_Click(object sender, RoutedEventArgs e)
+        private void novoUsuarioBtn_Click(object sender, RoutedEventArgs e)
         {
             NovoUsuarioWindow novoUsuarioWindow = new NovoUsuarioWindow(conn);
             novoUsuarioWindow.ShowDialog();

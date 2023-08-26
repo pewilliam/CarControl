@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Detalhes do Modelo" Height="450" Width="500"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary>

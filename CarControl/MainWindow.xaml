@@ -9,7 +9,8 @@
         Title="CarControl" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary>

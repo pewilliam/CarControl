@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Categorias" Height="550" Width="700"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+                      KeyDown="Window_KeyDown">
 
         <Window.Resources>
             <ResourceDictionary>

@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Fabricantes" Height="550" Width="800"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        KeyDown="Window_KeyDown">
 
         <Window.Resources>
             <ResourceDictionary>

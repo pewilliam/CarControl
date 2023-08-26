@@ -9,7 +9,8 @@
         Title="Modelos" Height="600" Width="1280"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -130,7 +131,12 @@
             CanUserDeleteRows="False"
             ItemsSource="{Binding modeloList}"
             Grid.Row="1"
-            Grid.ColumnSpan="6" HeadersVisibility="Column" SelectionUnit="FullRow" SelectionMode="Extended">
+            Grid.ColumnSpan="6" 
+            HeadersVisibility="Column" 
+            SelectionUnit="FullRow" 
+            SelectionMode="Extended"
+            PreviewKeyDown="DataGrid_PreviewKeyDown"
+            >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdModelo}"  />
                 <DataGridTextColumn Header="Modelo" Width="*" Binding="{Binding Nome}"  />

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -87,6 +88,26 @@ namespace CarControl.Windows
                 ModelosWindow modelosWindow = new ModelosWindow(conn);
                 modelosWindow.CarrosCB.SelectedValue = c.IdCarro;
                 modelosWindow.ShowDialog();
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
+            if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                novoCarroBtn_Click(sender, e);
+            }
+        }
+
+        private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                abrirCarroBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
             }
         }
 

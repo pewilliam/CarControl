@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Carros" Height="550" Width="800"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+                      KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -42,7 +43,8 @@
             Grid.ColumnSpan="5" 
             HeadersVisibility="Column" 
             SelectionUnit="FullRow" 
-            SelectionMode="Extended">
+            SelectionMode="Extended"
+            PreviewKeyDown="DataGrid_PreviewKeyDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdCarro}" />
                 <DataGridTextColumn Header="Carro" Width="*" Binding="{Binding Nome}" />

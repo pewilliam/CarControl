@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -103,6 +104,30 @@ namespace CarControl
             else
             {
                 Application.Current.Shutdown();
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.C) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                MostrarCarroWindowBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.M) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                ModelosCarroWindowBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.F) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                FabricantesCarroWindowBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.A) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                CategoriasCarroWindowBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.O) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                FormasPagtoWindowBtn_Click(sender, e);
             }
         }
     }
