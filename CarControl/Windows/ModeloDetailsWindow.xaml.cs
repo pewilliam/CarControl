@@ -97,6 +97,7 @@ namespace CarControl
             NovoFabricanteWindow novoFabricanteWindow = new NovoFabricanteWindow(conn);
             novoFabricanteWindow.ShowDialog();
             novoFabricanteWindow.Owner = this;
+            PopulateFabricanteCB();
         }
 
         private void NovaCategoriaBtn_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -104,6 +105,7 @@ namespace CarControl
             NovaCategoriaWindow novaCategoriaWindow = new NovaCategoriaWindow(conn);
             novaCategoriaWindow.ShowDialog();
             novaCategoriaWindow.Owner = this;
+            PopulateCategoriaCB();
         }
 
         private void SalvarNovoModeloBtn_Click(object sender, System.Windows.RoutedEventArgs e)
