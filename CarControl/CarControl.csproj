@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Database\base_carros.sql" />
     <None Remove="Resources\1.jpg" />
     <None Remove="Resources\2.jpg" />
     <None Remove="Resources\3.jpg" />
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Database\base_carros.sql" />
     <Resource Include="Resources\mainmenuimage.jpg" />
   </ItemGroup>
 

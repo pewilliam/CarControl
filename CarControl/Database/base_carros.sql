@@ -1,5 +1,4 @@
 -- Criação do esquema
-DROP SCHEMA IF EXISTS carcontrol CASCADE;
 CREATE SCHEMA IF NOT EXISTS carcontrol;
 ALTER DATABASE base_carros SET search_path TO carcontrol;
 
