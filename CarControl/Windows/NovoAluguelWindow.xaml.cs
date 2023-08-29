@@ -21,24 +21,27 @@ namespace CarControl.Windows
 
         private void SalvarNovoAluguelBtn_Click(object sender, RoutedEventArgs e)
         {
-            int idCliente = int.Parse(IdClienteTxb.Text);
-            int idModelo = int.Parse(IdModeloTxb.Text);
-            int idFormaPagto = int.Parse(IdFormaPagtoTxb.Text);
-            int diasAluguel = int.Parse(DiasAluguelTxb.Text);
-
-            string sql = $"INSERT INTO aluguel(idcliente, idmodelo, idformapagto, diasaluguel) VALUES ({idCliente}, {idModelo}, {idFormaPagto}, {diasAluguel})";
-
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-
-            try
+            if (ValidarCampo())
             {
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Aluguel feito com sucesso!");
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                int idCliente = int.Parse(IdClienteTxb.Text);
+                int idModelo = int.Parse(IdModeloTxb.Text);
+                int idFormaPagto = int.Parse(IdFormaPagtoTxb.Text);
+                int diasAluguel = int.Parse(DiasAluguelTxb.Text);
+
+                string sql = $"INSERT INTO aluguel(idcliente, idmodelo, idformapagto, diasaluguel) VALUES ({idCliente}, {idModelo}, {idFormaPagto}, {diasAluguel})";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Aluguel feito com sucesso!");
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -165,6 +168,31 @@ namespace CarControl.Windows
                     reader.Close();
                 }
             }
+        }
+
+        private bool ValidarCampo()
+        {
+            if (string.IsNullOrEmpty(IdClienteTxb.Text))
+            {
+                MessageBox.Show("Preencha o código do cliente!", "Preenchimento");
+                return false;
+            }
+            if (string.IsNullOrEmpty(IdModeloTxb.Text))
+            {
+                MessageBox.Show("Preencha o código do modelo!", "Preenchimento");
+                return false;
+            }
+            if (string.IsNullOrEmpty(IdFormaPagtoTxb.Text))
+            {
+                MessageBox.Show("Preencha o código da forma de pagamento!", "Preenchimento");
+                return false;
+            }
+            if (string.IsNullOrEmpty(DiasAluguelTxb.Text))
+            {
+                MessageBox.Show("Preencha a quantidade de dias que o modelo será alugado!", "Preenchimento");
+                return false;
+            }
+            return true;
         }
 
         private void FecharNovoAluguelWindowBtn_Click(object sender, RoutedEventArgs e)

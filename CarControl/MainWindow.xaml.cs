@@ -156,7 +156,7 @@ namespace CarControl
         static void CreateDatabase(NpgsqlConnection conn)
         {
             string sqlScript = @"
-                CREATE SCHEMA IF NOT EXISTS carcontrol;
+CREATE SCHEMA IF NOT EXISTS carcontrol;
 ALTER DATABASE base_carros SET search_path TO carcontrol;
 
 CREATE TABLE usuario (

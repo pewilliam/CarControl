@@ -47,11 +47,14 @@ namespace CarControl.Windows
 
         private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
-            string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{NomeClienteTxb.Text}'), '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', '{EmailTxb.Text}', '{DataNascimentoTxb.Text}')";
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Cliente inserido com sucesso!", "Sucesso!");
-            Close();
+            if (ValidarCampo())
+            {
+                string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{NomeClienteTxb.Text}'), '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', '{EmailTxb.Text}', '{DataNascimentoTxb.Text}')";
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Cliente inserido com sucesso!", "Sucesso!");
+                Close();
+            }
         }
 
         private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -65,6 +68,31 @@ namespace CarControl.Windows
             {
                 Close();
             }
+        }
+
+        private bool ValidarCampo()
+        {
+            if (string.IsNullOrEmpty(NomeClienteTxb.Text))
+            {
+                MessageBox.Show("Preencha o nome do cliente!", "Preenchimento");
+                return false;
+            }
+            if (string.IsNullOrEmpty(CpfTxb.Text))
+            {
+                MessageBox.Show("Preencha o CPF do cliente!", "Preenchimento");
+                return false;
+            }
+            if (string.IsNullOrEmpty(EmailTxb.Text))
+            {
+                MessageBox.Show("Preencha o e-mail do cliente!", "Preenchimento");
+                return false;
+            }
+            if (string.IsNullOrEmpty(DataNascimentoTxb.Text))
+            {
+                MessageBox.Show("Preencha a data de nascimento do cliente!", "Preenchimento");
+                return false;
+            }
+            return true;
         }
 
         private void DataNascimentoTxb_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
