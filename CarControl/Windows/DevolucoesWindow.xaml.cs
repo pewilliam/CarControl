@@ -1,65 +1,59 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
 using Npgsql;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CarControl.Windows
 {
     /// <summary>
-    /// Lógica interna para AluguelWindow.xaml
+    /// Lógica interna para DevolucoesWindow.xaml
     /// </summary>
-    public partial class AluguelWindow : MetroWindow
+    public partial class DevolucoesWindow : MetroWindow
     {
-        static NpgsqlConnection conn = new NpgsqlConnection();
-        List<Aluguel> aluguelList = new List<Aluguel>();
+        NpgsqlConnection conn = new NpgsqlConnection();
+        List<Devolucao> devolucaoList = new List<Devolucao>();
 
-        public AluguelWindow(NpgsqlConnection connection)
+        public DevolucoesWindow(NpgsqlConnection connection)
         {
             conn = connection;
             InitializeComponent();
-            MostrarAlugueis();
+            MostrarDevolucoes();
         }
 
-        private void MostrarAlugueis()
+        private void MostrarDevolucoes()
         {
             dg.ItemsSource = null;
-            aluguelList.Clear();
-            string sql = ($"SELECT * FROM carcontrol.aluguel ORDER BY idaluguel;");
+            devolucaoList.Clear();
+            string sql = ($"SELECT * FROM carcontrol.devolucao ORDER BY iddevolucao;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    #region lendo alugueis
-                    Aluguel aluguel = new(
+                    #region lendo devoluções
+                    Devolucao devolucao = new(
                         reader.GetInt32(0), //id
-                        reader.GetInt32(1), //nome
+                        reader.GetDateTime(1), //nome
                         reader.GetInt32(2), //cor
                         reader.GetInt32(3), //qtdportas
-                        reader.GetDateTime(4), //qtdpassageiros
-                        reader.GetInt32(5), //combustivel
-                        reader.GetDouble(6),
-                        reader.GetBoolean(7)
+                        reader.GetInt32(4)
                         );
                     #endregion
-                    aluguelList.Add(aluguel);
+                    devolucaoList.Add(devolucao);
                 }
                 reader.Close();
-                dg.ItemsSource = aluguelList;
+                dg.ItemsSource = devolucaoList;
+            }
+        }
+
+        private void DataGridRow_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is DataGridRow row && row.Item is Devolucao selectedItem)
+            {
+                MostrarDetalhes(selectedItem.IdAluguel);
             }
         }
 
@@ -82,17 +76,9 @@ namespace CarControl.Windows
                     formaPagtoLabel.Content = formaPagtoLabel.Content + reader.GetString(6);
                     dataAluguelLabel.Content = dataAluguelLabel.Content + reader.GetDateTime(7).ToString();
                     diasLabel.Content = diasLabel.Content + reader.GetInt32(8).ToString();
-                    valorTotalLabel.Content = valorTotalLabel.Content  + reader.GetDecimal(9).ToString("C");
+                    valorTotalLabel.Content = valorTotalLabel.Content + reader.GetDecimal(9).ToString("C");
                 }
                 reader.Close();
-            }
-        }
-
-        private void DataGridRow_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (sender is DataGridRow row && row.Item is Aluguel selectedItem)
-            {
-                MostrarDetalhes(selectedItem.IdAluguel);
             }
         }
 
@@ -110,17 +96,17 @@ namespace CarControl.Windows
             valorTotalLabel.Content = "Valor total: ";
         }
 
-        private void FecharModeloWindowBtn_Click(object sender, RoutedEventArgs e)
+        private void FecharDevolucaoWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void NovoAluguelBtn_Click(object sender, RoutedEventArgs e)
+        private void NovaDevolucaoBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoAluguelWindow novoAluguelWindow = new NovoAluguelWindow(conn);
-            novoAluguelWindow.ShowDialog();
-            novoAluguelWindow.Owner = this;
-            MostrarAlugueis();
+            NovaDevolucaoWindow novaDevolucaoWindow = new NovaDevolucaoWindow(conn);
+            novaDevolucaoWindow.ShowDialog();
+            novaDevolucaoWindow.Owner = this;
+            MostrarDevolucoes();
         }
     }
 }

@@ -63,6 +63,13 @@ namespace CarControl
             aluguelWindow.Owner = this;
         }
 
+        private void DevolucaoWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DevolucoesWindow devolucoesWindow = new DevolucoesWindow(conn);
+            devolucoesWindow.ShowDialog();
+            devolucoesWindow.Owner = this;
+        }
+
         private void FabricantesCarroWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             FabricantesWindow fabricantesWindow = new FabricantesWindow(conn);

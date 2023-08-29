@@ -29,6 +29,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -38,7 +39,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="2"
-              Grid.ColumnSpan="7"
+              Grid.ColumnSpan="8"
               Background="#f0f0f0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -72,7 +73,7 @@
 
         <Grid Grid.Row="1"
               Grid.Column="0"
-              Grid.ColumnSpan="7">
+              Grid.ColumnSpan="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -195,7 +196,7 @@
             <iconPacks:PackIconMaterial Kind="CardAccountDetails" Width="40" Height="40"/>
         </Button>
 
-        <Label Content="Aluguel"
+        <Label Content="Aluguéis"
                VerticalAlignment="Bottom"
                HorizontalAlignment="Center"
                Grid.Row="0"
@@ -215,7 +216,7 @@
             <iconPacks:PackIconMaterial Kind="ClockTimeFour" Width="40" Height="40"/>
         </Button>
 
-        <Label Content="Fabricantes"
+        <Label Content="Devoluções"
                VerticalAlignment="Bottom"
                HorizontalAlignment="Center"
                Grid.Row="0"
@@ -223,10 +224,30 @@
                FontSize="20"
                FontFamily="montserrat"
                Margin="0,0,0,30"/>
+        <Button x:Name="DevolucaoWindowBtn"
+                Margin="30, 30, 30, 60"
+                Grid.Row="0"
+                Grid.Column="4" Click="DevolucaoWindowBtn_Click">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Mostrar aluguéis" />
+                </ToolTip>
+            </Button.ToolTip>
+            <iconPacks:PackIconMaterial Kind="ClockCheck" Width="40" Height="40"/>
+        </Button>
+
+        <Label Content="Fabricantes"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               Grid.Column="5"
+               FontSize="20"
+               FontFamily="montserrat"
+               Margin="0,0,0,30"/>
         <Button x:Name="FabricantesCarroWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="4" Click="FabricantesCarroWindowBtn_Click">
+                Grid.Column="5" Click="FabricantesCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Mostrar fabricantes" />
@@ -239,14 +260,14 @@
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
                    Grid.Row="0"
-                   Grid.Column="5"
+                   Grid.Column="6"
                    FontSize="20"
                    FontFamily="montserrat"
                    Margin="0,0,0,30"/>
         <Button x:Name="CategoriasCarroWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="5" Click="CategoriasCarroWindowBtn_Click">
+                Grid.Column="6" Click="CategoriasCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Mostrar categorias" />
@@ -255,18 +276,18 @@
         <iconPacks:PackIconMaterial Kind="Folder" Width="40" Height="40"/>
         </Button>
 
-        <Label Content="Formas de Pagamento"
+        <Label Content="Formas de Pagto."
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"
                 Grid.Row="0"
-                Grid.Column="6"
+                Grid.Column="7"
                 FontSize="20"
                 FontFamily="montserrat"
                 Margin="0,0,0,30"/>
         <Button x:Name="FormasPagtoWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="6" Click="FormasPagtoWindowBtn_Click">
+                Grid.Column="7" Click="FormasPagtoWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Mostrar categorias" />

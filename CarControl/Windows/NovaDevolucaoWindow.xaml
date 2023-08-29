@@ -1,11 +1,11 @@
-﻿<Controls:MetroWindow  xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" x:Class="CarControl.Windows.AluguelWindow"
+﻿<Controls:MetroWindow  xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" x:Class="CarControl.Windows.NovaDevolucaoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="Aluguéis" Height="600" Width="1280"
+        Title="Registrar devolução" Height="570" Width="1200"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
         ResizeMode="CanMinimize">
@@ -145,20 +145,15 @@
                Grid.Row="2"
                Grid.Column="1"/>
 
-        <Button x:Name="AbrirModeloBtn"
-                Content="Abrir"
-                Grid.Row="2"
-                Grid.Column="2"
-                Margin="8"/>
-        <Button x:Name="NovoModeloBtn"
-                Content="Novo"
+        <Button x:Name="DevolverBtn"
+                Content="Devolver"
                 Grid.Row="2"
                 Grid.Column="3"
-                Margin="8" Click="NovoAluguelBtn_Click"/>
+                Margin="8" Click="DevolverBtn_Click"/>
         <Button x:Name="FecharModeloWindowBtn"
                 Content="Fechar"
                 Grid.Row="2"
                 Grid.Column="4"
-                Margin="8" Click="FecharModeloWindowBtn_Click"/>
+                Margin="8" Click="FecharNovaDevolucaoWindowBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>

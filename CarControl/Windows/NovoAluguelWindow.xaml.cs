@@ -16,6 +16,7 @@ namespace CarControl.Windows
         {
             conn = connection;
             InitializeComponent();
+            IdClienteTxb.Focus();
         }
 
         private void SalvarNovoAluguelBtn_Click(object sender, RoutedEventArgs e)
@@ -51,18 +52,23 @@ namespace CarControl.Windows
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (!reader.HasRows)
                     {
-                        if (reader.GetString(0) == null)
+                        MessageBox.Show("Cliente não existe! Cadastre um novo ou escolha algum existente.", "Cliente não encontrado");
+                        IdClienteTxb.Text = string.Empty;
+                        NomeClienteTxb.Text = string.Empty;
+
+                        Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            MessageBox.Show("Cliente não existe! Cadastre um novo ou escolha algum existente.", "Cliente não encontrado");
                             IdClienteTxb.Focus();
-                        }
-                        else
-                        {
-                            NomeClienteTxb.Text = reader.GetString(0);
-                        }
+                        }));
                     }
+                    else
+                    {
+                        reader.Read(); // Ler a primeira (e única) linha
+                        NomeClienteTxb.Text = reader.GetString(0);
+                    }
+
                     reader.Close();
                 }
             }
@@ -78,18 +84,23 @@ namespace CarControl.Windows
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (!reader.HasRows)
                     {
-                        if (reader.GetString(0) == null)
+                        MessageBox.Show("Modelo não existe! Cadastre um novo ou escolha algum existente.", "Modelo não encontrado");
+                        IdModeloTxb.Text = string.Empty;
+                        NomeModeloTxb.Text = string.Empty;
+
+                        Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            MessageBox.Show("Modelo não existe! Cadastre um novo ou escolha algum existente.", "Modelo não encontrado");
                             IdModeloTxb.Focus();
-                        }
-                        else
-                        {
-                            NomeModeloTxb.Text = reader.GetString(0);
-                        }
+                        }));
                     }
+                    else
+                    {
+                        reader.Read(); // Ler a primeira (e única) linha
+                        NomeModeloTxb.Text = reader.GetString(0);
+                    }
+
                     reader.Close();
                 }
             }
@@ -105,18 +116,23 @@ namespace CarControl.Windows
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (!reader.HasRows)
                     {
-                        if (reader.GetString(0) == null)
+                        MessageBox.Show("Forma de pagamento não existe! Cadastre uma nova ou escolha alguma existente.", "Forma pagto. não encontrada");
+                        IdFormaPagtoTxb.Text = string.Empty;
+                        NomeFormaPagtoTxb.Text = string.Empty;
+
+                        Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            MessageBox.Show("Cliente não existe! Cadastre um novo ou escolha algum existente.", "Cliente não encontrado");
                             IdFormaPagtoTxb.Focus();
-                        }
-                        else
-                        {
-                            NomeFormaPagtoTxb.Text = reader.GetString(0);
-                        }
+                        }));
                     }
+                    else
+                    {
+                        reader.Read(); // Ler a primeira (e única) linha
+                        NomeFormaPagtoTxb.Text = reader.GetString(0);
+                    }
+
                     reader.Close();
                 }
             }
@@ -134,7 +150,7 @@ namespace CarControl.Windows
                 {
                     while (reader.Read())
                     {
-                        if (reader.GetDecimal(0) == null)
+                        if (!reader.HasRows)
                         {
                             MessageBox.Show("Cliente não existe! Cadastre um novo ou escolha algum existente.", "Cliente não encontrado");
                             IdClienteTxb.Focus();

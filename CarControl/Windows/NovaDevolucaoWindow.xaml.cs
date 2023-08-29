@@ -1,32 +1,21 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
 using Npgsql;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CarControl.Windows
 {
     /// <summary>
-    /// Lógica interna para AluguelWindow.xaml
+    /// Lógica interna para NovaDevolucaoWindow.xaml
     /// </summary>
-    public partial class AluguelWindow : MetroWindow
+    public partial class NovaDevolucaoWindow : MetroWindow
     {
-        static NpgsqlConnection conn = new NpgsqlConnection();
+        NpgsqlConnection conn = new NpgsqlConnection();
         List<Aluguel> aluguelList = new List<Aluguel>();
 
-        public AluguelWindow(NpgsqlConnection connection)
+        public NovaDevolucaoWindow(NpgsqlConnection connection)
         {
             conn = connection;
             InitializeComponent();
@@ -37,7 +26,7 @@ namespace CarControl.Windows
         {
             dg.ItemsSource = null;
             aluguelList.Clear();
-            string sql = ($"SELECT * FROM carcontrol.aluguel ORDER BY idaluguel;");
+            string sql = ($"SELECT * FROM carcontrol.aluguel WHERE em_andamento = TRUE ORDER BY idaluguel;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -82,7 +71,7 @@ namespace CarControl.Windows
                     formaPagtoLabel.Content = formaPagtoLabel.Content + reader.GetString(6);
                     dataAluguelLabel.Content = dataAluguelLabel.Content + reader.GetDateTime(7).ToString();
                     diasLabel.Content = diasLabel.Content + reader.GetInt32(8).ToString();
-                    valorTotalLabel.Content = valorTotalLabel.Content  + reader.GetDecimal(9).ToString("C");
+                    valorTotalLabel.Content = valorTotalLabel.Content + reader.GetDecimal(9).ToString("C");
                 }
                 reader.Close();
             }
@@ -110,17 +99,26 @@ namespace CarControl.Windows
             valorTotalLabel.Content = "Valor total: ";
         }
 
-        private void FecharModeloWindowBtn_Click(object sender, RoutedEventArgs e)
+        private void FecharNovaDevolucaoWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void NovoAluguelBtn_Click(object sender, RoutedEventArgs e)
+        private void DevolverBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoAluguelWindow novoAluguelWindow = new NovoAluguelWindow(conn);
-            novoAluguelWindow.ShowDialog();
-            novoAluguelWindow.Owner = this;
-            MostrarAlugueis();
+            Aluguel a = dg.SelectedItem as Aluguel;
+            if (a is not null)
+            {
+                int idModelo = a.IdModelo;
+                int idCliente = a.IdCliente;
+                int idAluguel = a.IdAluguel;
+                string sql = $"INSERT INTO carcontrol.devolucao(idmodelo, idcliente, idaluguel) VALUES ({idModelo}, {idCliente}, {idAluguel});";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Devolução efetuada com sucesso!");
+                Close();
+            }
         }
     }
 }
