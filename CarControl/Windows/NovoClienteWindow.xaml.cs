@@ -51,9 +51,16 @@ namespace CarControl.Windows
             {
                 string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{NomeClienteTxb.Text}'), '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', '{EmailTxb.Text}', '{DataNascimentoTxb.Text}')";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Cliente inserido com sucesso!", "Sucesso!");
-                Close();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Cliente inserido com sucesso!", "Sucesso!");
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

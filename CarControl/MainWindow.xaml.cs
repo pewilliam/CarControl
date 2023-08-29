@@ -316,6 +316,27 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION verificar_idade_cliente()
+RETURNS TRIGGER AS $$
+DECLARE
+    idade_cliente integer;
+BEGIN
+    -- Calcula a idade do cliente com base na diferença entre a data atual e a data de nascimento
+    idade_cliente := DATE_PART('year', AGE(NEW.dtnascimento));
+
+    IF idade_cliente < 18 THEN
+        RAISE EXCEPTION 'Não é permitido cadastrar clientes menores de 18 anos.';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verificar_idade_cliente_trigger
+BEFORE INSERT ON cliente
+FOR EACH ROW
+EXECUTE FUNCTION verificar_idade_cliente();
+
 CREATE TRIGGER atualizar_flags_devolucao_trigger
 AFTER INSERT ON devolucao
 FOR EACH ROW
