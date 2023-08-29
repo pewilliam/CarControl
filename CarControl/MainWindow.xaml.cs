@@ -489,7 +489,7 @@ VALUES (1, 'DINHEIRO'),
 
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch
                 {
                     transaction.Rollback();
                 }
