@@ -1,21 +1,7 @@
-﻿using CarControl.Models;
-using ControlzEx.Standard;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CarControl.Windows
 {
@@ -32,7 +18,7 @@ namespace CarControl.Windows
             InitializeComponent();
         }
 
-        private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
+        private void SalvarNovoAluguelBtn_Click(object sender, RoutedEventArgs e)
         {
             int idCliente = int.Parse(IdClienteTxb.Text);
             int idModelo = int.Parse(IdModeloTxb.Text);
@@ -42,9 +28,17 @@ namespace CarControl.Windows
             string sql = $"INSERT INTO aluguel(idcliente, idmodelo, idformapagto, diasaluguel) VALUES ({idCliente}, {idModelo}, {idFormaPagto}, {diasAluguel})";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Aluguel feito com sucesso!");
-            Close();
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Aluguel feito com sucesso!");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void IdClienteTxb_LostFocus(object sender, RoutedEventArgs e)
@@ -72,11 +66,6 @@ namespace CarControl.Windows
                     reader.Close();
                 }
             }
-        }
-
-        private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
 
         private void IdModeloTxb_LostFocus(object sender, RoutedEventArgs e)
@@ -160,6 +149,11 @@ namespace CarControl.Windows
                     reader.Close();
                 }
             }
+        }
+
+        private void FecharNovoAluguelWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

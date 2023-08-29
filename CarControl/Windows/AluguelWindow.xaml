@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="AluguelWindow" Height="600" Width="1280"
+        Title="Aluguéis" Height="600" Width="1280"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
         ResizeMode="CanMinimize">
@@ -128,40 +128,23 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
-        <Label Content="Finalizado"
+        <Label Content="Finalizado - Azul"
                FontFamily="montserrat"
-               Margin="0,0,35,0"
-               FontSize="15"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Right"
-               Grid.Row="2"
-               Grid.Column="1"/>
-        <Label Content="&#x25A0;"
-               FontFamily="montserrat"
-               Margin="30,0,0,0"
-               FontSize="15"
                Foreground="#3393df"
+               FontSize="15"
                VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Center"
+               HorizontalContentAlignment="Left"
                Grid.Row="2"
-               Grid.Column="1"/>
+               Grid.Column="0"/>
 
-        <Label Content="Em andamento"
+        <Label Content="Em andamento - Preto"
                FontFamily="montserrat"
                FontSize="15"
                VerticalContentAlignment="Bottom"
-               HorizontalContentAlignment="Right"
+               HorizontalContentAlignment="Left"
                Grid.Row="2"
-               Grid.Column="1"/>
-        <Label Content="&#x25A0;"
-               FontFamily="montserrat"
-               Margin="30,0,0,0"
-               FontSize="15"
-               VerticalContentAlignment="Bottom"
-               HorizontalContentAlignment="Center"
-               Grid.Row="2"
-               Grid.Column="1"/>
-        
+               Grid.Column="0"/>
+
         <Button x:Name="AbrirModeloBtn"
                 Content="Abrir"
                 Grid.Row="2"

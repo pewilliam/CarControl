@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="NovoAluguelWindow" Height="450" Width="450"
+        Title="Novo Aluguel" Height="450" Width="450"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
 
@@ -126,12 +126,12 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="11"
-                Margin="8" Click="SalvarNovoModeloBtn_Click"/>
+                Margin="8" Click="SalvarNovoAluguelBtn_Click"/>
         <Button x:Name="FecharNovoModeloWindowBtn"
                 Content="Fechar"
                 FontSize="20"
                 Grid.Column="3"
                 Grid.Row="11"
-                Margin="8" Click="FecharNovoModeloWindowBtn_Click"/>
+                Margin="8" Click="FecharNovoAluguelWindowBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>
