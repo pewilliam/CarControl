@@ -114,5 +114,13 @@ namespace CarControl.Windows
         {
             Close();
         }
+
+        private void NovoModeloBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NovoAluguelWindow novoAluguelWindow = new NovoAluguelWindow(conn);
+            novoAluguelWindow.ShowDialog();
+            novoAluguelWindow.Owner = this;
+            MostrarAlugueis();
+        }
     }
 }

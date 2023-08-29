@@ -128,7 +128,7 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
-        <Label Content="Finalizada"
+        <Label Content="Finalizado"
                FontFamily="montserrat"
                Margin="0,0,35,0"
                FontSize="15"
@@ -171,7 +171,7 @@
                 Content="Novo"
                 Grid.Row="2"
                 Grid.Column="3"
-                Margin="8"/>
+                Margin="8" Click="NovoModeloBtn_Click"/>
         <Button x:Name="FecharModeloWindowBtn"
                 Content="Fechar"
                 Grid.Row="2"
