@@ -1,5 +1,6 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System.Collections.Generic;
 using System.Windows;
@@ -104,20 +105,28 @@ namespace CarControl.Windows
             Close();
         }
 
-        private void DevolverBtn_Click(object sender, RoutedEventArgs e)
+        private async void DevolverBtn_Click(object sender, RoutedEventArgs e)
         {
             Aluguel a = dg.SelectedItem as Aluguel;
             if (a is not null)
             {
-                int idModelo = a.IdModelo;
-                int idCliente = a.IdCliente;
-                int idAluguel = a.IdAluguel;
-                string sql = $"INSERT INTO carcontrol.devolucao(idmodelo, idcliente, idaluguel) VALUES ({idModelo}, {idCliente}, {idAluguel});";
+                MessageBoxResult messageBoxResult = MessageBox.Show("Deseja confirmar devolução?", "Confirmar devolução", MessageBoxButton.YesNo);
+                if(messageBoxResult == MessageBoxResult.Yes)
+                {
+                    int idModelo = a.IdModelo;
+                    int idCliente = a.IdCliente;
+                    int idAluguel = a.IdAluguel;
+                    string sql = $"INSERT INTO carcontrol.devolucao(idmodelo, idcliente, idaluguel) VALUES ({idModelo}, {idCliente}, {idAluguel});";
 
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Devolução efetuada com sucesso!");
-                Close();
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+                    await this.ShowMessageAsync("Devolução efetuada com sucesso!", "Devolução concluída");
+                    Close();
+                }
+                else
+                {
+                    Close();
+                }
             }
         }
     }

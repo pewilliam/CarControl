@@ -21,8 +21,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="2.5*"/>
             <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="1.5*"/>
@@ -52,7 +52,10 @@
                  Grid.Column="0"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" LostFocus="IdCarroTxb_LostFocus" Loaded="IdCarroTxb_Loaded"/>
+                 HorizontalContentAlignment="Center" 
+                 LostFocus="IdCarroTxb_LostFocus" 
+                 Loaded="IdCarroTxb_Loaded"
+                 PreviewTextInput="PreviewNumberInput"/>
         <TextBox x:Name="NomeCarroTxb"
                  Controls:TextBoxHelper.Watermark="Carro"
                  FontFamily="Montserrat"
@@ -82,7 +85,8 @@
                  Grid.Row="2"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewCharInput"/>
+                 HorizontalContentAlignment="Center" 
+                 PreviewTextInput="PreviewCharInput"/>
         <TextBox x:Name="PortasTxb"
                  Controls:TextBoxHelper.Watermark="Portas"
                  Grid.ColumnSpan="6"
@@ -91,7 +95,8 @@
                  Grid.Row="3"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="1"
+                 HorizontalContentAlignment="Center" 
+                 PreviewTextInput="PreviewNumberInput" MaxLength="1"
                  />
         <TextBox x:Name="PassageirosTxb"
                  Controls:TextBoxHelper.Watermark="Passageiros"
@@ -101,7 +106,9 @@
                  Grid.Row="4"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" PreviewTextInput="PreviewNumberInput" MaxLength="1"
+                 HorizontalContentAlignment="Center" 
+                 PreviewTextInput="PreviewNumberInput" 
+                 MaxLength="1"
                  />
         <TextBox x:Name="CombustívelTxb"
                  Controls:TextBoxHelper.Watermark="Combustível"
@@ -165,7 +172,7 @@
                   VerticalContentAlignment="Center"
                   DisplayMemberPath="Nome"
                   SelectedValuePath="IdFabricante"
-                  FontSize="20"
+                  FontSize="16"
                   Grid.Row="10"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
@@ -177,7 +184,7 @@
                   VerticalContentAlignment="Center"
                   DisplayMemberPath="Nome"
                   SelectedValuePath="IdCategoria"
-                  FontSize="20"
+                  FontSize="16"
                   Grid.Row="10"
                   Grid.Column="3"
                   Grid.ColumnSpan="2"

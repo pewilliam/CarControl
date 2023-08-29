@@ -3,18 +3,8 @@ using MahApps.Metro.Controls;
 using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CarControl.Windows
 {
@@ -46,12 +36,12 @@ namespace CarControl.Windows
                 {
                     #region lendo alugueis
                     Aluguel aluguel = new(
-                        reader.GetInt32(0), //id
-                        reader.GetInt32(1), //nome
-                        reader.GetInt32(2), //cor
-                        reader.GetInt32(3), //qtdportas
-                        reader.GetDateTime(4), //qtdpassageiros
-                        reader.GetInt32(5), //combustivel
+                        reader.GetInt32(0),
+                        reader.GetInt32(1),
+                        reader.GetInt32(2),
+                        reader.GetInt32(3),
+                        reader.GetDateTime(4),
+                        reader.GetInt32(5),
                         reader.GetDouble(6),
                         reader.GetBoolean(7)
                         );

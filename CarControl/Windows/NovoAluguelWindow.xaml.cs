@@ -1,7 +1,10 @@
 ﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -35,7 +38,7 @@ namespace CarControl.Windows
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Aluguel feito com sucesso!");
+                    MessageBox.Show("Devolução efetuada com sucesso!", "Devolução concluída");
                     Close();
                 }
                 catch (Exception ex)
@@ -193,6 +196,20 @@ namespace CarControl.Windows
                 return false;
             }
             return true;
+        }
+
+        private void PreviewCharInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsLetter(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void FecharNovoAluguelWindowBtn_Click(object sender, RoutedEventArgs e)

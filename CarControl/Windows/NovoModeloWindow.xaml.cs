@@ -57,12 +57,12 @@ namespace CarControl
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Modelo inserido com sucesso!");
+                MessageBox.Show("Modelo inserido com sucesso!", "Concluído");
                 Close();
             }
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
             {
@@ -230,6 +230,7 @@ namespace CarControl
                     }
                     reader.Close();
                 }
+                ModeloTxb.Focus();
             }
         }
     }

@@ -19,8 +19,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
@@ -40,7 +40,9 @@
                  Grid.Column="0"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" LostFocus="IdClienteTxb_LostFocus"/>
+                 HorizontalContentAlignment="Center" 
+                 LostFocus="IdClienteTxb_LostFocus"
+                 PreviewTextInput="PreviewNumberInput"/>
         <TextBox x:Name="NomeClienteTxb"
                  Controls:TextBoxHelper.Watermark="Cliente"
                  FontFamily="Montserrat"
@@ -62,7 +64,9 @@
                  Grid.Column="0"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" LostFocus="IdModeloTxb_LostFocus"/>
+                 HorizontalContentAlignment="Center"
+                 LostFocus="IdModeloTxb_LostFocus"
+                 PreviewTextInput="PreviewNumberInput"/>
         <TextBox x:Name="NomeModeloTxb"
                  Controls:TextBoxHelper.Watermark="Modelo"
                  FontFamily="Montserrat"
@@ -84,7 +88,9 @@
                  Grid.Column="0"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" LostFocus="IdFormaPagtoTxb_LostFocus"/>
+                 HorizontalContentAlignment="Center" 
+                 LostFocus="IdFormaPagtoTxb_LostFocus"
+                 PreviewTextInput="PreviewNumberInput"/>
         <TextBox x:Name="NomeFormaPagtoTxb"
                  Controls:TextBoxHelper.Watermark="Forma de Pagamento"
                  FontFamily="Montserrat"
@@ -107,7 +113,9 @@
                  Grid.ColumnSpan="2"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" LostFocus="DiasAluguelTxb_LostFocus"/>
+                 HorizontalContentAlignment="Center" 
+                 LostFocus="DiasAluguelTxb_LostFocus"
+                 PreviewTextInput="PreviewNumberInput"/>
         <TextBox x:Name="ValorAluguelTxb"
                  Controls:TextBoxHelper.Watermark="Valor total"
                  FontFamily="Montserrat"

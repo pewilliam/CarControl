@@ -1,10 +1,11 @@
-﻿using CarControl.Windows;
+﻿using CarControl.Tools;
+using CarControl.Windows;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System;
 using System.Data;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
