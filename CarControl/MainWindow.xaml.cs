@@ -434,6 +434,27 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+INSERT INTO categoria (nome)
+VALUES
+    ('ESPORTIVO'),
+    ('SEDAN'),
+    ('SUV'),
+    ('HATCHBACK'),
+    ('UTILITÁRIO');
+
+INSERT INTO fabricante (nome)
+VALUES
+    ('TOYOTA'),
+    ('NISSAN'),
+    ('FORD'),
+    ('CHEVROLET'),
+    ('HONDA');
+
+INSERT INTO carcontrol.formapagto (idformapagto, nome)
+VALUES (1, 'DINHEIRO'),
+       (2, 'PIX'),
+       (3, 'CARTÃO DE CRÉDITO'),
+       (4, 'CARTÃO DE DÉBITO');
             ";
 
             using (var transaction = conn.BeginTransaction())
