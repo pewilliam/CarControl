@@ -3,6 +3,7 @@ using MahApps.Metro.Controls;
 using Npgsql;
 using System;
 using System.Data;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,6 +26,7 @@ namespace CarControl
             conn = loginwindow.conn;
             if (conn.State == ConnectionState.Open)
             {
+                CreateDatabase();
                 IniciaRelogio();
                 InitializeComponent();
                 CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
@@ -149,6 +151,31 @@ namespace CarControl
             if (Keyboard.IsKeyDown(Key.O) && (Keyboard.IsKeyDown(Key.LeftAlt)))
             {
                 FormasPagtoWindowBtn_Click(sender, e);
+            }
+        }
+
+        private void CreateDatabase()
+        {
+            string scriptFilePath = "C:\\Users\\Pedro\\source\\repos\\pewilliam\\CarControl\\CarControl\\Database\\base_carros.sql";
+
+            string sqlScript = File.ReadAllText(scriptFilePath);
+
+            using (var transaction = conn.BeginTransaction())
+            {
+                try
+                {
+                    using (NpgsqlCommand command = new NpgsqlCommand(sqlScript, conn, transaction))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Erro na transação: " + ex.Message);
+                }
             }
         }
     }
