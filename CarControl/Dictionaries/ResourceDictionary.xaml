@@ -46,6 +46,12 @@
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="Foreground" Value="Black"/>
             </Trigger>
+            <DataTrigger Binding="{Binding EmAndamento}" Value="True">
+                <Setter Property="Foreground" Value="Black" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding EmAndamento}" Value="False">
+                <Setter Property="Foreground" Value="#3393df" />
+            </DataTrigger>
         </Style.Triggers>
         <Style.Resources>
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#3393df" />

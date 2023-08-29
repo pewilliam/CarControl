@@ -21,7 +21,6 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="50"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -129,20 +128,54 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
+        <Label Content="Finalizada"
+               FontFamily="montserrat"
+               Margin="0,0,35,0"
+               FontSize="15"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Right"
+               Grid.Row="2"
+               Grid.Column="1"/>
+        <Label Content="&#x25A0;"
+               FontFamily="montserrat"
+               Margin="30,0,0,0"
+               FontSize="15"
+               Foreground="#3393df"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"
+               Grid.Row="2"
+               Grid.Column="1"/>
+
+        <Label Content="Em andamento"
+               FontFamily="montserrat"
+               FontSize="15"
+               VerticalContentAlignment="Bottom"
+               HorizontalContentAlignment="Right"
+               Grid.Row="2"
+               Grid.Column="1"/>
+        <Label Content="&#x25A0;"
+               FontFamily="montserrat"
+               Margin="30,0,0,0"
+               FontSize="15"
+               VerticalContentAlignment="Bottom"
+               HorizontalContentAlignment="Center"
+               Grid.Row="2"
+               Grid.Column="1"/>
+        
         <Button x:Name="AbrirModeloBtn"
                 Content="Abrir"
                 Grid.Row="2"
-                Grid.Column="3"
+                Grid.Column="2"
                 Margin="8"/>
         <Button x:Name="NovoModeloBtn"
                 Content="Novo"
                 Grid.Row="2"
-                Grid.Column="4"
+                Grid.Column="3"
                 Margin="8"/>
         <Button x:Name="FecharModeloWindowBtn"
                 Content="Fechar"
                 Grid.Row="2"
-                Grid.Column="5"
+                Grid.Column="4"
                 Margin="8" Click="FecharModeloWindowBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>

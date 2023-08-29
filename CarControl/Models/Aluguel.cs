@@ -11,8 +11,9 @@ namespace CarControl.Models
         public DateTime DhAluguel { get; set; }
         public int DiasAluguel { get; set; }
         public double ValorAluguel { get; set; }
+        public bool EmAndamento{ get; set; }
 
-        public Aluguel(int idAluguel, int idCliente, int idModelo, int idFormaPagto, DateTime dhAluguel, int diasAluguel, double valorAluguel)
+        public Aluguel(int idAluguel, int idCliente, int idModelo, int idFormaPagto, DateTime dhAluguel, int diasAluguel, double valorAluguel, bool emAndamento)
         {
             IdAluguel = idAluguel;
             IdCliente = idCliente;
@@ -21,6 +22,7 @@ namespace CarControl.Models
             DhAluguel = dhAluguel;
             DiasAluguel = diasAluguel;
             ValorAluguel = valorAluguel;
+            EmAndamento = emAndamento;
         }
     }
 }

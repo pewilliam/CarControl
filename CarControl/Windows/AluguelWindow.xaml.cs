@@ -52,7 +52,8 @@ namespace CarControl.Windows
                         reader.GetInt32(3), //qtdportas
                         reader.GetDateTime(4), //qtdpassageiros
                         reader.GetInt32(5), //combustivel
-                        reader.GetDouble(6)
+                        reader.GetDouble(6),
+                        reader.GetBoolean(7)
                         );
                     #endregion
                     aluguelList.Add(aluguel);
@@ -81,7 +82,7 @@ namespace CarControl.Windows
                     formaPagtoLabel.Content = formaPagtoLabel.Content + reader.GetString(6);
                     dataAluguelLabel.Content = dataAluguelLabel.Content + reader.GetDateTime(7).ToString();
                     diasLabel.Content = diasLabel.Content + reader.GetInt32(8).ToString();
-                    valorTotalLabel.Content = valorTotalLabel.Content + "R$ " + reader.GetDecimal(9).ToString("C");
+                    valorTotalLabel.Content = valorTotalLabel.Content  + reader.GetDecimal(9).ToString("C");
                 }
                 reader.Close();
             }
