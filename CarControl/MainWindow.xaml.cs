@@ -488,12 +488,10 @@ VALUES (1, 'DINHEIRO'),
                     }
 
                     transaction.Commit();
-                    Console.WriteLine("Script SQL executado com sucesso.");
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    Console.WriteLine("Erro na transação: " + ex.Message);
                 }
             }
         }
