@@ -135,7 +135,7 @@
                VerticalContentAlignment="Center"
                HorizontalContentAlignment="Left"
                Grid.Row="2"
-               Grid.Column="0"/>
+               Grid.Column="1"/>
 
         <Label Content="Em andamento - Preto"
                FontFamily="montserrat"
@@ -143,7 +143,7 @@
                VerticalContentAlignment="Bottom"
                HorizontalContentAlignment="Left"
                Grid.Row="2"
-               Grid.Column="0"/>
+               Grid.Column="1"/>
 
         <Button x:Name="AbrirModeloBtn"
                 Content="Abrir"
