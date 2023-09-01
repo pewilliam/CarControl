@@ -27,7 +27,7 @@ namespace CarControl.Windows
         {
             dg.ItemsSource = null;
             aluguelList.Clear();
-            string sql = ($"SELECT idaluguel, idcliente, nome_cliente, idmodelo, nome_modelo, idformapagto, forma_pagto, dhaluguel, diasaluguel, valoraluguel, em_andamento FROM vw_aluguel ORDER BY idaluguel;");
+            string sql = ($"SELECT idaluguel, idcliente, nome_cliente, idmodelo, nome_modelo, idformapagto, forma_pagto, dhaluguel, diasaluguel, valoraluguel, em_andamento FROM vw_aluguel WHERE em_andamento = TRUE ORDER BY idaluguel;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())

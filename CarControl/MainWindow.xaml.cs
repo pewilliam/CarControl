@@ -26,9 +26,9 @@ namespace CarControl
             conn = loginwindow.conn;
             if (conn.State == ConnectionState.Open)
             {
-                CreateDatabase(conn);
                 IniciaRelogio();
                 InitializeComponent();
+                CreateDatabase(conn);
                 CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
             }
             else
@@ -243,10 +243,10 @@ CREATE TABLE IF NOT EXISTS carcontrol.aluguel (
 --Tabela devolução
 CREATE TABLE IF NOT EXISTS carcontrol.devolucao (
   iddevolucao SERIAL PRIMARY KEY,
-  dhdevolucao TIMESTAMPTZ NOT NULL DEFAULT current_timestamp,
   idmodelo INT NOT NULL REFERENCES carcontrol.modelo(idmodelo),
   idcliente INT NOT NULL REFERENCES carcontrol.cliente(idcliente),
-  idaluguel INT NOT NULL REFERENCES carcontrol.aluguel(idaluguel)
+  idaluguel INT NOT NULL REFERENCES carcontrol.aluguel(idaluguel),
+  dhdevolucao TIMESTAMPTZ NOT NULL DEFAULT current_timestamp
 );
 
 -- Criação da view vw_carro_modelo
@@ -286,7 +286,8 @@ SELECT
     f.nome AS forma_pagto,
     dhaluguel,
     diasaluguel,
-    valoraluguel
+    valoraluguel,
+	em_andamento
 FROM
     aluguel a
 LEFT JOIN
@@ -311,7 +312,7 @@ FROM
 LEFT JOIN
 	modelo m ON m.idmodelo = d.idmodelo
 LEFT JOIN
-	cliente c ON c.idcliente = d.idcliente
+	cliente c ON c.idcliente = d.idcliente;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --Trigger para ao dar insert ou update na tabela aluguel, efetuar o cálculo do valor total considerando o valor por dia do modelo x quantidade de dias do aluguel
@@ -543,7 +544,7 @@ VALUES (1, 'DINHEIRO'),
        (2, 'PIX'),
        (3, 'CARTÃO DE CRÉDITO'),
        (4, 'CARTÃO DE DÉBITO');
-            ";
+";
 
             using (var transaction = conn.BeginTransaction())
             {

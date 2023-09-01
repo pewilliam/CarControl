@@ -114,9 +114,9 @@
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdAluguel}"  />
-                <DataGridTextColumn Header="Id. Cliente" Width="*" Binding="{Binding IdCliente}"  />
-                <DataGridTextColumn Header="Id. Modelo" Width="*" Binding="{Binding IdModelo}"  />
-                <DataGridTextColumn Header="Id. Pagamento" Width="*" Binding="{Binding IdFormaPagto}"  />
+                <DataGridTextColumn Header="Cliente" Width="*" Binding="{Binding NomeCliente}"  />
+                <DataGridTextColumn Header="Modelo" Width="*" Binding="{Binding NomeModelo}"  />
+                <DataGridTextColumn Header="Pagamento" Width="*" Binding="{Binding NomeFormaPagto}"  />
                 <DataGridTextColumn Header="Data do aluguel" Width="*" Binding="{Binding DhAluguel}"  />
                 <DataGridTextColumn Header="Dias do aluguel" Width="*" Binding="{Binding DiasAluguel}"  />
                 <DataGridTextColumn Header="Valor" Width="*" Binding="{Binding ValorAluguel, StringFormat=c}"  />
@@ -127,23 +127,6 @@
                 </Style>
             </DataGrid.RowStyle>
         </DataGrid>
-
-        <Label Content="Finalizado - Azul"
-               FontFamily="montserrat"
-               Foreground="#3393df"
-               FontSize="15"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Left"
-               Grid.Row="2"
-               Grid.Column="0"/>
-
-        <Label Content="Em andamento - Preto"
-               FontFamily="montserrat"
-               FontSize="15"
-               VerticalContentAlignment="Bottom"
-               HorizontalContentAlignment="Left"
-               Grid.Row="2"
-               Grid.Column="0"/>
 
         <Button x:Name="DevolverBtn"
                 Content="Devolver"
