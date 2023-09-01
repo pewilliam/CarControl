@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CarControl.Windows"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:CarControl.Windows" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                       mc:Ignorable="d"
         Title="Novo Aluguel" Height="380" Width="450"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
@@ -19,9 +19,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -55,6 +56,12 @@
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"/>
+        <Button x:Name="ProcurarClienteBtn"
+                Grid.Row="0"
+                Grid.Column="3"
+                Margin="8" Click="ProcurarClienteBtn_Click">
+            <iconPacks:PackIconMaterial Kind="AccountSearch"/>
+        </Button>
 
         <TextBox x:Name="IdModeloTxb"
                  Controls:TextBoxHelper.Watermark="Id"
@@ -79,6 +86,12 @@
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"/>
+        <Button x:Name="ProcurarModeloBtn"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Margin="8" Click="ProcurarModeloBtn_Click">
+            <iconPacks:PackIconMaterial Kind="FeatureSearch"/>
+        </Button>
 
         <TextBox x:Name="IdFormaPagtoTxb"
                  Controls:TextBoxHelper.Watermark="Id"
@@ -103,6 +116,12 @@
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"/>
+        <Button x:Name="ProcurarFormaPagtoBtn"
+                Grid.Row="2"
+                Grid.Column="3"
+                Margin="8" Click="ProcurarFormaPagtoBtn_Click">
+            <iconPacks:PackIconMaterial Kind="NfcSearchVariant"/>
+        </Button>
 
         <TextBox x:Name="DiasAluguelTxb"
                  Controls:TextBoxHelper.Watermark="Dias de aluguel"
@@ -124,6 +143,7 @@
                  IsReadOnly="True"
                  Focusable="False"
                  Grid.Column="2"
+                 Grid.ColumnSpan="2"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"/>
@@ -138,7 +158,8 @@
         <Button x:Name="FecharNovoModeloWindowBtn"
                 Content="Fechar"
                 FontSize="20"
-                Grid.Column="3"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
                 Grid.Row="11"
                 Margin="8" Click="FecharNovoAluguelWindowBtn_Click"/>
     </Grid>

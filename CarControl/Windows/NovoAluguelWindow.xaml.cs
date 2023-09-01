@@ -216,5 +216,38 @@ namespace CarControl.Windows
         {
             Close();
         }
+
+        private void ProcurarClienteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProcurarClienteWindow procurarClienteWindow = new ProcurarClienteWindow(conn);
+            if (procurarClienteWindow.ShowDialog() == true)
+            {
+                int selectedValue = procurarClienteWindow.ClienteId;
+                IdClienteTxb.Text = selectedValue.ToString();
+                IdModeloTxb.Focus();
+            }
+        }
+
+        private void ProcurarModeloBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProcurarModeloWindow procurarModeloWindow = new ProcurarModeloWindow(conn);
+            if (procurarModeloWindow.ShowDialog() == true)
+            {
+                int selectedValue = procurarModeloWindow.ModeloId;
+                IdModeloTxb.Text = selectedValue.ToString();
+                IdFormaPagtoTxb.Focus();
+            }
+        }
+
+        private void ProcurarFormaPagtoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProcurarFormaPagto procurarFormaPagto = new ProcurarFormaPagto(conn);
+            if (procurarFormaPagto.ShowDialog() == true)
+            {
+                int selectedValue = procurarFormaPagto.FormaPagtoId;
+                IdFormaPagtoTxb.Text = selectedValue.ToString();
+                DiasAluguelTxb.Focus();
+            }
+        }
     }
 }
