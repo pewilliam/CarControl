@@ -27,7 +27,7 @@ namespace CarControl.Windows
         {
             dg.ItemsSource = null;
             aluguelList.Clear();
-            string sql = ($"SELECT * FROM carcontrol.aluguel ORDER BY idaluguel;");
+            string sql = ($"SELECT idaluguel, idcliente, nome_cliente, idmodelo, nome_modelo, idformapagto, forma_pagto, dhaluguel, diasaluguel, valoraluguel, em_andamento FROM vw_aluguel ORDER BY idaluguel;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -38,12 +38,15 @@ namespace CarControl.Windows
                     Aluguel aluguel = new(
                         reader.GetInt32(0),
                         reader.GetInt32(1),
-                        reader.GetInt32(2),
+                        reader.GetString(2),
                         reader.GetInt32(3),
-                        reader.GetDateTime(4),
+                        reader.GetString(4),
                         reader.GetInt32(5),
-                        reader.GetDouble(6),
-                        reader.GetBoolean(7)
+                        reader.GetString(6),
+                        reader.GetDateTime(7),
+                        reader.GetInt32(8),
+                        reader.GetDouble(9),
+                        reader.GetBoolean(10)
                         );
                     #endregion
                     aluguelList.Add(aluguel);
@@ -98,6 +101,14 @@ namespace CarControl.Windows
             dataAluguelLabel.Content = "Data do aluguel: ";
             diasLabel.Content = "Dias aluguel: ";
             valorTotalLabel.Content = "Valor total: ";
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
         }
 
         private void FecharModeloWindowBtn_Click(object sender, RoutedEventArgs e)

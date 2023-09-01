@@ -38,7 +38,7 @@ namespace CarControl.Windows
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Devolução efetuada com sucesso!", "Devolução concluída");
+                    MessageBox.Show("Aluguel efetuado com sucesso!", "Devolução concluída");
                     Close();
                 }
                 catch (Exception ex)

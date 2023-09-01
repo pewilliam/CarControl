@@ -26,7 +26,7 @@ namespace CarControl.Windows
         {
             dg.ItemsSource = null;
             devolucaoList.Clear();
-            string sql = ($"SELECT * FROM carcontrol.devolucao ORDER BY iddevolucao;");
+            string sql = ($"SELECT * FROM vw_devolucao ORDER BY iddevolucao");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -35,11 +35,13 @@ namespace CarControl.Windows
                 {
                     #region lendo devoluções
                     Devolucao devolucao = new(
-                        reader.GetInt32(0), //id
-                        reader.GetDateTime(1), //nome
-                        reader.GetInt32(2), //cor
-                        reader.GetInt32(3), //qtdportas
-                        reader.GetInt32(4)
+                        reader.GetInt32(0),
+                        reader.GetInt32(1),
+                        reader.GetString(2),
+                        reader.GetInt32(3),
+                        reader.GetString(4),
+                        reader.GetInt32(5),
+                        reader.GetDateTime(6)
                         );
                     #endregion
                     devolucaoList.Add(devolucao);
@@ -94,6 +96,14 @@ namespace CarControl.Windows
             dataAluguelLabel.Content = "Data do aluguel: ";
             diasLabel.Content = "Dias aluguel: ";
             valorTotalLabel.Content = "Valor total: ";
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
         }
 
         private void FecharDevolucaoWindowBtn_Click(object sender, RoutedEventArgs e)

@@ -8,7 +8,8 @@
         Title="Devoluções" Height="600" Width="1280"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -114,10 +115,10 @@
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdDevolucao}"  />
-                <DataGridTextColumn Header="Data da devolução" Width="*" Binding="{Binding DhDevolucao}"  />
-                <DataGridTextColumn Header="Id. Modelo" Width="*" Binding="{Binding IdModelo}"  />
-                <DataGridTextColumn Header="Id. Cliente" Width="*" Binding="{Binding IdCliente}"  />
+                <DataGridTextColumn Header="Modelo" Width="*" Binding="{Binding NomeModelo}"  />
+                <DataGridTextColumn Header="Cliente" Width="*" Binding="{Binding NomeCliente}"  />
                 <DataGridTextColumn Header="Id. Aluguel" Width="*" Binding="{Binding IdAluguel}"  />
+                <DataGridTextColumn Header="Data da devolução" Width="*" Binding="{Binding DhDevolucao}"  />
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">

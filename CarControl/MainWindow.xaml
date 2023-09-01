@@ -98,6 +98,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.Background>
@@ -110,7 +112,7 @@
                     HorizontalAlignment="Center"
                     Height="50"
                     Width="50"
-                    Grid.Row="5"
+                    Grid.Row="7"
                     Grid.Column="13" Click="TrocarUsuarioBtn_Click">
                 <Button.ToolTip>
                     <ToolTip>
@@ -125,7 +127,7 @@
                     HorizontalAlignment="Center"
                     Height="50"
                     Width="50"
-                Grid.Row="4"
+                Grid.Row="6"
                 Grid.Column="13" Click="UsuariosWindowBtn_Click">
                 <Button.ToolTip>
                     <ToolTip>
