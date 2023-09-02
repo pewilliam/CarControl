@@ -5,6 +5,7 @@ using Npgsql;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -130,6 +131,22 @@ namespace CarControl.Windows
                 {
                     Close();
                 }
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
+        }
+
+        private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                DevolverBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
             }
         }
     }

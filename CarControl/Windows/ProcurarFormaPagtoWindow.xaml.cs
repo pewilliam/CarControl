@@ -1,25 +1,17 @@
 ﻿using CarControl.Models;
+using MahApps.Metro.Controls;
 using Npgsql;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CarControl.Windows
 {
     /// <summary>
     /// Lógica interna para ProcurarFormaPagto.xaml
     /// </summary>
-    public partial class ProcurarFormaPagto : Window
+    public partial class ProcurarFormaPagto : MetroWindow
     {
         public int FormaPagtoId { get; private set; }
         NpgsqlConnection conn = new NpgsqlConnection();
@@ -97,6 +89,14 @@ namespace CarControl.Windows
             {
                 FormaPagtoId = fp.IdFormaPagto;
                 DialogResult = true;
+            }
+        }
+
+        private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                abrirFormaPagtoBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
             }
         }
     }

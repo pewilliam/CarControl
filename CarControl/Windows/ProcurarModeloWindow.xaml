@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                        mc:Ignorable="d"
-        Title="ProcurarModeloWindow" Height="600" Width="1280"
+        Title="Procurar Modelo" Height="600" Width="1280"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
         ResizeMode="CanMinimize"

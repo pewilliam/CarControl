@@ -80,7 +80,7 @@ namespace CarControl.Windows
         {
             if (e.Key == Key.Enter)
             {
-                e.Handled = true; // Isso impede que o evento "Enter" seja processado
+                abrirClienteBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
             }
         }
 

@@ -220,17 +220,20 @@ namespace CarControl.Windows
         private void ProcurarClienteBtn_Click(object sender, RoutedEventArgs e)
         {
             ProcurarClienteWindow procurarClienteWindow = new ProcurarClienteWindow(conn);
+            procurarClienteWindow.Owner = null;
             if (procurarClienteWindow.ShowDialog() == true)
             {
                 int selectedValue = procurarClienteWindow.ClienteId;
                 IdClienteTxb.Text = selectedValue.ToString();
                 IdModeloTxb.Focus();
+                procurarClienteWindow.Close();
             }
         }
 
         private void ProcurarModeloBtn_Click(object sender, RoutedEventArgs e)
         {
             ProcurarModeloWindow procurarModeloWindow = new ProcurarModeloWindow(conn);
+            procurarModeloWindow.Owner = null;
             if (procurarModeloWindow.ShowDialog() == true)
             {
                 int selectedValue = procurarModeloWindow.ModeloId;
@@ -242,11 +245,28 @@ namespace CarControl.Windows
         private void ProcurarFormaPagtoBtn_Click(object sender, RoutedEventArgs e)
         {
             ProcurarFormaPagto procurarFormaPagto = new ProcurarFormaPagto(conn);
+            procurarFormaPagto.Owner = null;
             if (procurarFormaPagto.ShowDialog() == true)
             {
                 int selectedValue = procurarFormaPagto.FormaPagtoId;
                 IdFormaPagtoTxb.Text = selectedValue.ToString();
                 DiasAluguelTxb.Focus();
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
+        }
+
+        private void MetroWindow_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SalvarNovoAluguelBtn_Click(sender, e);
             }
         }
     }
