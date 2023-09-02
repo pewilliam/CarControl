@@ -1,12 +1,6 @@
-BEGIN;
-CREATE DATABASE base_carros;
-COMMIT;
-
 -- Criação do esquema
-BEGIN;
 CREATE SCHEMA IF NOT EXISTS carcontrol;
 ALTER DATABASE base_carros SET search_path TO carcontrol;
-COMMIT;
 
 -- Tabela usuario
 CREATE TABLE usuario (
@@ -18,7 +12,7 @@ CREATE TABLE usuario (
 );
 
 --CREATE DOMAIN CPF
-CREATE DOMAIN carcontrol.cpf AS TEXT
+CREATE DOMAIN cpf AS TEXT
   CHECK (VALUE IS NULL OR (length(VALUE) = 11 AND VALUE ~ '^\d{11}$'));
 
 -- Tabela carro
@@ -61,7 +55,7 @@ CREATE TABLE modelo (
 );
 
 --Tabela cliente
-CREATE TABLE IF NOT EXISTS carcontrol.cliente (
+CREATE TABLE IF NOT EXISTS cliente (
   idcliente SERIAL PRIMARY KEY,
   nome VARCHAR(45) NOT NULL,
   cpf cpf UNIQUE,
@@ -70,17 +64,17 @@ CREATE TABLE IF NOT EXISTS carcontrol.cliente (
 );
 
 --Tabela forma pagto
-CREATE TABLE IF NOT EXISTS carcontrol.formapagto (
+CREATE TABLE IF NOT EXISTS formapagto (
   idformapagto SERIAL PRIMARY KEY,
   nome VARCHAR(45) NOT NULL
 );
 
 --Tabela aluguel
-CREATE TABLE IF NOT EXISTS carcontrol.aluguel (
+CREATE TABLE IF NOT EXISTS aluguel (
   idaluguel SERIAL PRIMARY KEY,
-  idcliente INT NOT NULL REFERENCES carcontrol.cliente(idcliente),
-  idmodelo INT NOT NULL REFERENCES carcontrol.modelo(idmodelo),
-  idformapagto INT NOT NULL REFERENCES carcontrol.formapagto(idformapagto),
+  idcliente INT NOT NULL REFERENCES cliente(idcliente),
+  idmodelo INT NOT NULL REFERENCES modelo(idmodelo),
+  idformapagto INT NOT NULL REFERENCES formapagto(idformapagto),
   dhaluguel TIMESTAMPTZ NOT NULL DEFAULT current_timestamp,
   diasaluguel INT NOT NULL,
   valoraluguel DECIMAL(18,2) NOT NULL,
@@ -88,16 +82,16 @@ CREATE TABLE IF NOT EXISTS carcontrol.aluguel (
 );
 
 --Tabela devolução
-CREATE TABLE IF NOT EXISTS carcontrol.devolucao (
+CREATE TABLE IF NOT EXISTS devolucao (
   iddevolucao SERIAL PRIMARY KEY,
-  dhdevolucao TIMESTAMPTZ NOT NULL DEFAULT current_timestamp,
-  idmodelo INT NOT NULL REFERENCES carcontrol.modelo(idmodelo),
-  idcliente INT NOT NULL REFERENCES carcontrol.cliente(idcliente),
-  idaluguel INT NOT NULL REFERENCES carcontrol.aluguel(idaluguel)
+  idmodelo INT NOT NULL REFERENCES modelo(idmodelo),
+  idcliente INT NOT NULL REFERENCES cliente(idcliente),
+  idaluguel INT NOT NULL REFERENCES aluguel(idaluguel),
+  dhdevolucao TIMESTAMPTZ NOT NULL DEFAULT current_timestamp
 );
 
 -- Criação da view vw_carro_modelo
-CREATE OR REPLACE VIEW carcontrol.vw_carro_modelo
+CREATE OR REPLACE VIEW vw_carro_modelo
 AS
 SELECT
     m.idmodelo,
@@ -133,7 +127,8 @@ SELECT
     f.nome AS forma_pagto,
     dhaluguel,
     diasaluguel,
-    valoraluguel
+    valoraluguel,
+    em_andamento
 FROM
     aluguel a
 LEFT JOIN
@@ -355,7 +350,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 --Verifica validade do CPF
-CREATE OR REPLACE FUNCTION carcontrol.cpf_valido(_cpf text)
+CREATE OR REPLACE FUNCTION cpf_valido(_cpf text)
   RETURNS boolean AS
 $BODY$
 BEGIN
@@ -364,9 +359,9 @@ END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION carcontrol.cpf_valido(text) SET search_path=carcontrold;
+ALTER FUNCTION cpf_valido(text) SET search_path=carcontrold;
 
-ALTER FUNCTION carcontrol.cpf_valido(text)
+ALTER FUNCTION cpf_valido(text)
   OWNER TO postgres;
 
 INSERT INTO categoria (nome)
@@ -385,7 +380,7 @@ VALUES
     ('CHEVROLET'),
     ('HONDA');
 
-INSERT INTO carcontrol.formapagto (idformapagto, nome)
+INSERT INTO formapagto (idformapagto, nome)
 VALUES (1, 'DINHEIRO'),
        (2, 'PIX'),
        (3, 'CARTÃO DE CRÉDITO'),

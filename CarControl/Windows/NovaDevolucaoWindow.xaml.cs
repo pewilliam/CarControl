@@ -109,7 +109,7 @@ namespace CarControl.Windows
             Close();
         }
 
-        private async void DevolverBtn_Click(object sender, RoutedEventArgs e)
+        private void DevolverBtn_Click(object sender, RoutedEventArgs e)
         {
             Aluguel a = dg.SelectedItem as Aluguel;
             if (a is not null)
@@ -124,7 +124,7 @@ namespace CarControl.Windows
 
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                     cmd.ExecuteNonQuery();
-                    await this.ShowMessageAsync("Devolução efetuada com sucesso!", "Devolução concluída");
+                    MessageBox.Show("Devolução efetuada com sucesso!", "Devolução concluída");
                     Close();
                 }
                 else

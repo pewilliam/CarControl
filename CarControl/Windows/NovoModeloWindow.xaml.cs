@@ -35,7 +35,7 @@ namespace CarControl
             Close();
         }
 
-        private async void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
+        private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampos())
             {
@@ -58,7 +58,7 @@ namespace CarControl
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
-                await this.ShowMessageAsync("Modelo inserido com com sucesso!", "Modelo inserido");
+                MessageBox.Show("Modelo inserido com com sucesso!", "Modelo inserido");
                 Close();
             }
         }

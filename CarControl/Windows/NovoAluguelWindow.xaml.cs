@@ -23,7 +23,7 @@ namespace CarControl.Windows
             IdClienteTxb.Focus();
         }
 
-        private async void SalvarNovoAluguelBtn_Click(object sender, RoutedEventArgs e)
+        private void SalvarNovoAluguelBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampo())
             {
@@ -39,7 +39,7 @@ namespace CarControl.Windows
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    await this.ShowMessageAsync("Aluguel efetuado com sucesso!", "Aluguel concluído");
+                    MessageBox.Show("Aluguel efetuado com sucesso!", "Aluguel concluído");
                     Close();
                 }
                 catch (Exception ex)
