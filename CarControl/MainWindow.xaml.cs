@@ -523,6 +523,23 @@ ALTER FUNCTION carcontrol.cpf_valido(text) SET search_path=carcontrold;
 ALTER FUNCTION carcontrol.cpf_valido(text)
   OWNER TO postgres;
 
+--Trigger que não permite criar novo aluguel com dias zerados
+CREATE OR REPLACE FUNCTION verificar_dias_aluguel()
+RETURNS TRIGGER AS $$
+BEGIN
+	IF NEW.diasaluguel = 0 THEN
+		RAISE EXCEPTION 'A quantidade de dias não pode ser 0!';
+	END IF;
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verificar_dias_aluguel_trigger
+BEFORE INSERT OR UPDATE ON aluguel
+FOR EACH ROW
+EXECUTE FUNCTION verificar_dias_aluguel();
+
 INSERT INTO categoria (nome)
 VALUES
     ('ESPORTIVO'),

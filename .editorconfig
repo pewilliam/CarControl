@@ -4,3 +4,4 @@
 dotnet_diagnostic.CS8618.severity = none
 dotnet_diagnostic.CS8602.severity = none
 dotnet_diagnostic.CS8600.severity = none
+dotnet_diagnostic.CS8622.severity = none

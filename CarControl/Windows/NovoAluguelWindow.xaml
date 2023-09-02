@@ -134,8 +134,8 @@
                  Grid.ColumnSpan="2"
                  Margin="8"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center" 
-                 LostFocus="DiasAluguelTxb_LostFocus"
+                 HorizontalContentAlignment="Center"
+                 TextChanged="DiasAluguelTxb_TextChanged"
                  PreviewTextInput="PreviewNumberInput"/>
         <TextBox x:Name="ValorAluguelTxb"
                  Controls:TextBoxHelper.Watermark="Valor total"

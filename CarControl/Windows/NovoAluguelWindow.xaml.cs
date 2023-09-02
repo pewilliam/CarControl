@@ -144,35 +144,6 @@ namespace CarControl.Windows
             }
         }
 
-        private void DiasAluguelTxb_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (IdModeloTxb.Text != string.Empty && DiasAluguelTxb.Text != string.Empty)
-            {
-                int idModelo = int.Parse(IdModeloTxb.Text);
-                string sql = $"SELECT precodia FROM carcontrol.modelo WHERE idmodelo = {idModelo}";
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-
-                using (NpgsqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        if (!reader.HasRows)
-                        {
-                            MessageBox.Show("Cliente não existe! Cadastre um novo ou escolha algum existente.", "Cliente não encontrado");
-                            IdClienteTxb.Focus();
-                        }
-                        else
-                        {
-                            double valorModelo = reader.GetDouble(0);
-                            int diasAluguel = int.Parse(DiasAluguelTxb.Text);
-                            ValorAluguelTxb.Text = (valorModelo * diasAluguel).ToString("C");
-                        }
-                    }
-                    reader.Close();
-                }
-            }
-        }
-
         private bool ValidarCampo()
         {
             if (string.IsNullOrEmpty(IdClienteTxb.Text))
@@ -269,5 +240,39 @@ namespace CarControl.Windows
                 SalvarNovoAluguelBtn_Click(sender, e);
             }
         }
+
+        private void DiasAluguelTxb_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (IdModeloTxb.Text != string.Empty && DiasAluguelTxb.Text != string.Empty)
+            {
+                int idModelo = int.Parse(IdModeloTxb.Text);
+                string sql = $"SELECT precodia FROM carcontrol.modelo WHERE idmodelo = {idModelo}";
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (!reader.HasRows)
+                        {
+                            MessageBox.Show("Cliente não existe! Cadastre um novo ou escolha algum existente.", "Cliente não encontrado");
+                            IdClienteTxb.Focus();
+                        }
+                        else
+                        {
+                            double valorModelo = reader.GetDouble(0);
+                            int diasAluguel = int.Parse(DiasAluguelTxb.Text);
+                            ValorAluguelTxb.Text = (valorModelo * diasAluguel).ToString("C");
+                        }
+                    }
+                    reader.Close();
+                }
+            }
+            else
+            {
+                ValorAluguelTxb.Text = null;
+            }
+        }
     }
 }
+ 
