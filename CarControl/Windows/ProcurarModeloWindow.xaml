@@ -193,7 +193,7 @@
                  HorizontalContentAlignment="Center" TextChanged="SearchModeloTxb_TextChanged"/>
 
         <Button x:Name="AbrirModeloBtn"
-                Content="Abrir"
+                Content="Selecionar"
                 Grid.Row="2"
                 Grid.Column="3"
                 Margin="8" Click="AbrirModeloBtn_Click"/>

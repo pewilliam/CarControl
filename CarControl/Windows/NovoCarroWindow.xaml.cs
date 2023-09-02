@@ -31,7 +31,7 @@ namespace CarControl
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Carro inserido com sucesso!");
+                MessageBox.Show("Carro inserido com sucesso!", "Concluído");
                 Close();
             }
         }

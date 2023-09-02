@@ -57,7 +57,9 @@
                      IsReadOnly="True"
                      Background="Transparent"
                      BorderThickness="0"
-                     FontFamily="montserrat"/>
+                     FontFamily="montserrat"
+                     Focusable="False"
+                     Cursor="Arrow"/>
 
             <TextBox x:Name="CurrentUserTxb"
                      Text="Usuário: "
@@ -68,7 +70,21 @@
                      IsReadOnly="True"
                      Background="Transparent"
                      BorderThickness="0"
-                     FontFamily="montserrat"/>
+                     FontFamily="montserrat"
+                     Focusable="False"
+                     Cursor="Arrow"/>
+
+            <TextBox Text="Developed by Pedro William"
+                     Grid.Column="5"
+                     HorizontalAlignment="Right"
+                     VerticalContentAlignment="Center"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     FontFamily="montserrat"
+                     Focusable="False"
+                     Cursor="Arrow"/>
         </Grid>
 
         <Grid Grid.Row="1"

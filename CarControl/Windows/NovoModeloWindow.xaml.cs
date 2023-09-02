@@ -1,5 +1,6 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System.Collections.Generic;
 using System.Globalization;
@@ -34,7 +35,7 @@ namespace CarControl
             Close();
         }
 
-        private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
+        private async void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampos())
             {
@@ -57,7 +58,7 @@ namespace CarControl
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Modelo inserido com sucesso!", "Concluído");
+                await this.ShowMessageAsync("Modelo inserido com com sucesso!", "Modelo inserido");
                 Close();
             }
         }

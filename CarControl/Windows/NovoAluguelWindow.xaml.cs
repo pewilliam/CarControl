@@ -3,6 +3,7 @@ using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -22,7 +23,7 @@ namespace CarControl.Windows
             IdClienteTxb.Focus();
         }
 
-        private void SalvarNovoAluguelBtn_Click(object sender, RoutedEventArgs e)
+        private async void SalvarNovoAluguelBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampo())
             {
@@ -38,7 +39,7 @@ namespace CarControl.Windows
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Aluguel efetuado com sucesso!", "Devolução concluída");
+                    await this.ShowMessageAsync("Aluguel efetuado com sucesso!", "Aluguel concluído");
                     Close();
                 }
                 catch (Exception ex)
@@ -237,7 +238,7 @@ namespace CarControl.Windows
         {
             if (e.Key == Key.Enter)
             {
-                SalvarNovoAluguelBtn_Click(sender, e);
+                SalvarNovoAluguelBtn_Click(null, null);
             }
         }
 

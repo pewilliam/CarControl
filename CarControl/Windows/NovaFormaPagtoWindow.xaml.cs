@@ -25,7 +25,7 @@ namespace CarControl.Windows
                 string sql = ($"INSERT INTO carcontrol.formapagto(nome) VALUES ('{NomeFormaPagtoTxb.Text.ToUpper()}')");
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Forma de pagamento inserida com sucesso!");
+                MessageBox.Show("Forma de pagamento inserida com sucesso!", "Forma de pagamento inserida");
                 Close();
             }
         }
