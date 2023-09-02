@@ -1,5 +1,4 @@
-﻿using CarControl.Tools;
-using CarControl.Windows;
+﻿using CarControl.Windows;
 using MahApps.Metro.Controls;
 using Npgsql;
 using System;
