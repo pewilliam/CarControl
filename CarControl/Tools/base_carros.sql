@@ -1,18 +1,11 @@
 -- Criação do esquema
+BEGIN;
 CREATE SCHEMA IF NOT EXISTS carcontrol;
 ALTER DATABASE base_carros SET search_path TO carcontrol;
-
--- Tabela usuario
-CREATE TABLE usuario (
-  idusuario SERIAL PRIMARY KEY,
-  nome VARCHAR(45) NOT NULL,
-  login VARCHAR(15) NOT NULL,
-  senha VARCHAR(20) NOT NULL,
-  email VARCHAR(45)
-);
+COMMIT;
 
 --CREATE DOMAIN CPF
-CREATE DOMAIN cpf AS TEXT
+CREATE DOMAIN carcontrol.cpf AS TEXT
   CHECK (VALUE IS NULL OR (length(VALUE) = 11 AND VALUE ~ '^\d{11}$'));
 
 -- Tabela carro
@@ -55,7 +48,7 @@ CREATE TABLE modelo (
 );
 
 --Tabela cliente
-CREATE TABLE IF NOT EXISTS cliente (
+CREATE TABLE IF NOT EXISTS carcontrol.cliente (
   idcliente SERIAL PRIMARY KEY,
   nome VARCHAR(45) NOT NULL,
   cpf cpf UNIQUE,
@@ -64,34 +57,43 @@ CREATE TABLE IF NOT EXISTS cliente (
 );
 
 --Tabela forma pagto
-CREATE TABLE IF NOT EXISTS formapagto (
+CREATE TABLE IF NOT EXISTS carcontrol.formapagto (
   idformapagto SERIAL PRIMARY KEY,
   nome VARCHAR(45) NOT NULL
 );
 
 --Tabela aluguel
-CREATE TABLE IF NOT EXISTS aluguel (
+CREATE TABLE IF NOT EXISTS carcontrol.aluguel (
   idaluguel SERIAL PRIMARY KEY,
-  idcliente INT NOT NULL REFERENCES cliente(idcliente),
-  idmodelo INT NOT NULL REFERENCES modelo(idmodelo),
-  idformapagto INT NOT NULL REFERENCES formapagto(idformapagto),
-  dhaluguel TIMESTAMPTZ NOT NULL DEFAULT current_timestamp,
+  idcliente INT NOT NULL REFERENCES carcontrol.cliente(idcliente),
+  idmodelo INT NOT NULL REFERENCES carcontrol.modelo(idmodelo),
+  idformapagto INT NOT NULL REFERENCES carcontrol.formapagto(idformapagto),
+  dhaluguel TIMESTAMP NOT NULL DEFAULT current_timestamp,
   diasaluguel INT NOT NULL,
   valoraluguel DECIMAL(18,2) NOT NULL,
   em_andamento boolean DEFAULT true
 );
 
 --Tabela devolução
-CREATE TABLE IF NOT EXISTS devolucao (
+CREATE TABLE IF NOT EXISTS carcontrol.devolucao (
   iddevolucao SERIAL PRIMARY KEY,
-  idmodelo INT NOT NULL REFERENCES modelo(idmodelo),
-  idcliente INT NOT NULL REFERENCES cliente(idcliente),
-  idaluguel INT NOT NULL REFERENCES aluguel(idaluguel),
-  dhdevolucao TIMESTAMPTZ NOT NULL DEFAULT current_timestamp
+  dhdevolucao TIMESTAMP NOT NULL DEFAULT current_timestamp,
+  idmodelo INT NOT NULL REFERENCES carcontrol.modelo(idmodelo),
+  idcliente INT NOT NULL REFERENCES carcontrol.cliente(idcliente),
+  idaluguel INT NOT NULL REFERENCES carcontrol.aluguel(idaluguel)
 );
 
+CREATE TABLE IF NOT EXISTS carcontrol.recebimentos (
+  idrecebimento SERIAL PRIMARY KEY,
+  iddevolucao INT NOT NULL REFERENCES carcontrol.devolucao(iddevolucao),
+  valororiginal DECIMAL(18,2) NOT NULL,
+  valorrecebido DECIMAL(18,2) NOT NULL,
+  datarecebimento TIMESTAMP NOT NULL DEFAULT current_timestamp
+);
+
+
 -- Criação da view vw_carro_modelo
-CREATE OR REPLACE VIEW vw_carro_modelo
+CREATE OR REPLACE VIEW carcontrol.vw_carro_modelo
 AS
 SELECT
     m.idmodelo,
@@ -178,6 +180,50 @@ CREATE TRIGGER calcular_valor_total_trigger
 BEFORE INSERT OR UPDATE OF diasaluguel, idmodelo ON aluguel
 FOR EACH ROW
 EXECUTE FUNCTION calcular_valor_total();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Crie a trigger para registrar recebimento ao inserir uma devolução
+CREATE OR REPLACE FUNCTION registrar_recebimento_apos_devolucao()
+RETURNS TRIGGER AS $$
+DECLARE
+  v_data_devolucao TIMESTAMP;
+  v_dias_aluguel INT;
+  v_valor_aluguel DECIMAL(18,2);
+  v_valor_multa DECIMAL(18,2);
+  v_valor_original DECIMAL(18,2);
+BEGIN
+  -- Obtenha a data de devolução
+  v_data_devolucao := NEW.dhdevolucao;
+
+  -- Obtenha o número de dias de aluguel e o valor do aluguel original
+  SELECT a.diasaluguel, a.valoraluguel INTO v_dias_aluguel, v_valor_aluguel
+  FROM carcontrol.aluguel a
+  WHERE a.idaluguel = NEW.idaluguel;
+
+  -- Calcule o valor da multa, se houver
+  IF v_data_devolucao > (current_timestamp + (v_dias_aluguel || ' days')::INTERVAL) THEN
+    v_valor_multa := (EXTRACT(DAY FROM (v_data_devolucao - current_timestamp)) * v_valor_aluguel);
+  ELSE
+    v_valor_multa := 0;
+  END IF;
+
+  -- Calcule o valor original (valor do aluguel sem a multa)
+  v_valor_original := v_valor_aluguel;
+
+  -- Insira o registro de recebimento
+  INSERT INTO carcontrol.recebimentos (iddevolucao, valororiginal, valorrecebido)
+  VALUES (NEW.iddevolucao, v_valor_original, v_valor_aluguel + v_valor_multa);
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Crie a trigger que chama a função acima após a inserção em devolucao
+CREATE TRIGGER trigger_registrar_recebimento
+AFTER INSERT ON carcontrol.devolucao
+FOR EACH ROW
+EXECUTE FUNCTION registrar_recebimento_apos_devolucao();
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -350,7 +396,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 --Verifica validade do CPF
-CREATE OR REPLACE FUNCTION cpf_valido(_cpf text)
+CREATE OR REPLACE FUNCTION carcontrol.cpf_valido(_cpf text)
   RETURNS boolean AS
 $BODY$
 BEGIN
@@ -359,9 +405,9 @@ END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION cpf_valido(text) SET search_path=carcontrold;
+ALTER FUNCTION carcontrol.cpf_valido(text) SET search_path=carcontrold;
 
-ALTER FUNCTION cpf_valido(text)
+ALTER FUNCTION carcontrol.cpf_valido(text)
   OWNER TO postgres;
 
 INSERT INTO categoria (nome)
@@ -380,7 +426,7 @@ VALUES
     ('CHEVROLET'),
     ('HONDA');
 
-INSERT INTO formapagto (idformapagto, nome)
+INSERT INTO carcontrol.formapagto (idformapagto, nome)
 VALUES (1, 'DINHEIRO'),
        (2, 'PIX'),
        (3, 'CARTÃO DE CRÉDITO'),
