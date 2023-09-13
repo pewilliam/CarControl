@@ -83,15 +83,6 @@ CREATE TABLE IF NOT EXISTS carcontrol.devolucao (
   idaluguel INT NOT NULL REFERENCES carcontrol.aluguel(idaluguel)
 );
 
-CREATE TABLE IF NOT EXISTS carcontrol.recebimentos (
-  idrecebimento SERIAL PRIMARY KEY,
-  iddevolucao INT NOT NULL REFERENCES carcontrol.devolucao(iddevolucao),
-  valororiginal DECIMAL(18,2) NOT NULL,
-  valorrecebido DECIMAL(18,2) NOT NULL,
-  datarecebimento TIMESTAMP NOT NULL DEFAULT current_timestamp
-);
-
-
 -- Criação da view vw_carro_modelo
 CREATE OR REPLACE VIEW carcontrol.vw_carro_modelo
 AS
@@ -176,54 +167,27 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 CREATE TRIGGER calcular_valor_total_trigger
 BEFORE INSERT OR UPDATE OF diasaluguel, idmodelo ON aluguel
 FOR EACH ROW
 EXECUTE FUNCTION calcular_valor_total();
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
--- Crie a trigger para registrar recebimento ao inserir uma devolução
-CREATE OR REPLACE FUNCTION registrar_recebimento_apos_devolucao()
+CREATE OR REPLACE FUNCTION carcontrol.verificar_diasaluguel()
 RETURNS TRIGGER AS $$
-DECLARE
-  v_data_devolucao TIMESTAMP;
-  v_dias_aluguel INT;
-  v_valor_aluguel DECIMAL(18,2);
-  v_valor_multa DECIMAL(18,2);
-  v_valor_original DECIMAL(18,2);
 BEGIN
-  -- Obtenha a data de devolução
-  v_data_devolucao := NEW.dhdevolucao;
-
-  -- Obtenha o número de dias de aluguel e o valor do aluguel original
-  SELECT a.diasaluguel, a.valoraluguel INTO v_dias_aluguel, v_valor_aluguel
-  FROM carcontrol.aluguel a
-  WHERE a.idaluguel = NEW.idaluguel;
-
-  -- Calcule o valor da multa, se houver
-  IF v_data_devolucao > (current_timestamp + (v_dias_aluguel || ' days')::INTERVAL) THEN
-    v_valor_multa := (EXTRACT(DAY FROM (v_data_devolucao - current_timestamp)) * v_valor_aluguel);
-  ELSE
-    v_valor_multa := 0;
-  END IF;
-
-  -- Calcule o valor original (valor do aluguel sem a multa)
-  v_valor_original := v_valor_aluguel;
-
-  -- Insira o registro de recebimento
-  INSERT INTO carcontrol.recebimentos (iddevolucao, valororiginal, valorrecebido)
-  VALUES (NEW.iddevolucao, v_valor_original, v_valor_aluguel + v_valor_multa);
-
-  RETURN NEW;
+    IF NEW.diasaluguel = 0 THEN
+        RAISE EXCEPTION 'O valor de diasaluguel não pode ser igual a 0';
+    END IF;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
--- Crie a trigger que chama a função acima após a inserção em devolucao
-CREATE TRIGGER trigger_registrar_recebimento
-AFTER INSERT ON carcontrol.devolucao
+CREATE TRIGGER aluguel_valida_diasaluguel
+BEFORE INSERT ON carcontrol.aluguel
 FOR EACH ROW
-EXECUTE FUNCTION registrar_recebimento_apos_devolucao();
+EXECUTE FUNCTION carcontrol.verificar_diasaluguel();
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -441,7 +405,7 @@ CREATE TABLE IF NOT EXISTS carcontrol.recebimento
     valorrecebido numeric(18,2),
     dhrecebimento timestamp without time zone,
     em_aberto boolean NOT NULL DEFAULT true,
-    recebimento_dia_previsto timestamp without time zone,
+    recebimento_dia_previsto date,
     CONSTRAINT recebimento_pkey PRIMARY KEY (idrecebimento),
     CONSTRAINT recebimento_idaluguel_fkey FOREIGN KEY (idaluguel)
         REFERENCES carcontrol.aluguel (idaluguel) MATCH SIMPLE
@@ -451,7 +415,7 @@ CREATE TABLE IF NOT EXISTS carcontrol.recebimento
         REFERENCES carcontrol.devolucao (iddevolucao) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
 CREATE OR REPLACE FUNCTION carcontrol.criar_recebimento_em_aberto()
 RETURNS TRIGGER AS $$
@@ -494,9 +458,12 @@ BEGIN
 	LEFT JOIN devolucao d ON a.idaluguel = d.idaluguel;
 
     -- Calcule o valor atualizado com base nas regras especificadas
-    IF recebimento_dia_previsto > NEW.dhdevolucao::date THEN
-        valor_atualizado := preco_dia * ((NEW.dhdevolucao::date - dh_aluguel) + 1);
-		
+    IF NEW.dhdevolucao::DATE = dh_aluguel THEN
+		valor_atualizado := preco_dia;
+
+    ELSIF recebimento_dia_previsto > NEW.dhdevolucao::date AND NEW.dhdevolucao <> dh_aluguel THEN
+        valor_atualizado := preco_dia * (NEW.dhdevolucao::date - dh_aluguel);
+        
     ELSIF recebimento_dia_previsto < NEW.dhdevolucao::date THEN
         valor_atualizado := valor_original + (preco_dia * (NEW.dhdevolucao::date - recebimento_dia_previsto));
 		
