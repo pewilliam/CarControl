@@ -431,3 +431,94 @@ VALUES (1, 'DINHEIRO'),
        (2, 'PIX'),
        (3, 'CARTÃO DE CRÉDITO'),
        (4, 'CARTÃO DE DÉBITO');
+
+CREATE TABLE IF NOT EXISTS carcontrol.recebimento
+(
+    idrecebimento serial,
+    idaluguel integer NOT NULL,
+    iddevolucao integer,
+    valororiginal numeric(18,2) NOT NULL,
+    valorrecebido numeric(18,2),
+    dhrecebimento timestamp without time zone,
+    em_aberto boolean NOT NULL DEFAULT true,
+    recebimento_dia_previsto timestamp without time zone,
+    CONSTRAINT recebimento_pkey PRIMARY KEY (idrecebimento),
+    CONSTRAINT recebimento_idaluguel_fkey FOREIGN KEY (idaluguel)
+        REFERENCES carcontrol.aluguel (idaluguel) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT recebimento_iddevolucao_fkey FOREIGN KEY (iddevolucao)
+        REFERENCES carcontrol.devolucao (iddevolucao) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+CREATE OR REPLACE FUNCTION carcontrol.criar_recebimento_em_aberto()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO carcontrol.recebimento (idaluguel, iddevolucao, valororiginal, valorrecebido, dhrecebimento, em_aberto, recebimento_dia_previsto)
+    VALUES (NEW.idaluguel, NULL, NEW.valoraluguel, NULL, NULL, TRUE, NEW.dhaluguel + (NEW.diasaluguel || ' days')::interval);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Crie um gatilho para chamar a função ao inserir um aluguel
+CREATE TRIGGER criar_recebimento_trigger
+AFTER INSERT
+ON carcontrol.aluguel
+FOR EACH ROW
+EXECUTE FUNCTION carcontrol.criar_recebimento_em_aberto();
+
+CREATE OR REPLACE FUNCTION carcontrol.atualizar_recebimento_apos_devolucao()
+RETURNS TRIGGER AS $$
+DECLARE
+    valor_atualizado numeric(18,2);
+	valor_original numeric(18,2);
+	preco_dia numeric(18,2);
+	dh_aluguel date;
+	recebimento_dia_previsto date;
+BEGIN
+	SELECT r.recebimento_dia_previsto, r.valororiginal
+    INTO recebimento_dia_previsto, valor_original
+    FROM recebimento r
+    LEFT JOIN devolucao d ON d.idaluguel = r.idaluguel;
+	
+	SELECT m.precodia
+	INTO preco_dia
+	FROM modelo m
+	LEFT JOIN devolucao d ON d.idmodelo = m.idmodelo;
+	
+	SELECT dhaluguel
+	INTO dh_aluguel
+	FROM aluguel a
+	LEFT JOIN devolucao d ON a.idaluguel = d.idaluguel;
+
+    -- Calcule o valor atualizado com base nas regras especificadas
+    IF recebimento_dia_previsto > NEW.dhdevolucao::date THEN
+        valor_atualizado := preco_dia * ((NEW.dhdevolucao::date - dh_aluguel) + 1);
+		
+    ELSIF recebimento_dia_previsto < NEW.dhdevolucao::date THEN
+        valor_atualizado := valor_original + (preco_dia * (NEW.dhdevolucao::date - recebimento_dia_previsto));
+		
+    ELSE
+		valor_atualizado := valor_original;
+    END IF;
+
+    -- Atualize o registro correspondente na tabela de recebimento
+    UPDATE carcontrol.recebimento
+    SET iddevolucao = NEW.iddevolucao,
+		valorrecebido = valor_atualizado,
+        dhrecebimento = NEW.dhdevolucao,
+        em_aberto = FALSE
+    WHERE idaluguel = NEW.idaluguel;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Crie um gatilho para chamar a função ao inserir uma devolução
+CREATE TRIGGER atualizar_recebimento_apos_devolucao_trigger
+AFTER INSERT
+ON carcontrol.devolucao
+FOR EACH ROW
+EXECUTE FUNCTION carcontrol.atualizar_recebimento_apos_devolucao();
