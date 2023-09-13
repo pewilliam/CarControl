@@ -489,3 +489,25 @@ AFTER INSERT
 ON carcontrol.devolucao
 FOR EACH ROW
 EXECUTE FUNCTION carcontrol.atualizar_recebimento_apos_devolucao();
+
+CREATE VIEW vw_recebimento AS
+SELECT
+	idrecebimento,
+	r.idaluguel,
+	a.dhaluguel,
+	r.iddevolucao,
+	d.dhdevolucao,
+	a.idcliente,
+	c.nome nome_cliente,
+	a.idmodelo,
+	m.nome nome_modelo,
+	valororiginal,
+	valorrecebido,
+	dhrecebimento,
+	em_aberto,
+	recebimento_dia_previsto
+FROM recebimento r
+LEFT JOIN aluguel a ON a.idaluguel = r.idaluguel
+LEFT JOIN devolucao d ON d.iddevolucao = r.iddevolucao
+LEFT JOIN cliente c ON a.idcliente = c.idcliente
+LEFT JOIN modelo m ON m.idmodelo = a.idmodelo;
