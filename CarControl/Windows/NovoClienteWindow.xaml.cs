@@ -18,6 +18,7 @@ namespace CarControl.Windows
         {
             conn = connection;
             InitializeComponent();
+            NomeClienteTxb.Focus();
         }
 
         private void CpfTxb_GotFocus(object sender, RoutedEventArgs e)
@@ -45,7 +46,7 @@ namespace CarControl.Windows
             }
         }
 
-        private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
+        private void SalvarNovoClienteBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampo())
             {
@@ -64,7 +65,7 @@ namespace CarControl.Windows
             }
         }
 
-        private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
+        private void FecharNovoClienteWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
@@ -74,6 +75,10 @@ namespace CarControl.Windows
             if (e.Key == System.Windows.Input.Key.Escape)
             {
                 Close();
+            }
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                SalvarNovoClienteBtn_Click (sender, e);
             }
         }
 

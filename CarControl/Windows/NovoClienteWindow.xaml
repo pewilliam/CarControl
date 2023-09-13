@@ -78,17 +78,17 @@
                  HorizontalContentAlignment="Center"
                  KeyUp="DataNascimentoTxb_KeyUp"/>
 
-        <Button x:Name="SalvarNovoModeloBtn"
+        <Button x:Name="SalvarNovoClienteBtn"
                 Content="Salvar"
                 FontSize="20"
                 Grid.Column="0"
                 Grid.Row="4"
-                Margin="8" Click="SalvarNovoModeloBtn_Click"/>
-        <Button x:Name="FecharNovoModeloWindowBtn"
+                Margin="8" Click="SalvarNovoClienteBtn_Click"/>
+        <Button x:Name="FecharNovoClienteWindowBtn"
                 Content="Fechar"
                 FontSize="20"
                 Grid.Column="1"
                 Grid.Row="4"
-                Margin="8" Click="FecharNovoModeloWindowBtn_Click"/>
+                Margin="8" Click="FecharNovoClienteWindowBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>
