@@ -1,7 +1,6 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
 using Npgsql;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;

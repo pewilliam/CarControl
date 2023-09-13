@@ -68,6 +68,13 @@ namespace CarControl
             devolucoesWindow.Owner = this;
         }
 
+        private void RecebimentoWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RecebimentosWindow recebimentosWindow = new RecebimentosWindow(conn);
+            recebimentosWindow.ShowDialog();
+            recebimentosWindow.Owner = this;
+        }
+
         private void FabricantesCarroWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             FabricantesWindow fabricantesWindow = new FabricantesWindow(conn);

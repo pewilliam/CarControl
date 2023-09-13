@@ -30,6 +30,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -39,7 +40,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="2"
-              Grid.ColumnSpan="8"
+              Grid.ColumnSpan="9"
               Background="#f0f0f0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -89,7 +90,7 @@
 
         <Grid Grid.Row="1"
               Grid.Column="0"
-              Grid.ColumnSpan="8">
+              Grid.ColumnSpan="9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -254,7 +255,7 @@
             <iconPacks:PackIconMaterial Kind="ClockCheck" Width="40" Height="40"/>
         </Button>
 
-        <Label Content="Fabricantes"
+        <Label Content="Recebimentos"
                VerticalAlignment="Bottom"
                HorizontalAlignment="Center"
                Grid.Row="0"
@@ -262,10 +263,30 @@
                FontSize="15"
                FontFamily="montserrat"
                Margin="0,0,0,30"/>
+                <Button x:Name="RecebimentoWindowBtn"
+                Margin="30, 30, 30, 60"
+                Grid.Row="0"
+                Grid.Column="5" Click="RecebimentoWindowBtn_Click">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock Text="Mostrar recebimentos" />
+                </ToolTip>
+            </Button.ToolTip>
+            <iconPacks:PackIconMaterial Kind="Cash100" Width="40" Height="40"/>
+        </Button>
+
+        <Label Content="Fabricantes"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               Grid.Column="6"
+               FontSize="15"
+               FontFamily="montserrat"
+               Margin="0,0,0,30"/>
         <Button x:Name="FabricantesCarroWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="5" Click="FabricantesCarroWindowBtn_Click">
+                Grid.Column="6" Click="FabricantesCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Mostrar fabricantes" />
@@ -278,14 +299,14 @@
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
                    Grid.Row="0"
-                   Grid.Column="6"
+                   Grid.Column="7"
                    FontSize="15"
                    FontFamily="montserrat"
                    Margin="0,0,0,30"/>
         <Button x:Name="CategoriasCarroWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="6" Click="CategoriasCarroWindowBtn_Click">
+                Grid.Column="7" Click="CategoriasCarroWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Mostrar categorias" />
@@ -298,14 +319,14 @@
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"
                 Grid.Row="0"
-                Grid.Column="7"
+                Grid.Column="8"
                 FontSize="15"
                 FontFamily="montserrat"
                 Margin="0,0,0,30"/>
         <Button x:Name="FormasPagtoWindowBtn"
                 Margin="30, 30, 30, 60"
                 Grid.Row="0"
-                Grid.Column="7" Click="FormasPagtoWindowBtn_Click">
+                Grid.Column="8" Click="FormasPagtoWindowBtn_Click">
             <Button.ToolTip>
                 <ToolTip>
                     <TextBlock Text="Mostrar categorias" />

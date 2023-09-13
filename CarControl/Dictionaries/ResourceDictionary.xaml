@@ -47,10 +47,16 @@
                 <Setter Property="Foreground" Value="Black"/>
             </Trigger>
             <DataTrigger Binding="{Binding EmAndamento}" Value="True">
-                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Foreground" Value="#3393df" />
             </DataTrigger>
             <DataTrigger Binding="{Binding EmAndamento}" Value="False">
+                <Setter Property="Foreground" Value="Black" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding EmAberto}" Value="True">
                 <Setter Property="Foreground" Value="#3393df" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding EmAberto}" Value="False">
+                <Setter Property="Foreground" Value="Black" />
             </DataTrigger>
         </Style.Triggers>
         <Style.Resources>
