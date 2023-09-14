@@ -143,11 +143,27 @@ namespace CarControl
             {
                 ModelosCarroWindowBtn_Click(sender, e);
             }
+            if (Keyboard.IsKeyDown(Key.L) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                ClientesWindowBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.A) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                AluguelWindowBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.D) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                DevolucaoWindowBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.R) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                RecebimentoWindowBtn_Click(sender, e);
+            }
             if (Keyboard.IsKeyDown(Key.F) && (Keyboard.IsKeyDown(Key.LeftAlt)))
             {
                 FabricantesCarroWindowBtn_Click(sender, e);
             }
-            if (Keyboard.IsKeyDown(Key.A) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            if (Keyboard.IsKeyDown(Key.T) && (Keyboard.IsKeyDown(Key.LeftAlt)))
             {
                 CategoriasCarroWindowBtn_Click(sender, e);
             }

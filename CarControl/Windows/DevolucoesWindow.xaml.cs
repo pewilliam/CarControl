@@ -4,6 +4,7 @@ using Npgsql;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -103,6 +104,10 @@ namespace CarControl.Windows
             if (e.Key == System.Windows.Input.Key.Escape)
             {
                 Close();
+            }
+            if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                NovaDevolucaoBtn_Click(sender, e);
             }
         }
 

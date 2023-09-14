@@ -73,6 +73,10 @@ namespace CarControl.Windows
             {
                 Close();
             }
+            if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            {
+                novoClienteBtn_Click(sender, e);
+            }
         }
 
         private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)

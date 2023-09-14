@@ -1,9 +1,7 @@
 ﻿using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -231,6 +229,18 @@ namespace CarControl.Windows
             if (e.Key == Key.Escape)
             {
                 Close();
+            }
+            if (Keyboard.IsKeyDown(Key.F4) && IdClienteTxb.IsFocused)
+            {
+                ProcurarClienteBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.F4) && IdModeloTxb.IsFocused)
+            {
+                ProcurarModeloBtn_Click(sender, e);
+            }
+            if (Keyboard.IsKeyDown(Key.F4) && IdFormaPagtoTxb.IsFocused)
+            {
+                ProcurarFormaPagtoBtn_Click(sender, e);
             }
         }
 

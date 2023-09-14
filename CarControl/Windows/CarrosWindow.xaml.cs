@@ -22,6 +22,7 @@ namespace CarControl.Windows
             InitializeComponent();
             conn = connection;
             MostrarCarros();
+            searchCarTxb.Focus();
         }
 
         private void MostrarCarros()
