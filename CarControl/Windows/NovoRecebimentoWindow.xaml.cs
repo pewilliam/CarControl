@@ -10,14 +10,14 @@ using System.Windows.Controls;
 namespace CarControl.Windows
 {
     /// <summary>
-    /// Lógica interna para RecebimentosWindow.xaml
+    /// Lógica interna para NovoRecebimentoWindow.xaml
     /// </summary>
-    public partial class RecebimentosWindow : MetroWindow
+    public partial class NovoRecebimentoWindow : MetroWindow
     {
         NpgsqlConnection conn = new();
         List<Recebimento> recebimentoList = new();
 
-        public RecebimentosWindow(NpgsqlConnection connection)
+        public NovoRecebimentoWindow(NpgsqlConnection connection)
         {
             conn = connection;
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace CarControl.Windows
         {
             dg.ItemsSource = null;
             recebimentoList.Clear();
-            string sql = ($"SELECT idrecebimento, nome_cliente, valororiginal, valorrecebido, recebimento_dia_previsto, dhrecebimento, em_aberto FROM vw_recebimento ORDER BY idrecebimento;");
+            string sql = ($"SELECT idrecebimento, nome_cliente, valororiginal, valorrecebido, recebimento_dia_previsto, dhrecebimento, em_aberto FROM vw_recebimento WHERE em_aberto = TRUE ORDER BY idrecebimento;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -36,7 +36,7 @@ namespace CarControl.Windows
                 while (reader.Read())
                 {
                     #region lendo alugueis
-                    Recebimento recebimento= new(
+                    Recebimento recebimento = new(
                         reader.GetInt32(0),
                         reader.GetString(1),
                         reader.GetDouble(2),
@@ -124,12 +124,29 @@ namespace CarControl.Windows
             Close();
         }
 
-        private void NovoRecebimentoBtn_Click(object sender, RoutedEventArgs e)
+        private void ReceberBtn_Click(object sender, RoutedEventArgs e)
         {
-            NovoRecebimentoWindow novoRecebimentoWindow = new NovoRecebimentoWindow(conn);
-            novoRecebimentoWindow.ShowDialog();
-            novoRecebimentoWindow.Owner = this;
-            MostrarRecebimentos();
+            Recebimento r = dg.SelectedItem as Recebimento;
+            if (r is not null)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show("Deseja confirmar recebimento?", "Confirmar recebimento", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    double valorRecebido = r.ValorOriginal;
+                    int idrecebimento = r.IdRecebimento;
+                    var dhRecebimento = DateTime.Now;
+                    string sql = $"UPDATE carcontrol.recebimento SET valorrecebido = {valorRecebido}, dhrecebimento = '{dhRecebimento.ToString("dd-MM-yyyy HH:mm:ss")}', em_aberto = FALSE WHERE idrecebimento = {idrecebimento};";
+
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Recebimento efetuado com sucesso!", "Recebimento concluído");
+                    Close();
+                }
+                else
+                {
+                    Close();
+                }
+            }
         }
     }
 }

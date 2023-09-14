@@ -1,13 +1,11 @@
-﻿<Controls:MetroWindow
-        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
-        x:Class="CarControl.Windows.RecebimentosWindow"
+﻿<Controls:MetroWindow  xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" x:Class="CarControl.Windows.NovoRecebimentoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="Recebimentos" Height="600" Width="1280"
+        Title="Novo Recebimento" Height="550" Width="1200"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
         ResizeMode="CanMinimize"
@@ -167,18 +165,17 @@
                VerticalContentAlignment="Bottom"
                HorizontalContentAlignment="Left"
                Grid.Row="2"
-               Grid.Column="0"/>    
+               Grid.Column="0"/>
 
-        <Button x:Name="NovoRecebimentoBtn"
-                Content="Novo"
+        <Button x:Name="ReceberBtn"
+                Content="Receber"
                 Grid.Row="2"
                 Grid.Column="3"
-                Margin="8" Click="NovoRecebimentoBtn_Click"/>
-        <Button x:Name="FecharDevolucaoWindowBtn"
+                Margin="8" Click="ReceberBtn_Click"/>
+        <Button x:Name="FecharRecebimentoWindowBtn"
                 Content="Fechar"
                 Grid.Row="2"
                 Grid.Column="4"
                 Margin="8" Click="FecharRecebimentoWindowBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>
-

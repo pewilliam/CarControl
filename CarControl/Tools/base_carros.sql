@@ -441,9 +441,10 @@ DECLARE
 	preco_dia numeric(18,2);
 	dh_aluguel date;
 	recebimento_dia_previsto date;
+    em_aberto_boolean boolean;
 BEGIN
-	SELECT r.recebimento_dia_previsto, r.valororiginal
-    INTO recebimento_dia_previsto, valor_original
+	SELECT r.recebimento_dia_previsto, r.valororiginal, r.em_aberto
+    INTO recebimento_dia_previsto, valor_original, em_aberto_boolean
     FROM recebimento r
     LEFT JOIN devolucao d ON d.idaluguel = r.idaluguel;
 	
@@ -472,12 +473,18 @@ BEGIN
     END IF;
 
     -- Atualize o registro correspondente na tabela de recebimento
-    UPDATE carcontrol.recebimento
-    SET iddevolucao = NEW.iddevolucao,
-		valorrecebido = valor_atualizado,
-        dhrecebimento = NEW.dhdevolucao,
-        em_aberto = FALSE
-    WHERE idaluguel = NEW.idaluguel;
+    IF em_aberto_boolean THEN
+        UPDATE carcontrol.recebimento
+        SET iddevolucao = NEW.iddevolucao,
+            valorrecebido = valor_atualizado,
+            dhrecebimento = NEW.dhdevolucao,
+            em_aberto = FALSE
+        WHERE idaluguel = NEW.idaluguel;
+    ELSE
+        UPDATE carcontrol.recebimento
+        SET iddevolucao = NEW.iddevolucao
+        WHERE idaluguel = NEW.idaluguel;
+    END IF;
 
     RETURN NEW;
 END;
