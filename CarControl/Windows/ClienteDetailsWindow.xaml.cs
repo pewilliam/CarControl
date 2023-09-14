@@ -40,6 +40,10 @@ namespace CarControl.Windows
             {
                 Close();
             }
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                AtualizarClienteBtn_Click(sender, e);
+            }
         }
 
         private void FecharClienteWindowBtn_Click(object sender, RoutedEventArgs e)
