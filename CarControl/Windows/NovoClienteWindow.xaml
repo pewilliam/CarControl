@@ -46,15 +46,14 @@
         <TextBox x:Name="CpfTxb"
                  Controls:TextBoxHelper.Watermark="CPF"
                  Grid.ColumnSpan="2"
-                 MaxLength="11"
+                 MaxLength="14"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="1"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
-                 LostFocus="CpfTxb_LostFocus"
-                 GotFocus="CpfTxb_GotFocus"/>
+                 TextChanged="CpfTxb_TextChanged"/>
         
         <TextBox x:Name="EmailTxb"
                  Controls:TextBoxHelper.Watermark="E-mail"
@@ -66,18 +65,19 @@
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
                  />
-        
-        <DatePicker x:Name="DataNascimentoTxb"
+
+        <TextBox x:Name="DataNascimentoTextBox"
                  Controls:TextBoxHelper.Watermark="Data de Nascimento"
                  Grid.ColumnSpan="2"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="3"
+                 MaxLength="10"
                  Margin="8"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
-                 KeyUp="DataNascimentoTxb_KeyUp"/>
-
+                 TextChanged="DataNascimentoTextBox_TextChanged"/>
+        
         <Button x:Name="SalvarNovoClienteBtn"
                 Content="Salvar"
                 FontSize="20"

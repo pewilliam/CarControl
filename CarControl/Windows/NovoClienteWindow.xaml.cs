@@ -1,9 +1,11 @@
 ﻿using MahApps.Metro.Controls;
 using Npgsql;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -12,6 +14,8 @@ namespace CarControl.Windows
     /// </summary>
     public partial class NovoClienteWindow : MetroWindow
     {
+        private string previousCpf = "";
+        private string previousDate = "";
         NpgsqlConnection conn = new NpgsqlConnection();
 
         public NovoClienteWindow(NpgsqlConnection connection)
@@ -21,36 +25,40 @@ namespace CarControl.Windows
             NomeClienteTxb.Focus();
         }
 
-        private void CpfTxb_GotFocus(object sender, RoutedEventArgs e)
+        public string FormatCPF(string sender, string previousText)
         {
-            if (CpfTxb.Text != string.Empty)
+            string response = sender.Trim();
+            if (response != string.Empty)
             {
-                CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray());
-                CpfTxb.CaretIndex = CpfTxb.Text.Length;
+                if (response.Length == 3 && previousText.Length < 3)
+                    response = response.Insert(3, ".");
+                if (response.Length == 7 && previousText.Length < 7)
+                    response = response.Insert(7, ".");
+                if (response.Length == 11 && previousText.Length < 11)
+                    response = response.Insert(11, "-");
             }
+            return response;
         }
 
-        private void CpfTxb_LostFocus(object sender, RoutedEventArgs e)
+        public string FormatDate(string sender, string previousText)
         {
-            if (CpfTxb.Text != string.Empty)
+            string response = sender.Trim();
+            if (response != string.Empty)
             {
-                if (long.TryParse(CpfTxb.Text, out long CPF) && CpfTxb.Text.Length == 11)
-                {
-                    string CPFFormatado = string.Format(@"{0:000\.000\.000\-00}", CPF);
-                    CpfTxb.Text = CPFFormatado;
-                }
-                else
-                {
-                    MessageBox.Show("CPF inválido");
-                }
+                if (response.Length == 2 && previousText.Length < 2)
+                    response = response.Insert(2, "/");
+                if (response.Length == 5 && previousText.Length < 5)
+                    response = response.Insert(5, "/");
             }
+            return response;
         }
+
 
         private void SalvarNovoClienteBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampo())
             {
-                string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{NomeClienteTxb.Text}'), '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', '{EmailTxb.Text}', '{DataNascimentoTxb.Text}')";
+                string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{NomeClienteTxb.Text}'), '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', '{EmailTxb.Text}', '{DataNascimentoTextBox.Text}')";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 try
                 {
@@ -99,7 +107,7 @@ namespace CarControl.Windows
                 MessageBox.Show("Preencha o e-mail do cliente!", "Preenchimento");
                 return false;
             }
-            if (string.IsNullOrEmpty(DataNascimentoTxb.Text))
+            if (string.IsNullOrEmpty(DataNascimentoTextBox.Text))
             {
                 MessageBox.Show("Preencha a data de nascimento do cliente!", "Preenchimento");
                 return false;
@@ -107,16 +115,22 @@ namespace CarControl.Windows
             return true;
         }
 
-        private void DataNascimentoTxb_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void CpfTxb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DatePicker dt = (DatePicker)sender;
-            string justNumbers = new String(dt.Text.Where(Char.IsDigit).ToArray());
-            if (justNumbers.Length == 8)
-            {
-                string newDate = justNumbers.Insert(2, "/").Insert(5, "/");
+            string currentText = CpfTxb.Text;
+            CpfTxb.Text = FormatCPF(currentText, previousCpf);
+            CpfTxb.CaretIndex = CpfTxb.Text.Length;
 
-                dt.SelectedDate = DateTime.Parse(newDate);
-            }
+            previousCpf = currentText;
+        }
+
+        private void DataNascimentoTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string currentText = DataNascimentoTextBox.Text;
+            DataNascimentoTextBox.Text = FormatDate(currentText, previousDate);
+            DataNascimentoTextBox.CaretIndex = DataNascimentoTextBox.Text.Length;
+
+            previousDate = currentText;
         }
     }
 }

@@ -3,6 +3,7 @@ using Npgsql;
 using MahApps.Metro.Controls;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace CarControl.Windows
 {
@@ -11,6 +12,8 @@ namespace CarControl.Windows
     /// </summary>
     public partial class ClienteDetailsWindow : MetroWindow
     {
+        private string previousCpf = "";
+        private string previousDate = "";
         NpgsqlConnection conn = new NpgsqlConnection();
 
         public ClienteDetailsWindow(NpgsqlConnection connection, Cliente cliente)
@@ -25,32 +28,7 @@ namespace CarControl.Windows
             NomeClienteTxb.Text = cliente.Nome;
             CpfTxb.Text = cliente.Cpf;
             EmailTxb.Text = cliente.Email;
-            DataNascimentoTxb.Text = cliente.DtNascimento.ToString();
-        }
-
-        private void CpfTxb_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (CpfTxb.Text != string.Empty)
-            {
-                CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray());
-                CpfTxb.CaretIndex = CpfTxb.Text.Length;
-            }
-        }
-
-        private void CpfTxb_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(CpfTxb.Text))
-            {
-                if (long.TryParse(CpfTxb.Text, out long CPF) && CpfTxb.Text.Length == 11)
-                {
-                    string CPFFormatado = string.Format(@"{0:000\.000\.000\-00}", CPF);
-                    CpfTxb.Text = CPFFormatado;
-                }
-                else
-                {
-                    MessageBox.Show("CPF inválido");
-                }
-            }
+            DataNascimentoTextBox.Text = cliente.DtNascimento.ToString("dd/MM/yyyy");
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -64,6 +42,52 @@ namespace CarControl.Windows
         private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void CpfTxb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string currentText = CpfTxb.Text;
+            CpfTxb.Text = FormatCPF(currentText, previousCpf);
+            CpfTxb.CaretIndex = CpfTxb.Text.Length;
+
+            previousCpf = currentText;
+        }
+
+        private void DataNascimentoTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string currentText = DataNascimentoTextBox.Text;
+            DataNascimentoTextBox.Text = FormatDate(currentText, previousDate);
+            DataNascimentoTextBox.CaretIndex = DataNascimentoTextBox.Text.Length;
+
+            previousDate = currentText;
+        }
+
+        public string FormatCPF(string sender, string previousText)
+        {
+            string response = sender.Trim();
+            if (response != string.Empty)
+            {
+                if (response.Length == 3 && previousText.Length < 3)
+                    response = response.Insert(3, ".");
+                if (response.Length == 7 && previousText.Length < 7)
+                    response = response.Insert(7, ".");
+                if (response.Length == 11 && previousText.Length < 11)
+                    response = response.Insert(11, "-");
+            }
+            return response;
+        }
+
+        public string FormatDate(string sender, string previousText)
+        {
+            string response = sender.Trim();
+            if (response != string.Empty)
+            {
+                if (response.Length == 2 && previousText.Length < 2)
+                    response = response.Insert(2, "/");
+                if (response.Length == 5 && previousText.Length < 5)
+                    response = response.Insert(5, "/");
+            }
+            return response;
         }
     }
 }

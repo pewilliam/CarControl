@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="ClienteDetailsWindow" Height="450" Width="500"
+        Title="Cliente" Height="450" Width="350"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         KeyDown="Window_KeyDown">
@@ -47,13 +47,12 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                MaxLength="11"
+                MaxLength="14"
                 FontSize="20"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Margin="10"
-                LostFocus="CpfTxb_LostFocus"
-                GotFocus="CpfTxb_GotFocus"
+                 TextChanged="CpfTxb_TextChanged"
                 />
 
         <TextBox x:Name="EmailTxb"
@@ -66,17 +65,18 @@
                 HorizontalContentAlignment="Center"
                 Margin="10" MaxLength="1"/>
 
-        <DatePicker x:Name="DataNascimentoTxb"
-                Controls:TextBoxHelper.Watermark="Data de Nascimento"
-                Grid.Row="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                FontSize="20"
-                VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center"
-                Margin="10"/>
+        <TextBox x:Name="DataNascimentoTextBox"
+                 Controls:TextBoxHelper.Watermark="Data de Nascimento"
+                 Grid.ColumnSpan="2"
+                 FontFamily="Montserrat"
+                 FontSize="20"
+                 Grid.Row="3"
+                 MaxLength="10"
+                 Margin="8"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 TextChanged="DataNascimentoTextBox_TextChanged"/>
 
-        
         <Button x:Name="SalvarNovoModeloBtn"
                     Content="Salvar"
                     FontSize="20"
