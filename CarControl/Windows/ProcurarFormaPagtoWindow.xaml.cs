@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,6 +23,7 @@ namespace CarControl.Windows
             conn = connection;
             InitializeComponent();
             MostrarFormasPagto();
+            SearchFormaPagtoTxb.Focus();
         }
 
         private void MostrarFormasPagto()
@@ -97,6 +99,21 @@ namespace CarControl.Windows
             if (e.Key == Key.Enter)
             {
                 abrirFormaPagtoBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
+            }
+        }
+
+        private void SearchFormaPagtoTxb_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            var txb = sender as TextBox;
+            if (txb.Text == null)
+            {
+                MostrarFormasPagto();
+            }
+            else
+            {
+                var filteredList = formaPagtoList.Where(x => x.Nome.Contains(txb.Text));
+                dg.ItemsSource = null;
+                dg.ItemsSource = filteredList;
             }
         }
     }

@@ -23,7 +23,6 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -54,16 +53,28 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
+        <TextBox x:Name="SearchFormaPagtoTxb"
+                 Controls:TextBoxHelper.Watermark="Pesquisar"
+                 CharacterCasing="Upper"
+                 Grid.Row="1"
+                 Grid.Column="0"
+                 Margin="8" 
+                 FontFamily="Montserrat"
+                 FontSize="20"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 TextChanged="SearchFormaPagtoTxb_TextChanged"/>
+
         <Button x:Name="novaFormaPagtoBtn"
                 Content="Novo"
                 Grid.Row="1"
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="8" Click="novaFormaPagtoBtn_Click"/>
 
         <Button x:Name="fecharBtn"
                 Content="Fechar"
                 Grid.Row="1"
-                Grid.Column="3"
+                Grid.Column="2"
                 Margin="8" Click="fecharBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>

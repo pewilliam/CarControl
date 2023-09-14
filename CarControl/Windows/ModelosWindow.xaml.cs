@@ -238,7 +238,7 @@ namespace CarControl
             }
             else
             {
-                var filteredList = modeloList.Where(x => x.Nome.ToLower().Contains(txb.Text.ToLower()));
+                var filteredList = modeloList.Where(x => x.Nome.Contains(txb.Text));
                 dg.ItemsSource = null;
                 dg.ItemsSource = filteredList;
             }

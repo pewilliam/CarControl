@@ -4,6 +4,8 @@ using Npgsql;
 using System.Windows;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Windows.Controls;
+using System.Linq;
 
 namespace CarControl.Windows
 {
@@ -20,6 +22,7 @@ namespace CarControl.Windows
             conn = connection;
             InitializeComponent();
             MostrarFormasPagto();
+            SearchFormaPagtoTxb.Focus();
         }
 
         private void MostrarFormasPagto()
@@ -69,6 +72,21 @@ namespace CarControl.Windows
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void SearchFormaPagtoTxb_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            var txb = sender as TextBox;
+            if (txb.Text == null)
+            {
+                MostrarFormasPagto();
+            }
+            else
+            {
+                var filteredList = formaPagtoList.Where(x => x.Nome.Contains(txb.Text));
+                dg.ItemsSource = null;
+                dg.ItemsSource = filteredList;
+            }
         }
     }
 }

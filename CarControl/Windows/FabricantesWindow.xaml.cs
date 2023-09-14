@@ -2,7 +2,9 @@
 using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace CarControl.Windows
@@ -20,6 +22,7 @@ namespace CarControl.Windows
             InitializeComponent();
             conn = connection;
             MostrarFabricantes();
+            SearchFabricanteTxb.Focus();
         }
 
         private void MostrarFabricantes()
@@ -69,6 +72,21 @@ namespace CarControl.Windows
             novoFabricanteWindow.ShowDialog();
             novoFabricanteWindow.Owner = this;
             MostrarFabricantes();
+        }
+
+        private void SearchFabricanteTxb_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            var txb = sender as TextBox;
+            if (txb.Text == null)
+            {
+                MostrarFabricantes();
+            }
+            else
+            {
+                var filteredList = fabricantesList.Where(x => x.Nome.Contains(txb.Text));
+                dg.ItemsSource = null;
+                dg.ItemsSource = filteredList;
+            }
         }
     }
 }

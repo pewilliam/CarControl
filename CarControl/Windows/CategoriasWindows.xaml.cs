@@ -2,7 +2,9 @@
 using MahApps.Metro.Controls;
 using Npgsql;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace CarControl.Windows
@@ -20,6 +22,7 @@ namespace CarControl.Windows
             InitializeComponent();
             conn = connection;
             MostrarCategorias();
+            SearchCategoriaTxb.Focus();
         }
 
         private void MostrarCategorias()
@@ -69,6 +72,21 @@ namespace CarControl.Windows
             novaCategoriaWindow.ShowDialog();
             novaCategoriaWindow.Owner = this;
             MostrarCategorias();
+        }
+
+        private void SearchCategoriaTxb_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            var txb = sender as TextBox;
+            if (txb.Text == null)
+            {
+                MostrarCategorias();
+            }
+            else
+            {
+                var filteredList = categoriaList.Where(x => x.Nome.Contains(txb.Text));
+                dg.ItemsSource = null;
+                dg.ItemsSource = filteredList;
+            }
         }
     }
 }

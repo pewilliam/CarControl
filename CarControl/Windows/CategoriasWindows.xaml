@@ -62,7 +62,8 @@
                  FontFamily="Montserrat"
                  FontSize="20"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"/>
+                 HorizontalContentAlignment="Center"
+                 TextChanged="SearchCategoriaTxb_TextChanged"/>
 
         <Button x:Name="NovaCategoriaBtn"
                 Content="Novo"

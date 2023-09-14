@@ -23,6 +23,7 @@ namespace CarControl.Windows
             conn = connection;
             InitializeComponent();
             MostrarClientes();
+            searchClienteTxb.Focus();
         }
 
         private void MostrarClientes()
