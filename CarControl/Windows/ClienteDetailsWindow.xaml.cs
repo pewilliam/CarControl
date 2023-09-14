@@ -37,13 +37,10 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
-            {
                 Close();
-            }
+
             if (e.Key == System.Windows.Input.Key.Enter)
-            {
                 AtualizarClienteBtn_Click(sender, e);
-            }
         }
 
         private void FecharClienteWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -76,8 +73,10 @@ namespace CarControl.Windows
             {
                 if (response.Length == 3 && previousText.Length < 3)
                     response = response.Insert(3, ".");
+
                 if (response.Length == 7 && previousText.Length < 7)
                     response = response.Insert(7, ".");
+
                 if (response.Length == 11 && previousText.Length < 11)
                     response = response.Insert(11, "-");
             }
@@ -91,6 +90,7 @@ namespace CarControl.Windows
             {
                 if (response.Length == 2 && previousText.Length < 2)
                     response = response.Insert(2, "/");
+
                 if (response.Length == 5 && previousText.Length < 5)
                     response = response.Insert(5, "/");
             }
