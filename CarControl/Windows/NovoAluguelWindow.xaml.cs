@@ -248,7 +248,7 @@ namespace CarControl.Windows
         {
             if (e.Key == Key.Enter)
             {
-                SalvarNovoAluguelBtn_Click(null, null);
+                SalvarNovoAluguelBtn_Click(sender, e);
             }
         }
 
