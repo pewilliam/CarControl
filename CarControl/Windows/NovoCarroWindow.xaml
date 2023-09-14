@@ -32,6 +32,7 @@
         
         <TextBox x:Name="NomeCarroTxb"
                  Controls:TextBoxHelper.Watermark="Nome"
+                 CharacterCasing="Upper"
                  FontFamily="montserrat"
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"

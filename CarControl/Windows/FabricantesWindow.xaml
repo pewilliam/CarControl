@@ -55,6 +55,7 @@
 
         <TextBox x:Name="SearchFabricanteTxb"
                  Controls:TextBoxHelper.Watermark="Pesquisar"
+                 CharacterCasing="Upper"
                  Grid.Row="1"
                  Grid.Column="0"
                  Margin="8" 

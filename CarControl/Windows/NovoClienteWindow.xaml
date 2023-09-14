@@ -34,6 +34,7 @@
 
         <TextBox x:Name="NomeClienteTxb"
                  Controls:TextBoxHelper.Watermark="Nome"
+                 CharacterCasing="Upper"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="0"
@@ -58,6 +59,7 @@
         <TextBox x:Name="EmailTxb"
                  Controls:TextBoxHelper.Watermark="E-mail"
                  Grid.ColumnSpan="2"
+                 CharacterCasing="Lower"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="2"

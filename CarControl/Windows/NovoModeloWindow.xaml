@@ -70,6 +70,7 @@
                  HorizontalContentAlignment="Center"/>
         <TextBox x:Name="ModeloTxb"
                  Controls:TextBoxHelper.Watermark="Modelo"
+                 CharacterCasing="Upper"
                  Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
@@ -79,6 +80,7 @@
                  HorizontalContentAlignment="Center"/>
         <TextBox x:Name="CorTxb"
                  Controls:TextBoxHelper.Watermark="Cor"
+                 CharacterCasing="Upper"
                  Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
@@ -112,6 +114,7 @@
                  />
         <TextBox x:Name="CombustívelTxb"
                  Controls:TextBoxHelper.Watermark="Combustível"
+                 CharacterCasing="Upper"
                  Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
@@ -123,6 +126,7 @@
                  />
         <TextBox x:Name="PlacaTxb"
                  Controls:TextBoxHelper.Watermark="Placa"
+                 CharacterCasing="Upper"
                  Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"
@@ -143,6 +147,7 @@
                  />
         <TextBox x:Name="CambioTxb"
                  Controls:TextBoxHelper.Watermark="Câmbio"
+                 CharacterCasing="Upper"
                  Grid.ColumnSpan="6"
                  FontFamily="Montserrat"
                  FontSize="20"

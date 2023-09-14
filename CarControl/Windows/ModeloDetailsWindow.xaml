@@ -41,6 +41,7 @@
 
             <TextBox x:Name="NomeModeloTxb"
                      Controls:TextBoxHelper.Watermark="Nome"
+                     CharacterCasing="Upper"
                      Grid.Row="0"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"
@@ -51,6 +52,7 @@
 
             <TextBox x:Name="CorTxb"
                      Controls:TextBoxHelper.Watermark="Cor"
+                     CharacterCasing="Upper"
                      Grid.Row="0"
                      Grid.Column="2"
                      Grid.ColumnSpan="2"
@@ -73,7 +75,7 @@
                      PreviewTextInput="PreviewNumberInput" MaxLength="1"/>
 
             <TextBox x:Name="PassageirosTxb"
-                     Controls:TextBoxHelper.Watermark="Portas"
+                     Controls:TextBoxHelper.Watermark="Passageiros"
                      Grid.Row="1"
                      Grid.Column="2"
                      Grid.ColumnSpan="2"
@@ -85,6 +87,7 @@
 
             <TextBox x:Name="CombustívelTxb"
                      Controls:TextBoxHelper.Watermark="Combustível"
+                     CharacterCasing="Upper"
                      Grid.Row="2"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"
@@ -96,6 +99,7 @@
 
             <TextBox x:Name="PlacaTxb"
                      Controls:TextBoxHelper.Watermark="Placa"
+                     CharacterCasing="Upper"
                      Grid.Row="2"
                      Grid.Column="2"
                      Grid.ColumnSpan="2"

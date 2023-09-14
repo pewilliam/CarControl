@@ -34,6 +34,7 @@
 
         <TextBox x:Name="NomeClienteTxb"
                 Controls:TextBoxHelper.Watermark="Nome"
+                CharacterCasing="Upper"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
@@ -43,7 +44,7 @@
                 Margin="10"/>
 
         <TextBox x:Name="CpfTxb"
-                Controls:TextBoxHelper.Watermark="Cor"
+                Controls:TextBoxHelper.Watermark="CPF"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
@@ -57,6 +58,7 @@
 
         <TextBox x:Name="EmailTxb"
                 Controls:TextBoxHelper.Watermark="E-mail"
+                 CharacterCasing="Lower"
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"

@@ -185,6 +185,7 @@
 
         <TextBox x:Name="SearchModeloTxb"
                  Controls:TextBoxHelper.Watermark="Pesquisar"
+                 CharacterCasing="Upper"
                  Grid.Row="2"
                  Grid.Column="2"
                  VerticalContentAlignment="Center"
