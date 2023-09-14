@@ -77,17 +77,17 @@
                  HorizontalContentAlignment="Center"
                  TextChanged="DataNascimentoTextBox_TextChanged"/>
 
-        <Button x:Name="SalvarNovoModeloBtn"
+        <Button x:Name="AtualizarClienteBtn"
                     Content="Salvar"
                     FontSize="20"
                     Grid.Column="0"
                     Grid.Row="4"
-                    Margin="8" />
-        <Button x:Name="FecharNovoModeloWindowBtn"
+                    Margin="8" Click="AtualizarClienteBtn_Click" />
+        <Button x:Name="FecharClienteWindowBtn"
                     Content="Fechar"
                     FontSize="20"
                     Grid.Column="1"
                     Grid.Row="4"
-                    Margin="8" Click="FecharNovoModeloWindowBtn_Click"/>
+                    Margin="8" Click="FecharClienteWindowBtn_Click"/>
     </Grid>
 </Controls:MetroWindow>

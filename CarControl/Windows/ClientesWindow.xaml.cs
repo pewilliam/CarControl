@@ -104,6 +104,7 @@ namespace CarControl.Windows
                 ClienteDetailsWindow clienteDetailsWindow = new ClienteDetailsWindow(conn, c);
                 clienteDetailsWindow.ShowDialog();
                 clienteDetailsWindow.Owner = this;
+                MostrarClientes();
             }
         }
 
@@ -114,6 +115,7 @@ namespace CarControl.Windows
                 ClienteDetailsWindow clienteDetailsWindow = new ClienteDetailsWindow(conn, selectedItem);
                 clienteDetailsWindow.ShowDialog();
                 clienteDetailsWindow.Owner = this;
+                MostrarClientes();
             }
         }
     }

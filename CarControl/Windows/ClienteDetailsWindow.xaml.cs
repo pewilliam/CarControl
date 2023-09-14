@@ -4,6 +4,7 @@ using MahApps.Metro.Controls;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System;
 
 namespace CarControl.Windows
 {
@@ -15,10 +16,12 @@ namespace CarControl.Windows
         private string previousCpf = "";
         private string previousDate = "";
         NpgsqlConnection conn = new NpgsqlConnection();
+        Cliente cliente;
 
-        public ClienteDetailsWindow(NpgsqlConnection connection, Cliente cliente)
+        public ClienteDetailsWindow(NpgsqlConnection connection, Cliente client)
         {
             conn = connection;
+            cliente = client;
             InitializeComponent();
             MostrarDetalhes(cliente);
         }
@@ -39,7 +42,7 @@ namespace CarControl.Windows
             }
         }
 
-        private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
+        private void FecharClienteWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
@@ -88,6 +91,23 @@ namespace CarControl.Windows
                     response = response.Insert(5, "/");
             }
             return response;
+        }
+
+        private void AtualizarClienteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string sql = $"UPDATE cliente SET cpf = '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', email = '{EmailTxb.Text}', dtnascimento = '{DataNascimentoTextBox.Text}' WHERE idcliente = {cliente.IdCliente};";
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Cliente atualizado com sucesso!", "Concluído");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro");
+            }
         }
     }
 }
