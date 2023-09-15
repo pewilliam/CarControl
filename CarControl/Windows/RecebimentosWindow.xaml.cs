@@ -74,8 +74,8 @@ namespace CarControl.Windows
                     idModeloLabel.Content = idModeloLabel.Content + reader.GetInt32(7).ToString();
                     nomeModeloLabel.Content = nomeModeloLabel.Content + reader.GetString(8);
                     valorOriginalLabel.Content = valorOriginalLabel.Content + reader.GetDouble(9).ToString("C");
-                    valorRecebidoLabel.Content = valorRecebidoLabel.Content + (reader.IsDBNull(3) ? null : reader.GetDouble(10).ToString("C"));
-                    dhRecebimentoLabel.Content = dhRecebimentoLabel.Content + (reader.IsDBNull(3) ? null : reader.GetDateTime(11).ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture));
+                    valorRecebidoLabel.Content = valorRecebidoLabel.Content + (reader.IsDBNull(10) ? null : reader.GetDouble(10).ToString("C"));
+                    dhRecebimentoLabel.Content = dhRecebimentoLabel.Content + (reader.IsDBNull(11) ? null : reader.GetDateTime(11).ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture));
                     if (reader.GetBoolean(12))
                         emAbertoLabel.Content = emAbertoLabel.Content + "Sim";
                     else

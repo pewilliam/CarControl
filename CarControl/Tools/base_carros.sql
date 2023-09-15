@@ -446,17 +446,17 @@ BEGIN
 	SELECT r.recebimento_dia_previsto, r.valororiginal, r.em_aberto
     INTO recebimento_dia_previsto, valor_original, em_aberto_boolean
     FROM recebimento r
-    LEFT JOIN devolucao d ON d.idaluguel = r.idaluguel;
+    WHERE r.idaluguel = NEW.idaluguel;
 	
 	SELECT m.precodia
 	INTO preco_dia
 	FROM modelo m
-	LEFT JOIN devolucao d ON d.idmodelo = m.idmodelo;
+	WHERE m.idmodelo = NEW.idmodelo;
 	
 	SELECT dhaluguel
 	INTO dh_aluguel
 	FROM aluguel a
-	LEFT JOIN devolucao d ON a.idaluguel = d.idaluguel;
+	WHERE a.idaluguel = NEW.idaluguel;
 
     -- Calcule o valor atualizado com base nas regras especificadas
     IF NEW.dhdevolucao::DATE = dh_aluguel THEN
