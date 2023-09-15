@@ -99,7 +99,12 @@ namespace CarControl.Windows
 
         private void AtualizarClienteBtn_Click(object sender, RoutedEventArgs e)
         {
-            string sql = $"UPDATE cliente SET cpf = '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', email = '{EmailTxb.Text}', dtnascimento = '{DataNascimentoTextBox.Text}' WHERE idcliente = {cliente.IdCliente};";
+            string nomeCliente = NomeClienteTxb.Text.Trim();
+            string cpfCliente = new string(CpfTxb.Text.Where(char.IsDigit).ToArray());
+            string emailCliente = EmailTxb.Text.Trim();
+            string dtNascimento = DataNascimentoTextBox.Text;
+
+            string sql = $"UPDATE cliente SET nome = '{nomeCliente}', cpf = '{cpfCliente}', email = '{emailCliente}', dtnascimento = '{dtNascimento}' WHERE idcliente = {cliente.IdCliente};";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             try
