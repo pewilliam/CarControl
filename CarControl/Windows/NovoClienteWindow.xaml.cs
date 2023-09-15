@@ -58,7 +58,12 @@ namespace CarControl.Windows
         {
             if (ValidarCampo())
             {
-                string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{NomeClienteTxb.Text}'), '{CpfTxb.Text = new string(CpfTxb.Text.Where(char.IsDigit).ToArray())}', '{EmailTxb.Text}', '{DataNascimentoTextBox.Text}')";
+                string nomeCliente = NomeClienteTxb.Text.Trim();
+                string cpfCliente = new string(CpfTxb.Text.Where(char.IsDigit).ToArray());
+                string emailCliente = EmailTxb.Text.Trim();
+                string dtNascimento = DataNascimentoTextBox.Text;
+
+                string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{nomeCliente}'), '{cpfCliente}', '{emailCliente}', '{dtNascimento}')";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 try
                 {

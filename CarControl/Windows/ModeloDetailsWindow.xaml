@@ -103,6 +103,7 @@
                      Grid.Row="2"
                      Grid.Column="2"
                      Grid.ColumnSpan="2"
+                     MaxLength="7"
                      FontSize="20"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Center"

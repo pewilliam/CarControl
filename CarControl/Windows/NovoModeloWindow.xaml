@@ -128,6 +128,7 @@
                  Controls:TextBoxHelper.Watermark="Placa"
                  CharacterCasing="Upper"
                  Grid.ColumnSpan="6"
+                 MaxLength="7"
                  FontFamily="Montserrat"
                  FontSize="20"
                  Grid.Row="6"
