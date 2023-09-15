@@ -149,24 +149,6 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
-        <Label Content="Pago - Preto"
-               FontFamily="montserrat"
-               Foreground="Black"
-               FontSize="15"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Left"
-               Grid.Row="2"
-               Grid.Column="0"/>
-
-        <Label Content="Em aberto - Azul"
-               FontFamily="montserrat"
-               Foreground="#3393df"
-               FontSize="15"
-               VerticalContentAlignment="Bottom"
-               HorizontalContentAlignment="Left"
-               Grid.Row="2"
-               Grid.Column="0"/>
-
         <Button x:Name="ReceberBtn"
                 Content="Receber"
                 Grid.Row="2"
