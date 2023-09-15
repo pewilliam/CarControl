@@ -388,7 +388,8 @@ VALUES
     ('NISSAN'),
     ('FORD'),
     ('CHEVROLET'),
-    ('HONDA');
+    ('HONDA'),
+	('VOLKSWAGEN');
 
 INSERT INTO carcontrol.formapagto (idformapagto, nome)
 VALUES (1, 'DINHEIRO'),
