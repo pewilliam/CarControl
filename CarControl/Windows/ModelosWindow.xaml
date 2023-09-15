@@ -146,8 +146,8 @@
                 <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdModelo}"  />
                 <DataGridTextColumn Header="Modelo" Width="*" Binding="{Binding Nome}"  />
                 <DataGridTextColumn Header="Cor" Width="*" Binding="{Binding Cor}"  />
-                <DataGridTextColumn Header="Q. Portas" Width="*" Binding="{Binding QtdPortas}"  />
-                <DataGridTextColumn Header="Q. Passageiros" Width="*" Binding="{Binding QtdPassageiros}"  />
+                <DataGridTextColumn Header="Portas" Width="*" Binding="{Binding QtdPortas}"  />
+                <DataGridTextColumn Header="Passageiros" Width="*" Binding="{Binding QtdPassageiros}"  />
                 <DataGridTextColumn Header="Combustivel" Width="*" Binding="{Binding Combustivel}"  />
                 <DataGridTextColumn Header="Placa" Width="*" Binding="{Binding Placa}"  />
                 <DataGridTextColumn Header="Ano" Width="*" Binding="{Binding Ano}"  />
