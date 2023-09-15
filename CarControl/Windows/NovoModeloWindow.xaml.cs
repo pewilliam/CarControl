@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -192,24 +193,29 @@ namespace CarControl
         {
             if (IdCarroTxb.Text != string.Empty)
             {
-                IdCarro = int.Parse(IdCarroTxb.Text);
-                string sql = $"SELECT nome FROM carcontrol.carro WHERE idcarro = {IdCarroTxb.Text}";
+                int idCarro = int.Parse(IdCarroTxb.Text);
+                string sql = $"SELECT nome FROM carcontrol.carro WHERE idcarro = {idCarro}";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (!reader.HasRows)
                     {
-                        if (reader.GetString(0) == null)
+                        MessageBox.Show("Carro não existe! Cadastre um novo ou escolha algum existente.", "Carro não encontrado");
+                        IdCarroTxb.Text = string.Empty;
+                        NomeCarroTxb.Text = string.Empty;
+
+                        Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            MessageBox.Show("Carro não existe! Cadastre um novo ou escolha algum existente.", "Carro não encontrado");
                             IdCarroTxb.Focus();
-                        }
-                        else
-                        {
-                            NomeCarroTxb.Text = reader.GetString(0);
-                        }
+                        }));
                     }
+                    else
+                    {
+                        reader.Read(); // Ler a primeira (e única) linha
+                        NomeCarroTxb.Text = reader.GetString(0);
+                    }
+
                     reader.Close();
                 }
             }
@@ -233,6 +239,11 @@ namespace CarControl
                 }
                 ModeloTxb.Focus();
             }
+        }
+
+        private void IdCarroTxb_LostFocus_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
