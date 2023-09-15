@@ -27,7 +27,6 @@ namespace CarControl.Windows
                 txbUser.Text = ini.Read("LastUser");
                 txbPassword.Focus();
             }
-            
         }
 
         private void ConnectionDB(string login, string password)
@@ -50,7 +49,7 @@ namespace CarControl.Windows
             conn.Open();
         }
 
-        private void btnSalvar_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
             try
             {

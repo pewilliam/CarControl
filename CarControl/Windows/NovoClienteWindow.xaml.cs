@@ -1,11 +1,9 @@
 ﻿using MahApps.Metro.Controls;
 using Npgsql;
 using System;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace CarControl.Windows
 {

@@ -1,6 +1,5 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -66,11 +65,11 @@ namespace CarControl
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Escape)
+            if (e.Key == Key.Escape)
             {
                 Close();
             }
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 SalvarNovoModeloBtn_Click(sender, e);
             }
@@ -239,11 +238,6 @@ namespace CarControl
                 }
                 ModeloTxb.Focus();
             }
-        }
-
-        private void IdCarroTxb_LostFocus_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

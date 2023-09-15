@@ -92,7 +92,7 @@ namespace CarControl
             }
         }
 
-        private void NovoFabricanteBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void NovoFabricanteBtn_Click(object sender, RoutedEventArgs e)
         {
             NovoFabricanteWindow novoFabricanteWindow = new NovoFabricanteWindow(conn);
             novoFabricanteWindow.ShowDialog();
@@ -100,7 +100,7 @@ namespace CarControl
             PopulateFabricanteCB();
         }
 
-        private void NovaCategoriaBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void NovaCategoriaBtn_Click(object sender, RoutedEventArgs e)
         {
             NovaCategoriaWindow novaCategoriaWindow = new NovaCategoriaWindow(conn);
             novaCategoriaWindow.ShowDialog();
@@ -108,7 +108,7 @@ namespace CarControl
             PopulateCategoriaCB();
         }
 
-        private void SalvarNovoModeloBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void SalvarNovoModeloBtn_Click(object sender, RoutedEventArgs e)
         {
             #region obter campos
             string nomeModelo = NomeModeloTxb.Text.ToUpper();
@@ -177,9 +177,9 @@ namespace CarControl
             }
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Escape)
+            if (e.Key == Key.Escape)
             {
                 Close();
             }
@@ -195,7 +195,7 @@ namespace CarControl
             PrecoTxb.Text = (double.TryParse(PrecoTxb.Text, out amount)) ? amount.ToString("C") : string.Empty;
         }
 
-        private void FecharNovoModeloWindowBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void FecharNovoModeloWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

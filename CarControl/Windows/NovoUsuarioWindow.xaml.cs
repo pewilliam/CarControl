@@ -18,7 +18,7 @@ namespace CarControl.Windows
             conn = connection;
         }
 
-        private void btnSalvar_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
             string login = txbUser.Text;
             string password = txbPassword.Password;

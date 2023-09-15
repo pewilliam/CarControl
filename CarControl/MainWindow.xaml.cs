@@ -133,7 +133,7 @@ namespace CarControl
             }
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.C) && (Keyboard.IsKeyDown(Key.LeftAlt)))
             {
@@ -182,8 +182,8 @@ namespace CarControl
         {
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
-            double windowWidth = this.Width;
-            double windowHeight = this.Height;
+            double windowWidth = Width;
+            double windowHeight = Height;
             Left = (screenWidth / 2) - (windowWidth / 2);
             Top = (screenHeight / 2) - (windowHeight / 2);
         }
