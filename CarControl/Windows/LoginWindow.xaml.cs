@@ -18,7 +18,16 @@ namespace CarControl.Windows
         public LoginWindow()
         {
             InitializeComponent();
-            txbUser.Focus();
+            
+            if(ini.Read("LastUser") == "")
+                txbUser.Focus();
+
+            else
+            {
+                txbUser.Text = ini.Read("LastUser");
+                txbPassword.Focus();
+            }
+            
         }
 
         private void ConnectionDB(string login, string password)
@@ -46,6 +55,8 @@ namespace CarControl.Windows
             try
             {
                 ConnectionDB(txbUser.Text, txbPassword.Password);
+                string lastUser = txbUser.Text; // Replace this with the actual username or data you want to store
+                ini.Write("LastUser", lastUser);
                 Close();
             }
             catch (Exception ex)
@@ -78,6 +89,11 @@ namespace CarControl.Windows
         private void btnFechar_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void txbUser_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txbUser.CaretIndex = txbUser.Text.Length;
         }
     }
 }

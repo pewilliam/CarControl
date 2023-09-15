@@ -41,7 +41,8 @@
                  FontFamily="Montserrat"
                  FontSize="20"
                  CharacterCasing="Lower"
-                 MaxLength="15"/>
+                 MaxLength="15"
+                 GotFocus="txbUser_GotFocus"/>
 
         <PasswordBox x:Name="txbPassword"
                     Controls:TextBoxHelper.Watermark="Senha"
