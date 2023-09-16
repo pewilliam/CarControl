@@ -135,42 +135,43 @@ namespace CarControl
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.C) && (Keyboard.IsKeyDown(Key.LeftAlt)))
+            if (e.Key == Key.Escape)
             {
+                MessageBoxResult messageBoxResult = MessageBox.Show("Deseja encerrar a aplicação?", "Fechar aplicação", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    Application.Current.Shutdown();
+                }
+                
+            }
+
+            if (Keyboard.IsKeyDown(Key.C) && Keyboard.IsKeyDown(Key.LeftAlt))
                 MostrarCarroWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.M) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+
+            if (Keyboard.IsKeyDown(Key.M) && Keyboard.IsKeyDown(Key.LeftAlt))
                 ModelosCarroWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.L) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+            
+            if (Keyboard.IsKeyDown(Key.L) && Keyboard.IsKeyDown(Key.LeftAlt))
                 ClientesWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.A) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+            
+            if (Keyboard.IsKeyDown(Key.A) && Keyboard.IsKeyDown(Key.LeftAlt))
                 AluguelWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.D) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+            
+            if (Keyboard.IsKeyDown(Key.D) && Keyboard.IsKeyDown(Key.LeftAlt))
                 DevolucaoWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.R) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+            
+            if (Keyboard.IsKeyDown(Key.R) && Keyboard.IsKeyDown(Key.LeftAlt))
                 RecebimentoWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.F) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+
+            if (Keyboard.IsKeyDown(Key.F) && Keyboard.IsKeyDown(Key.LeftAlt))
                 FabricantesCarroWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.T) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+            
+            if (Keyboard.IsKeyDown(Key.T) && Keyboard.IsKeyDown(Key.LeftAlt))
                 CategoriasCarroWindowBtn_Click(sender, e);
-            }
-            if (Keyboard.IsKeyDown(Key.O) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
+            
+            if (Keyboard.IsKeyDown(Key.O) && Keyboard.IsKeyDown(Key.LeftAlt))
                 FormasPagtoWindowBtn_Click(sender, e);
-            }
+            
         }
 
         private void MetroWindow_StateChanged(object sender, EventArgs e)
