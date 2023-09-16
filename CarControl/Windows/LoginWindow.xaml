@@ -61,7 +61,8 @@
                   FontFamily="montserrat"
                   Grid.Row="2"
                   Grid.ColumnSpan="2"
-                  HorizontalAlignment="Center"/>
+                  HorizontalAlignment="Center"
+                  Cursor="Hand"/>
 
         <Button x:Name="btnSalvar"
                 Content="Login"

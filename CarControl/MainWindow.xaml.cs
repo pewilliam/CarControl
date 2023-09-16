@@ -21,15 +21,9 @@ namespace CarControl
         {
             loginwindow.ShowDialog();
             conn = loginwindow.conn;
-            if (conn.State == ConnectionState.Open)
-            {
-                IniciaRelogio();
-                InitializeComponent();
-                CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
-            }
-            else
-                Application.Current.Shutdown();
-            
+            IniciaRelogio();
+            InitializeComponent();
+            CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
         }
 
         private void MostrarCarroWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -128,18 +122,13 @@ namespace CarControl
             }
             else
                 Application.Current.Shutdown();
-            
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
-                MessageBoxResult messageBoxResult = MessageBox.Show("Deseja encerrar a aplicação?", "Fechar aplicação", MessageBoxButton.YesNo);
-                if (messageBoxResult == MessageBoxResult.Yes)
-                    Application.Current.Shutdown();
-
-            }
+                Close();
 
             if (Keyboard.IsKeyDown(Key.C) && Keyboard.IsKeyDown(Key.LeftAlt))
                 MostrarCarroWindowBtn_Click(sender, e);
@@ -190,7 +179,7 @@ namespace CarControl
             MessageBoxResult messageBoxResult = MessageBox.Show("Deseja encerrar a aplicação?", "Fechar aplicação", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
                 Application.Current.Shutdown();
-            
+
             else
                 e.Cancel = true;
         }

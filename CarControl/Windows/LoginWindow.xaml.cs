@@ -4,6 +4,7 @@ using Npgsql;
 using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace CarControl.Windows
 {
@@ -27,6 +28,7 @@ namespace CarControl.Windows
                 txbUser.Text = ini.Read("LastUser");
                 txbPassword.Focus();
                 SalvarLastUserCbx.IsChecked = true;
+                SalvarLastUserCbx.FocusVisualStyle = null;
             }
         }
 
@@ -82,7 +84,7 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
-                Close();
+                Application.Current.Shutdown();
 
             if (e.Key == System.Windows.Input.Key.Enter)
                 btnSalvar_Click(sender, e);
@@ -90,7 +92,7 @@ namespace CarControl.Windows
 
         private void btnFechar_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void txbUser_GotFocus(object sender, RoutedEventArgs e)
