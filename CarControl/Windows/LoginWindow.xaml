@@ -6,7 +6,7 @@
                     xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                     xmlns:local="clr-namespace:CarControl.Windows"
                     mc:Ignorable="d"
-                    Title="Login" Height="220" Width="250"
+                    Title="Login" Height="260" Width="250"
                     WindowStartupLocation="CenterScreen"
                     ResizeMode="CanMinimize"
                     KeyDown="Window_KeyDown">
@@ -27,6 +27,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
@@ -54,6 +55,13 @@
                     FontFamily="Montserrat"
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center" />
+
+        <CheckBox x:Name="SalvarLastUserCbx"
+                  Content="Salvar usuário?"
+                  FontFamily="montserrat"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="2"
+                  HorizontalAlignment="Center"/>
 
         <Button x:Name="btnSalvar"
                 Content="Login"
