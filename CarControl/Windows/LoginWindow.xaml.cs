@@ -26,6 +26,7 @@ namespace CarControl.Windows
             {
                 txbUser.Text = ini.Read("LastUser");
                 txbPassword.Focus();
+                SalvarLastUserCbx.IsChecked = true;
             }
         }
 
@@ -54,8 +55,13 @@ namespace CarControl.Windows
             try
             {
                 ConnectionDB(txbUser.Text, txbPassword.Password);
-                string lastUser = txbUser.Text; // Replace this with the actual username or data you want to store
-                ini.Write("LastUser", lastUser);
+                if (SalvarLastUserCbx.IsChecked == true)
+                {
+                    string lastUser = txbUser.Text; // Replace this with the actual username or data you want to store
+                    ini.Write("LastUser", lastUser);
+                }
+                else
+                    ini.Write("LastUser", "");
                 Close();
             }
             catch (Exception ex)
@@ -76,13 +82,10 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
-            {
                 Close();
-            }
+
             if (e.Key == System.Windows.Input.Key.Enter)
-            {
                 btnSalvar_Click(sender, e);
-            }
         }
 
         private void btnFechar_Click(object sender, RoutedEventArgs e)

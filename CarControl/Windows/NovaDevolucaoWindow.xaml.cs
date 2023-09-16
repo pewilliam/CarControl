@@ -1,8 +1,6 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using Npgsql;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -86,9 +84,8 @@ namespace CarControl.Windows
         private void DataGridRow_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is Aluguel selectedItem)
-            {
                 MostrarDetalhes(selectedItem.IdAluguel);
-            }
+            
         }
 
         private void LimpaLabels()
@@ -129,26 +126,23 @@ namespace CarControl.Windows
                     Close();
                 }
                 else
-                {
                     Close();
-                }
+                
             }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
         }
 
         private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
                 DevolverBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
-            }
+            
         }
     }
 }

@@ -52,13 +52,9 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
                 NovaCategoriaBtn_Click(sender, e);
-            }
         }
 
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
@@ -78,9 +74,8 @@ namespace CarControl.Windows
         {
             var txb = sender as TextBox;
             if (txb.Text == null)
-            {
                 MostrarCategorias();
-            }
+            
             else
             {
                 var filteredList = categoriaList.Where(x => x.Nome.Contains(txb.Text));

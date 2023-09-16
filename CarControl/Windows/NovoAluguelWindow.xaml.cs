@@ -171,9 +171,8 @@ namespace CarControl.Windows
         private void PreviewCharInput(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsLetter(e.Text, 0))
-            {
                 e.Handled = true;
-            }
+            
         }
 
         private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
@@ -227,29 +226,24 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.F4) && IdClienteTxb.IsFocused)
-            {
                 ProcurarClienteBtn_Click(sender, e);
-            }
+            
             if (Keyboard.IsKeyDown(Key.F4) && IdModeloTxb.IsFocused)
-            {
                 ProcurarModeloBtn_Click(sender, e);
-            }
+            
             if (Keyboard.IsKeyDown(Key.F4) && IdFormaPagtoTxb.IsFocused)
-            {
                 ProcurarFormaPagtoBtn_Click(sender, e);
-            }
+            
         }
 
         private void MetroWindow_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
                 SalvarNovoAluguelBtn_Click(sender, e);
-            }
+            
         }
 
         private void DiasAluguelTxb_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -280,9 +274,8 @@ namespace CarControl.Windows
                 }
             }
             else
-            {
                 ValorAluguelTxb.Text = null;
-            }
+            
         }
     }
 }

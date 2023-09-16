@@ -189,9 +189,8 @@ namespace CarControl
         private void DataGridRow_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is Modelo selectedItem)
-            {
                 MostrarDetalhes(selectedItem.IdModelo);
-            }
+            
         }
 
         private void FecharModeloWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -220,22 +219,19 @@ namespace CarControl
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
                 NovoModeloBtn_Click(sender, e);
-            }
+            
         }
 
         private void SearchModeloTxb_TextChanged(object sender, TextChangedEventArgs e)
         {
             var txb = sender as TextBox;
             if (txb.Text == null)
-            {
                 MostrarModelos((int)CarrosCB.SelectedValue);
-            }
+            
             else
             {
                 var filteredList = modeloList.Where(x => x.Nome.Contains(txb.Text));
@@ -259,9 +255,8 @@ namespace CarControl
         private void CarrosCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(CarrosCB.SelectedValue == null)
-            {
                 MostrarModelos();
-            }
+            
             else
             {
                 MostrarModelos((int)CarrosCB.SelectedValue);
@@ -278,21 +273,18 @@ namespace CarControl
         private void AtualizaDataGrid()
         {
             if (CarrosCB.SelectedValue == null)
-            {
                 MostrarModelos();
-            }
+            
             else
-            {
                 MostrarModelos((int)CarrosCB.SelectedValue);
-            }
+            
         }
 
         private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
                 AbrirModeloBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
-            }
+            
         }
     }
 }

@@ -61,13 +61,11 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
                 novaFormaPagtoBtn_Click(sender, e);
-            }
+            
         }
 
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
@@ -97,18 +95,16 @@ namespace CarControl.Windows
         private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
                 abrirFormaPagtoBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
-            }
+            
         }
 
         private void SearchFormaPagtoTxb_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             var txb = sender as TextBox;
             if (txb.Text == null)
-            {
                 MostrarFormasPagto();
-            }
+            
             else
             {
                 var filteredList = formaPagtoList.Where(x => x.Nome.Contains(txb.Text));

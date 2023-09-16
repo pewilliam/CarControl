@@ -49,13 +49,11 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.N))
-            {
                 novoUsuarioBtn_Click(sender, e);
-            }
+            
         }
 
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
