@@ -186,5 +186,19 @@ namespace CarControl
             Left = (screenWidth / 2) - (windowWidth / 2);
             Top = (screenHeight / 2) - (windowHeight / 2);
         }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = MessageBox.Show("Deseja encerrar a aplicação?", "Fechar aplicação", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+            
+        }
     }
 }
