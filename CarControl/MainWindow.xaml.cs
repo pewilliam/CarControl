@@ -28,9 +28,8 @@ namespace CarControl
                 CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
             }
             else
-            {
                 Application.Current.Shutdown();
-            }
+            
         }
 
         private void MostrarCarroWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -128,9 +127,8 @@ namespace CarControl
                 CurrentUserTxb.Text = "Usuário: " + conn.UserName.ToString();
             }
             else
-            {
                 Application.Current.Shutdown();
-            }
+            
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -191,14 +189,10 @@ namespace CarControl
         {
             MessageBoxResult messageBoxResult = MessageBox.Show("Deseja encerrar a aplicação?", "Fechar aplicação", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
-            {
                 Application.Current.Shutdown();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
             
+            else
+                e.Cancel = true;
         }
     }
 }

@@ -84,9 +84,8 @@ namespace CarControl.Windows
         private void DataGridRow_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is Aluguel selectedItem)
-            {
                 MostrarDetalhes(selectedItem.IdAluguel);
-            }
+            
         }
 
         private void LimpaLabels()
@@ -105,14 +104,12 @@ namespace CarControl.Windows
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Escape)
-            {
+            if (e.Key == Key.Escape)
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
                 NovoAluguelBtn_Click(sender, e);
-            }
+            
         }
 
         private void FecharModeloWindowBtn_Click(object sender, RoutedEventArgs e)

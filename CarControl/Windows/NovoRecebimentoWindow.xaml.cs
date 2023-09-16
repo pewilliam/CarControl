@@ -88,9 +88,8 @@ namespace CarControl.Windows
         private void DataGridRow_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is Recebimento selectedItem)
-            {
                 MostrarDetalhes(selectedItem.IdRecebimento);
-            }
+            
         }
 
         private void LimpaLabels()
@@ -114,9 +113,8 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Escape)
-            {
                 Close();
-            }
+            
         }
 
         private void FecharRecebimentoWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -143,9 +141,8 @@ namespace CarControl.Windows
                     Close();
                 }
                 else
-                {
                     Close();
-                }
+                
             }
         }
     }

@@ -52,13 +52,11 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
                 NovoFabricanteBtn_Click(sender, e);
-            }
+            
         }
 
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
@@ -78,9 +76,8 @@ namespace CarControl.Windows
         {
             var txb = sender as TextBox;
             if (txb.Text == null)
-            {
                 MostrarFabricantes();
-            }
+            
             else
             {
                 var filteredList = fabricantesList.Where(x => x.Nome.Contains(txb.Text));

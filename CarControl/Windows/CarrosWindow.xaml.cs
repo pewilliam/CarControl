@@ -53,9 +53,8 @@ namespace CarControl.Windows
         {
             var txb = sender as TextBox;
             if (txb.Text == null)
-            {
                 MostrarCarros();
-            }
+            
             else
             {
                 var filteredList = carroList.Where(x => x.Nome.ToLower().Contains(txb.Text.ToLower()));
@@ -96,21 +95,18 @@ namespace CarControl.Windows
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
-            {
                 novoCarroBtn_Click(sender, e);
-            }
+            
         }
 
         private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
                 abrirCarroBtn_Click(sender, e); // Isso impede que o evento "Enter" seja processado
-            }
+            
         }
 
         private void fecharBtn_Click(object sender, RoutedEventArgs e)

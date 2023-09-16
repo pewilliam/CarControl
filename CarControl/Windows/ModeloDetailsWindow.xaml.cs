@@ -156,9 +156,7 @@ namespace CarControl
         private void PreviewCharInput(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsLetter(e.Text, 0))
-            {
                 e.Handled = true;
-            }
         }
 
         private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
@@ -180,13 +178,11 @@ namespace CarControl
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
                 Close();
-            }
+            
             if (Keyboard.IsKeyDown(Key.Enter))
-            {
                 SalvarNovoModeloBtn_Click(sender, e);
-            }
+            
         }
 
         private void PrecoTxb_LostFocus(object sender, RoutedEventArgs e)
