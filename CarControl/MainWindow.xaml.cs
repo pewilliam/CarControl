@@ -159,21 +159,6 @@ namespace CarControl
 
         }
 
-        private void MetroWindow_StateChanged(object sender, EventArgs e)
-        {
-            CenterWindowOnScreen();
-        }
-
-        private void CenterWindowOnScreen()
-        {
-            double screenWidth = SystemParameters.PrimaryScreenWidth;
-            double screenHeight = SystemParameters.PrimaryScreenHeight;
-            double windowWidth = Width;
-            double windowHeight = Height;
-            Left = (screenWidth / 2) - (windowWidth / 2);
-            Top = (screenHeight / 2) - (windowHeight / 2);
-        }
-
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MessageBoxResult messageBoxResult = MessageBox.Show("Deseja encerrar a aplicação?", "Fechar aplicação", MessageBoxButton.YesNo);

@@ -107,7 +107,7 @@ namespace CarControl.Windows
             emAbertoLabel.Content = "Em Aberto: ";
             valorOriginalLabel.Content = "Valor original: ";
             valorRecebidoLabel.Content = "Valor recebido: ";
-            dhRecebimentoLabel.Content = "Data do recebimento: ";
+            dhRecebimentoLabel.Content = "Data do Recebimento: ";
             diaPrevistoRecebimentoLabel.Content = "Data prevista: ";
         }
 

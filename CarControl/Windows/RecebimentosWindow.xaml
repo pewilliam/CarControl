@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarControl.Windows"
         mc:Ignorable="d"
-        Title="Recebimentos" Height="600" Width="1280"
+        Title="Recebimentos" Height="600" Width="1400"
         WindowStartupLocation="CenterScreen"
         Language="pt-BR"
         ResizeMode="CanMinimize"
@@ -113,7 +113,7 @@
                    Grid.Column="1"/>
 
             <Label x:Name="dhRecebimentoLabel"
-                   Content="Data do recebimento: "
+                   Content="Data do Recebimento: "
                    Grid.Row="2"
                    Grid.Column="2"/>
 
