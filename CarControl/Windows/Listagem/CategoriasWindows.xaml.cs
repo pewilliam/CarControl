@@ -38,8 +38,8 @@ namespace CarControl.Windows
                 while (reader.Read())
                 {
                     Categoria categoria = new(
-                        reader.GetInt32(0), //idfabricante
-                        reader.GetString(1) //nome
+                        reader.GetInt32(0),
+                        reader.GetString(1)
                         );
                     categoriaList.Add(categoria);
                 }
@@ -75,7 +75,7 @@ namespace CarControl.Windows
             var txb = sender as TextBox;
             if (txb.Text == null)
                 MostrarCategorias();
-            
+
             else
             {
                 var filteredList = categoriaList.Where(x => x.Nome.Contains(txb.Text));

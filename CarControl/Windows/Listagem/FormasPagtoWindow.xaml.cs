@@ -1,11 +1,11 @@
 ﻿using CarControl.Models;
 using MahApps.Metro.Controls;
 using Npgsql;
-using System.Windows;
 using System.Collections.Generic;
-using System.Windows.Input;
-using System.Windows.Controls;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CarControl.Windows
 {
@@ -38,8 +38,8 @@ namespace CarControl.Windows
                 while (reader.Read())
                 {
                     FormaPagto formaPagto = new(
-                        reader.GetInt32(0), //idcarro
-                        reader.GetString(1).ToUpper() //nome
+                        reader.GetInt32(0),
+                        reader.GetString(1).ToUpper()
                         );
                     formaPagtoList.Add(formaPagto);
                 }
@@ -76,7 +76,7 @@ namespace CarControl.Windows
             var txb = sender as TextBox;
             if (txb.Text == null)
                 MostrarFormasPagto();
-            
+
             else
             {
                 var filteredList = formaPagtoList.Where(x => x.Nome.Contains(txb.Text));

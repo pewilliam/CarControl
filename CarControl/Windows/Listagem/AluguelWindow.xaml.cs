@@ -75,7 +75,7 @@ namespace CarControl.Windows
                     formaPagtoLabel.Content = formaPagtoLabel.Content + reader.GetString(6);
                     dataAluguelLabel.Content = dataAluguelLabel.Content + reader.GetDateTime(7).ToString();
                     diasLabel.Content = diasLabel.Content + reader.GetInt32(8).ToString();
-                    valorTotalLabel.Content = valorTotalLabel.Content  + reader.GetDecimal(9).ToString("C");
+                    valorTotalLabel.Content = valorTotalLabel.Content + reader.GetDecimal(9).ToString("C");
                 }
                 reader.Close();
             }
@@ -85,7 +85,7 @@ namespace CarControl.Windows
         {
             if (sender is DataGridRow row && row.Item is Aluguel selectedItem)
                 MostrarDetalhes(selectedItem.IdAluguel);
-            
+
         }
 
         private void LimpaLabels()
@@ -106,10 +106,10 @@ namespace CarControl.Windows
         {
             if (e.Key == Key.Escape)
                 Close();
-            
+
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
                 NovoAluguelBtn_Click(sender, e);
-            
+
         }
 
         private void FecharModeloWindowBtn_Click(object sender, RoutedEventArgs e)

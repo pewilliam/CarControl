@@ -1,11 +1,11 @@
 ﻿using CarControl.Models;
+using MahApps.Metro.Controls;
 using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using MahApps.Metro.Controls;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System;
 
 namespace CarControl.Windows
 {
@@ -37,7 +37,7 @@ namespace CarControl.Windows
                 while (reader.Read())
                 {
                     Cliente cliente = new(
-                        reader.GetInt32(0), //idcarro
+                        reader.GetInt32(0),
                         reader.GetString(1).ToUpper(),
                         Convert.ToUInt64(reader.GetString(2)).ToString(@"000\.000\.000\-00"),
                         reader.GetString(3),
@@ -56,7 +56,7 @@ namespace CarControl.Windows
             var txb = sender as TextBox;
             if (txb.Text == null)
                 MostrarClientes();
-            
+
             else
             {
                 var filteredList = clientesList.Where(x => x.Nome.ToLower().Contains(txb.Text.ToLower()));
@@ -70,17 +70,17 @@ namespace CarControl.Windows
         {
             if (e.Key == Key.Escape)
                 Close();
-            
+
             if (Keyboard.IsKeyDown(Key.N) && (Keyboard.IsKeyDown(Key.LeftAlt)))
                 novoClienteBtn_Click(sender, e);
-            
+
         }
 
         private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 e.Handled = true; // Isso impede que o evento "Enter" seja processado
-            
+
         }
 
         private void fecharBtn_Click(object sender, System.Windows.RoutedEventArgs e)

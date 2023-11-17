@@ -35,8 +35,8 @@ namespace CarControl.Windows
                 while (reader.Read())
                 {
                     Usuario usuario = new(
-                        reader.GetInt32(0), //idcarro
-                        reader.GetString(1).ToUpper() //nome
+                        reader.GetInt32(0),
+                        reader.GetString(1).ToUpper()
                         );
                     userList.Add(usuario);
                 }
@@ -50,10 +50,10 @@ namespace CarControl.Windows
         {
             if (e.Key == Key.Escape)
                 Close();
-            
+
             if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.N))
                 novoUsuarioBtn_Click(sender, e);
-            
+
         }
 
         private void fecharBtn_Click(object sender, RoutedEventArgs e)
