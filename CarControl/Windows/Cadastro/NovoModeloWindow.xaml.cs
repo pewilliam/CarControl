@@ -49,6 +49,7 @@ namespace CarControl
                 string ano = AnoTxb.Text;
                 string cambio = CambioTxb.Text.ToUpper();
                 double preco = double.Parse(PrecoTxb.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
+                int IdCarro = int.Parse(IdCarroTxb.Text);
                 int fabricante = (int)FabricanteCB.SelectedValue;
                 int categoria = (int)CategoriaCB.SelectedValue;
                 #endregion
@@ -67,17 +68,17 @@ namespace CarControl
         {
             if (e.Key == Key.Escape)
                 Close();
-            
+
             if (e.Key == Key.Enter)
                 SalvarNovoModeloBtn_Click(sender, e);
-            
+
         }
 
         private void PreviewCharInput(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsLetter(e.Text, 0))
                 e.Handled = true;
-            
+
         }
 
         private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
