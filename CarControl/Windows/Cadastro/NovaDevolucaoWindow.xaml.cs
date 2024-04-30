@@ -59,7 +59,7 @@ namespace CarControl.Windows
         private void MostrarDetalhes(int idAluguel)
         {
             LimpaLabels();
-            string sql = ($"SELECT * FROM carcontrol.vw_aluguel WHERE idaluguel = {idAluguel};");
+            string sql = ($"SELECT * FROM vw_aluguel WHERE idaluguel = {idAluguel};");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -118,7 +118,7 @@ namespace CarControl.Windows
                     int idModelo = a.IdModelo;
                     int idCliente = a.IdCliente;
                     int idAluguel = a.IdAluguel;
-                    string sql = $"INSERT INTO carcontrol.devolucao(idmodelo, idcliente, idaluguel) VALUES ({idModelo}, {idCliente}, {idAluguel});";
+                    string sql = $"INSERT INTO devolucao(idmodelo, idcliente, idaluguel) VALUES ({idModelo}, {idCliente}, {idAluguel});";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                     cmd.ExecuteNonQuery();

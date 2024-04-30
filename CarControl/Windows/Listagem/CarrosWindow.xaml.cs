@@ -28,7 +28,7 @@ namespace CarControl.Windows
         private void MostrarCarros()
         {
             dg.ItemsSource = null;
-            string sql = "SELECT * FROM carcontrol.carro ORDER BY idcarro;";
+            string sql = "SELECT * FROM carro ORDER BY idcarro;";
 
             carroList.Clear();
 

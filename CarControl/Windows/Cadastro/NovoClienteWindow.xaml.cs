@@ -61,7 +61,7 @@ namespace CarControl.Windows
                 string emailCliente = EmailTxb.Text.Trim();
                 string dtNascimento = DataNascimentoTextBox.Text;
 
-                string sql = $"INSERT INTO carcontrol.cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{nomeCliente}'), '{cpfCliente}', '{emailCliente}', '{dtNascimento}')";
+                string sql = $"INSERT INTO cliente(nome, cpf, email, dtnascimento) VALUES (UPPER('{nomeCliente}'), '{cpfCliente}', '{emailCliente}', '{dtNascimento}')";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 try
                 {

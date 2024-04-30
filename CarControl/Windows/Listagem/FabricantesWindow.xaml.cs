@@ -28,7 +28,7 @@ namespace CarControl.Windows
         private void MostrarFabricantes()
         {
             dg.ItemsSource = null;
-            string sql = "SELECT * FROM carcontrol.fabricante ORDER BY idfabricante;";
+            string sql = "SELECT * FROM fabricante ORDER BY idfabricante;";
 
             fabricantesList.Clear();
 

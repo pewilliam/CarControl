@@ -22,7 +22,7 @@ namespace CarControl.Windows
         {
             if (ValidarCampo())
             {
-                string sql = ($"INSERT INTO carcontrol.formapagto(nome) VALUES ('{NomeFormaPagtoTxb.Text.ToUpper()}')");
+                string sql = ($"INSERT INTO formapagto(nome) VALUES ('{NomeFormaPagtoTxb.Text.ToUpper()}')");
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Forma de pagamento inserida com sucesso!", "Forma de pagamento inserida");

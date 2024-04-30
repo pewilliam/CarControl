@@ -51,7 +51,7 @@ namespace CarControl
         private void PopulateFabricanteCB()
         {
             listFabricante.Clear();
-            string sql = "SELECT * FROM carcontrol.fabricante ORDER BY idfabricante;";
+            string sql = "SELECT * FROM fabricante ORDER BY idfabricante;";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -73,7 +73,7 @@ namespace CarControl
         private void PopulateCategoriaCB()
         {
             listCategoria.Clear();
-            string sql = $"SELECT * FROM carcontrol.categoria ORDER BY idcategoria;";
+            string sql = $"SELECT * FROM categoria ORDER BY idcategoria;";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -125,7 +125,7 @@ namespace CarControl
             #endregion
 
             #region update query
-            string sql = $"UPDATE carcontrol.modelo SET " +
+            string sql = $"UPDATE modelo SET " +
                 $"nome = '{nomeModelo}', " +
                 $"cor = '{corModelo}', " +
                 $"qtdportas = {qtdPortas}, " +

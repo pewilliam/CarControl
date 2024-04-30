@@ -52,7 +52,7 @@ namespace CarControl.Windows
             if (IdClienteTxb.Text != string.Empty)
             {
                 int idCliente = int.Parse(IdClienteTxb.Text);
-                string sql = $"SELECT nome FROM carcontrol.cliente WHERE idcliente = {idCliente}";
+                string sql = $"SELECT nome FROM cliente WHERE idcliente = {idCliente}";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -84,7 +84,7 @@ namespace CarControl.Windows
             if (IdModeloTxb.Text != string.Empty)
             {
                 int idModelo = int.Parse(IdModeloTxb.Text);
-                string sql = $"SELECT nome FROM carcontrol.modelo WHERE idmodelo = {idModelo}";
+                string sql = $"SELECT nome FROM modelo WHERE idmodelo = {idModelo}";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -116,7 +116,7 @@ namespace CarControl.Windows
             if (IdFormaPagtoTxb.Text != string.Empty)
             {
                 int idFormaPagto = int.Parse(IdFormaPagtoTxb.Text);
-                string sql = $"SELECT nome FROM carcontrol.formapagto WHERE idformapagto = {idFormaPagto}";
+                string sql = $"SELECT nome FROM formapagto WHERE idformapagto = {idFormaPagto}";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -251,7 +251,7 @@ namespace CarControl.Windows
             if (IdModeloTxb.Text != string.Empty && DiasAluguelTxb.Text != string.Empty)
             {
                 int idModelo = int.Parse(IdModeloTxb.Text);
-                string sql = $"SELECT precodia FROM carcontrol.modelo WHERE idmodelo = {idModelo}";
+                string sql = $"SELECT precodia FROM modelo WHERE idmodelo = {idModelo}";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())

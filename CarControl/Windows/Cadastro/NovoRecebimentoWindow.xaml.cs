@@ -133,7 +133,7 @@ namespace CarControl.Windows
                     double valorRecebido = r.ValorOriginal;
                     int idrecebimento = r.IdRecebimento;
                     var dhRecebimento = DateTime.Now;
-                    string sql = $"UPDATE carcontrol.recebimento SET valorrecebido = {valorRecebido}, dhrecebimento = '{dhRecebimento.ToString("dd-MM-yyyy HH:mm:ss")}', em_aberto = FALSE WHERE idrecebimento = {idrecebimento};";
+                    string sql = $"UPDATE recebimento SET valorrecebido = {valorRecebido}, dhrecebimento = '{dhRecebimento.ToString("dd-MM-yyyy HH:mm:ss")}', em_aberto = FALSE WHERE idrecebimento = {idrecebimento};";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                     cmd.ExecuteNonQuery();

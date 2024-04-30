@@ -28,7 +28,7 @@ namespace CarControl.Windows
         private void MostrarFormasPagto()
         {
             dg.ItemsSource = null;
-            string sql = "SELECT * FROM carcontrol.formapagto ORDER BY idformapagto;";
+            string sql = "SELECT * FROM formapagto ORDER BY idformapagto;";
 
             formaPagtoList.Clear();
 

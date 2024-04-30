@@ -29,7 +29,7 @@ namespace CarControl.Windows
         private void MostrarClientes()
         {
             dg.ItemsSource = null;
-            string sql = "SELECT * FROM carcontrol.cliente ORDER BY idcliente;";
+            string sql = "SELECT * FROM cliente ORDER BY idcliente;";
 
             clientesList.Clear();
 

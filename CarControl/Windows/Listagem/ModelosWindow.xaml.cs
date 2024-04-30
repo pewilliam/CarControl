@@ -31,7 +31,7 @@ namespace CarControl
         {
             dg.ItemsSource = null;
             modeloList.Clear();
-            string sql = ($"SELECT * FROM carcontrol.modelo ORDER BY idmodelo;");
+            string sql = ($"SELECT * FROM modelo ORDER BY idmodelo;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -67,7 +67,7 @@ namespace CarControl
         {
             dg.ItemsSource = null;
             modeloList.Clear();
-            string sql = ($"SELECT * FROM carcontrol.modelo WHERE idcarro = {idcarro} ORDER BY idmodelo;");
+            string sql = ($"SELECT * FROM modelo WHERE idcarro = {idcarro} ORDER BY idmodelo;");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -102,7 +102,7 @@ namespace CarControl
         private void MostrarDetalhes(int idModelo)
         {
             LimpaLabels();
-            string sql = ($"SELECT * FROM carcontrol.vw_carro_modelo WHERE idmodelo = {idModelo};");
+            string sql = ($"SELECT * FROM vw_carro_modelo WHERE idmodelo = {idModelo};");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -135,7 +135,7 @@ namespace CarControl
         private void PopulateCarrosCB()
         {
             carroList.Clear();
-            string sql = "SELECT * FROM carcontrol.carro;";
+            string sql = "SELECT * FROM carro;";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())

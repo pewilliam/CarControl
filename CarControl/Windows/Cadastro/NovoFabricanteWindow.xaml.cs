@@ -22,7 +22,7 @@ namespace CarControl
         {
             if (ValidarCampo())
             {
-                string sql = ($"INSERT INTO carcontrol.fabricante(nome) VALUES ('{NomeFabricanteTxb.Text.ToUpper()}')");
+                string sql = ($"INSERT INTO fabricante(nome) VALUES ('{NomeFabricanteTxb.Text.ToUpper()}')");
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Fabricante inserido com sucesso!", "Fabricante inserido");

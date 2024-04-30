@@ -27,7 +27,7 @@ namespace CarControl
         {
             if (ValidarCampo())
             {
-                string sql = ($"INSERT INTO carcontrol.carro(nome) VALUES('{NomeCarroTxb.Text.ToUpper()}');");
+                string sql = ($"INSERT INTO carro(nome) VALUES('{NomeCarroTxb.Text.ToUpper()}');");
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();

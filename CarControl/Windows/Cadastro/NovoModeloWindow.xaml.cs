@@ -53,7 +53,7 @@ namespace CarControl
                 int categoria = (int)CategoriaCB.SelectedValue;
                 #endregion
 
-                string sql = ($"INSERT INTO carcontrol.modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, precodia, idcarro, idfabricante, idcategoria) " +
+                string sql = ($"INSERT INTO modelo(nome, cor, qtdportas, qtdpassageiros, combustivel, placa, ano, tipocambio, precodia, idcarro, idfabricante, idcategoria) " +
                     $"VALUES('{nomeModelo}', '{corModelo}', {qtdPortas}, {qtdPassageiros}, '{combustivel}', '{placa}', '{ano}', '{cambio}', {preco}, {IdCarro}, {fabricante}, {categoria});");
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
@@ -112,7 +112,7 @@ namespace CarControl
         private void PopulateFabricanteCB()
         {
             listFabricante.Clear();
-            string sql = "SELECT * FROM carcontrol.fabricante;";
+            string sql = "SELECT * FROM fabricante;";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -134,7 +134,7 @@ namespace CarControl
         private void PopulateCategoriaCB()
         {
             listCategoria.Clear();
-            string sql = $"SELECT * FROM carcontrol.categoria;";
+            string sql = $"SELECT * FROM categoria;";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -190,7 +190,7 @@ namespace CarControl
             if (IdCarroTxb.Text != string.Empty)
             {
                 int idCarro = int.Parse(IdCarroTxb.Text);
-                string sql = $"SELECT nome FROM carcontrol.carro WHERE idcarro = {idCarro}";
+                string sql = $"SELECT nome FROM carro WHERE idcarro = {idCarro}";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -222,7 +222,7 @@ namespace CarControl
             if (IdCarro != 0)
             {
                 IdCarroTxb.Text = IdCarro.ToString();
-                string sql = $"SELECT nome FROM carcontrol.carro WHERE idcarro = {IdCarro}";
+                string sql = $"SELECT nome FROM carro WHERE idcarro = {IdCarro}";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
